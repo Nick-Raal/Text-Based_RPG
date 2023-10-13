@@ -1,4 +1,8 @@
-public class Weapon extends Item{
+package Items;
+
+import Items.Item;
+
+public class Weapon extends Item {
   private double damage;
   private int type;
   private double manaC;
