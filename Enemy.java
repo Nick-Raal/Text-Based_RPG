@@ -23,7 +23,14 @@ public class Enemy{
     this.atkMod = atkMod;
   }
 
-  
+  public Enemy(String name, double health, double initiative, double atkMod, Weapon[] attack, Armor[] armor){
+    this.name = name;
+    this.health = health;
+    this.initiative = initiative;
+    this.atkMod = atkMod;
+    this.attack = attack;
+    this.armor = armor;
+  }
   
   public double[] Attack(int select){
     double[] attack = new double[2];

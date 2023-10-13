@@ -18,15 +18,15 @@ public class Scenario{
   double[] scenarioChancesV = {0, 0, 0, 0};
 
   //this method should return what type of encounter occurs, a different method will handle the internals of the encounter
-  public int scenario(int tileType){
+  public Object scenario(int tileType){
+    Random r = new Random();
     int n = r.nextInt(99) + 1;
     int running = 0;
     if(tileType == 1){
       for(int k = 0; k < scenarioChancesF.length; k++){
         if(scenarioChancesF[k] != 0){
           if(n >= running && n < scenarioChancesF[k] * 100 + running){
-            return 1;
-            break;
+            return k + 1;
           }
         }
       }
@@ -34,8 +34,7 @@ public class Scenario{
       for(int k = 0; k < scenarioChancesG.length; k++){
         if(scenarioChancesG[k] != 0){
           if(n >= running && n < scenarioChancesG[k] * 100 + running){
-            return 2;
-            break;
+            return k+1;
           }
         }
       
@@ -44,8 +43,7 @@ public class Scenario{
       for(int k = 0; k < scenarioChancesE.length; k++){
         if(scenarioChancesE[k] != 0){
           if(n >= running && n < scenarioChancesE[k] * 100 + running){
-            return 3;
-            break;
+            return k + 1;
           }
         }
       }
@@ -53,8 +51,7 @@ public class Scenario{
       for(int k = 0; k < scenarioChancesM.length; k++){
         if(scenarioChancesM[k] != 0){
           if(n >= running && n < scenarioChancesM[k] * 100 + running){
-            return 4;
-            break;
+            return k + 1;
           }
         }
       }
@@ -62,10 +59,15 @@ public class Scenario{
       for(int k = 0; k < scenarioChancesC.length; k++){
         if(scenarioChancesC[k] != 0){
           if(n >= running && n < scenarioChancesC[k] * 100 + running){
-            return 5;
-            break;
+            return k + 1;
           }
         }
       }
+    }
+    return null;
+  }
+
+  public Battle battleScenario(int tileType){
+    i
   }
 }
