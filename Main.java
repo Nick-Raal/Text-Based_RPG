@@ -17,6 +17,7 @@ class Main {
 //    rest(10);
 //    b.turn();
       Enemy e = FileHandler.createEnemy("enmy.dat");
+    System.out.println(e);
       while(true){
         while(!play.getIn()){
           System.out.println(p.display());

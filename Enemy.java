@@ -54,7 +54,19 @@ public class Enemy{
   }
 
   public String toString(){
-    return name + " (HP:" + health + ") ";
+
+    // String s = "";
+    // for(int i = 0; i < attack.length; i++){
+    //   s += (i+1) + ": " + attack[i].getName() + "\n";
+    // }
+    // s += "Armor\n" ;
+    // for(int i = 0; i < armor.length; i++){
+    //   s += (i+1) + ": " + armor[i].getName() +" "+ armor[i].getArmor() + " " +armor[i].getType() +"\n";
+    // }
+    
+    
+    return name + " (HP:" + health + ")\n" + s;
+    
   }
 
   public String getName(){

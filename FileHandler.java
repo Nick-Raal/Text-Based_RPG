@@ -57,11 +57,12 @@ public class FileHandler{
       s = s.substring(s.indexOf(" ") + 1);
       double aArmor = Double.parseDouble(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
-      int aType = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") != -1 : s.length())));
+      int aType = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
       s = s.substring(s.indexOf(" ") + 1);
-      System.out.println("running string: " + s);
-
+      System.out.println("running string: " + s + " k " + k);
+      
       armor[k] = new Armor(aName, aArmor, aType);
+      System.out.println("new armor " + armor[k]);
       k++;
     }
     
