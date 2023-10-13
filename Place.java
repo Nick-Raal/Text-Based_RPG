@@ -260,6 +260,16 @@ public class Place{
   //will do later
   public int checkPos() {
     switch (data[y][x]) {
+      case 1:
+        //forest chances
+        break;
+      case 2:
+        //grassland chances
+        break;
+      case 3:
+        //evil chances
+        return ((int)(difficulty * Math.random))/difficulty >= 1 ? 1 : 0;
+        break;
       default:
         System.out.println("something strange has occured");
     }
