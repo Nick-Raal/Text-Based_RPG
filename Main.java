@@ -11,7 +11,7 @@ class Main {
     p.setPlayerPos(0, 0);
     Graphics g = new Graphics();
     play.dispAtk();
-    // Enemy liza = new Enemy("Polonius", 100, 0, 1);
+    Enemy liza = new Enemy("Polonius", 100, 0, 1);
     Enemy king = new Enemy("Kai", 150, 0, 1);
     Enemy[] e = {king};
     Battle b = new Battle(play, e);

@@ -44,7 +44,7 @@ public class Enemy{
 
   public String toString(){
     Random r = new Random();
-    return name + " (" + health + ") " + (r.nextDouble() / 2 + 0.75) * dropE;
+    return name + " (HP:" + health + ") ";
   }
 
   public String getName(){
