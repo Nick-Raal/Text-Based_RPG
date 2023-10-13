@@ -43,7 +43,6 @@ public class Enemy{
   }
 
   public String toString(){
-    Random r = new Random();
     return name + " (HP:" + health + ") ";
   }
 
