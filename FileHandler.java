@@ -31,7 +31,13 @@ public class FileHandler{
     k = 0;
     for(int i = 0; i < s.length(); s++){
       if(s.charAt(i) == 'ẅ'){
-        attack[k] = new Weapon(s.substring(i + 1, s.indexOf(" ") + 1), Double.parseDouble(s.substring(s.indexOf(" ")));
+        String wName = s.substring(i+1, s.indexOf(" "));
+        s = s.substring(s.indexOf(" ") + 1);
+        double wDamage = Double.parseDouble(s.substring(0, s.indexOf(" ")));
+        s = s.substring(s.indexOf(" ") + 1);
+        int wType = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+        s = s.substring(s.indexOf(" ") + 1);
+        attack[k] = new Weapon(wName, wDamage, wType);
         k++;
       }
     }
