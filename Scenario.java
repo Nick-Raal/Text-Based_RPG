@@ -11,14 +11,14 @@ public class Scenario{
 
   double[] scenarioChancesF = {0, 0, 0, 0};
   double[] scenarioChancesG = {0, 0, 0, 0};
-  double[] scenarioChancesE = {0, 0, 0, 0};
+  double[] scenarioChancesE = {1.0, 0, 0, 0};
   double[] scenarioChancesM = {0, 0, 0, 0};
   double[] scenarioChancesC = {0, 0, 0, 0};
   //placeholder where ocean chances would be stored
   double[] scenarioChancesV = {0, 0, 0, 0};
 
   //this method should return what type of encounter occurs, a different method will handle the internals of the encounter
-  public Object scenario(int tileType){
+  public Object scenario(Player p, int tileType, int difficulty){
     Random r = new Random();
     int n = r.nextInt(99) + 1;
     int running = 0;
@@ -26,32 +26,34 @@ public class Scenario{
       for(int k = 0; k < scenarioChancesF.length; k++){
         if(scenarioChancesF[k] != 0){
           if(n >= running && n < scenarioChancesF[k] * 100 + running){
-            return k + 1;
+            return null;
           }
         }
+        running += scenarioChancesF[k] * 100;
       }
     }else if(tileType == 2){
       for(int k = 0; k < scenarioChancesG.length; k++){
         if(scenarioChancesG[k] != 0){
           if(n >= running && n < scenarioChancesG[k] * 100 + running){
-            return k+1;
+            return null;
           }
         }
-      
+        running += scenarioChancesG[k] * 100;
       }
     }else if(tileType == 3){
-      for(int k = 0; k < scenarioChancesE.length; k++){
-        if(scenarioChancesE[k] != 0){
-          if(n >= running && n < scenarioChancesE[k] * 100 + running){
-            return k + 1;
-          }
-        }
-      }
+      // for(int k = 0; k < scenarioChancesE.length; k++){
+      //   if(scenarioChancesE[k] != 0){
+      //     if(n >= running && n < scenarioChancesE[k] * 100 + running){
+            return battleScenario(p, tileType, difficulty);
+        //   }
+        // }
+        // running += scenarioChancesE[k] * 100;
+      //}
     }else if(tileType == 4){
       for(int k = 0; k < scenarioChancesM.length; k++){
         if(scenarioChancesM[k] != 0){
           if(n >= running && n < scenarioChancesM[k] * 100 + running){
-            return k + 1;
+            return null;
           }
         }
       }
@@ -59,7 +61,7 @@ public class Scenario{
       for(int k = 0; k < scenarioChancesC.length; k++){
         if(scenarioChancesC[k] != 0){
           if(n >= running && n < scenarioChancesC[k] * 100 + running){
-            return k + 1;
+            return null;
           }
         }
       }
@@ -67,7 +69,12 @@ public class Scenario{
     return null;
   }
 
-  // public Battle battleScenario(int tileType){
-    
-  // }
+  public Battle battleScenario(Player p, int tileType, int difficulty){
+    int numEnmies = 0 + (int)(Math.random() * (difficulty)) + 1;
+    Enemy[] e = new Enemy[numEnmies];
+    for(int i = 0; i< numEnmies; i++){
+      e[i] = FileHandler.createEnemy("enmy.dat");
+    }
+    return new Battle(p, e);
+  }
 }

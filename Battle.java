@@ -13,6 +13,7 @@ public class Battle{
   }
   
   public void turn(){
+    Main.rest(10);
     Scanner in = new Scanner(System.in);
     double init = 0;
     for(int i = 0; i < e.length; i++){

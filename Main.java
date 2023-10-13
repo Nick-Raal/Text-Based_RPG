@@ -8,6 +8,7 @@ class Main {
     Scanner s = new Scanner(System.in);
     Place p = new Place(10, 20);
     Player play = new Player();      
+    Scenario scen = new Scenario();
     p.setPlayerPos(0, 0);
     Graphics g = new Graphics();
 //    Enemy liza = new Enemy("Polonius", 100, 0, 1);
@@ -16,14 +17,19 @@ class Main {
 //    Battle b = new Battle(play, e);
 //    rest(10);
 //    b.turn();
-      Enemy e = FileHandler.createEnemy("enmy.dat");
-    System.out.println(e);
+
+
       while(true){
         while(!play.getIn()){
           System.out.println(p.display());
           n1 = Integer.parseInt(s.nextLine());
           p.move(n, n1);
-         
+          Object o = scen.scenario(play, p.getTile(), 1);
+          System.out.println(o);
+          if(o instanceof Battle){
+            Battle b = (Battle)o;
+            b.turn();
+          } 
          rest(10);
         }
       s.close();

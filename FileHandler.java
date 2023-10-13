@@ -19,13 +19,14 @@ public class FileHandler{
     }
     String name = s.substring(0, s.indexOf(" "));
     s = s.substring(s.indexOf(" ") + 1);
+    name = name.replaceAll("_", " ");
     double health = Double.parseDouble(s.substring(0, s.indexOf(" ")));
     s = s.substring(s.indexOf(" ") + 1);
     double init = Double.parseDouble(s.substring(0, s.indexOf(" ")));
     s = s.substring(s.indexOf(" ") + 1);
     double atkMod = Double.parseDouble(s.substring(0, s.indexOf(" ")));
     s = s.substring(s.indexOf(" ") + 1);
-    System.out.println(s);
+
     int k = 0;
     for(int i = 0; i < s.length(); i++){
       if(s.charAt(i) == 'ẅ'){
@@ -47,7 +48,6 @@ public class FileHandler{
         i = 0;
       }
     }
-    System.out.println("armor string: " + s);
     Armor[] armor = new Armor[4];
     k =0;
     while (k<4){
@@ -59,10 +59,8 @@ public class FileHandler{
       s = s.substring(s.indexOf(" ") + 1);
       int aType = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
       s = s.substring(s.indexOf(" ") + 1);
-      System.out.println("running string: " + s + " k " + k);
       
       armor[k] = new Armor(aName, aArmor, aType);
-      System.out.println("new armor " + armor[k]);
       k++;
     }
     

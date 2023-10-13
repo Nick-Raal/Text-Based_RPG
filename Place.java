@@ -51,7 +51,7 @@ public class Place{
             System.out.println("print ERROR:" + data[y][x] + Color.RESET);
         }
       }
-      s += "\n";
+      s += "\n" + Color.RESET;
     }
     return s;
   }
@@ -126,6 +126,9 @@ public class Place{
     return y;
   }
 
+  public int getTile(){
+    return playerTile;
+  }
   private int[][] gen(int size, int size1, int difficulty){
 
     
