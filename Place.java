@@ -7,8 +7,9 @@ public class Place{
   private int y = 0;
   //
   int[][] data = {{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)}};
-  
 
+  //determines the chances for bad things to happen
+  private int difficulty;
   int playerTile = data[0][0];
   int pppX = 0;
   int pppY = 0;
@@ -253,7 +254,17 @@ public class Place{
     // System.out.println("total chance " + tC + "\n");
     return chances;
   }
-  
+
+  //check the player's current position to see if anything cool things should occur
+  //debating adding support for multiple different types of places
+  //will do later
+  public int checkPos() {
+    switch (data[y][x]) {
+      default:
+        System.out.println("something strange has occured");
+    }
+    return 1;
+  }
 }
 
 

@@ -10,22 +10,22 @@ class Main {
     Player play = new Player();      
     p.setPlayerPos(0, 0);
     Graphics g = new Graphics();
-    play.dispAtk();
-    Enemy liza = new Enemy("Polonius", 100, 0, 1);
-    Enemy king = new Enemy("Kai", 150, 0, 1);
-    Enemy[] e = {king};
-    Battle b = new Battle(play, e);
-    rest(10);
-    b.turn();
-    //  while(true){
-    //    while(!play.getIn()){
-    //      System.out.println(p.display());
-    //      n1 = Integer.parseInt(s.nextLine());
-    //      p.move(n, n1);
-    //     rest(10);
-    //    }
-    //  s.close();
-    // }
+//    Enemy liza = new Enemy("Polonius", 100, 0, 1);
+//    Enemy king = new Enemy("Kai", 150, 0, 1);
+//    Enemy[] e = {king};
+//    Battle b = new Battle(play, e);
+//    rest(10);
+//    b.turn();
+      while(true){
+        while(!play.getIn()){
+          System.out.println(p.display());
+          n1 = Integer.parseInt(s.nextLine());
+          p.move(n, n1);
+          p.checkPos();
+         rest(10);
+        }
+      s.close();
+     }
   }
   
   
