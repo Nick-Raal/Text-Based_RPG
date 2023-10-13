@@ -1,0 +1,2 @@
+link the battle and the world exploration systems
+create file system for saving player data as well as for the easy creation and retention of entities
