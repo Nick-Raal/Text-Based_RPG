@@ -25,6 +25,7 @@ public class FileHandler{
     s = s.substring(s.indexOf(" ") + 1);
     double atkMod = Double.parseDouble(s.substring(0, s.indexOf(" ")));
     s = s.substring(s.indexOf(" ") + 1);
+    System.out.println(s);
     int k = 0;
     for(int i = 0; i < s.length(); i++){
       if(s.charAt(i) == 'ẅ'){
@@ -43,22 +44,28 @@ public class FileHandler{
         s = s.substring(s.indexOf(" ") + 1);
         attack[k] = new Weapon(wName, wDamage, wType);
         k++;
+        i = 0;
       }
     }
+    System.out.println("armor string: " + s);
     Armor[] armor = new Armor[4];
     k =0;
-    for(int i = 0; i < s.length(); i++){
-      if(s.charAt(i) == 'ä'){
-        String aName = s.substring(i+1, s.indexOf(" "));
-        s = s.substring(s.indexOf(" ") + 1);
-        double aArmor = Double.parseDouble(s.substring(0, s.indexOf(" ")));
-        s = s.substring(s.indexOf(" ") + 1);
-        int aType = Integer.parseInt(s.substring(0, s.indexOf(" ")));
-        s = s.substring(s.indexOf(" ") + 1);
-        armor[k] = new Armor(aName, aArmor, aType);
-        k++;
-      }
+    while (k<4){
+
+      // System.out.println("ind:" + s.indexOf(" ") + " i: " + i);
+      String aName = s.substring(1, s.indexOf(" "));
+      s = s.substring(s.indexOf(" ") + 1);
+      double aArmor = Double.parseDouble(s.substring(0, s.indexOf(" ")));
+      s = s.substring(s.indexOf(" ") + 1);
+      int aType = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") != -1 : s.length())));
+      s = s.substring(s.indexOf(" ") + 1);
+      System.out.println("running string: " + s);
+
+      armor[k] = new Armor(aName, aArmor, aType);
+      k++;
     }
+    
+    System.out.println(s);
     return new Enemy(name, health, init, atkMod, attack, armor);
   }
 }
