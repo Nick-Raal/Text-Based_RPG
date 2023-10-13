@@ -8,6 +8,14 @@ public class Weapon extends Item {
   private double manaC;
   private double strC;
   private String demo;
+
+  public Weapon(String name, double damage, int type){
+    super(name, 0, 0);
+    this.damage = damage;
+    this.type = type;
+    strC = 0;
+    manaC = 0;
+  }
   
   public Weapon(String name, int rarity, int value, double damage, int type){
     super(name, rarity, value);

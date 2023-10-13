@@ -21,7 +21,7 @@ class Main {
           System.out.println(p.display());
           n1 = Integer.parseInt(s.nextLine());
           p.move(n, n1);
-          p.checkPos() -> {Battle b = new Battle(p) };
+         
          rest(10);
         }
       s.close();
