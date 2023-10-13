@@ -67,7 +67,7 @@ public class Scenario{
     return null;
   }
 
-  public Battle battleScenario(int tileType){
-    i
-  }
+  // public Battle battleScenario(int tileType){
+    
+  // }
 }

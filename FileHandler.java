@@ -2,9 +2,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
+import Items.Weapon;
+import Items.Armor;
+import Items.Item;
+
 public class FileHandler{
   public static Enemy createEnemy(String path){
-    String s;
+    String s = "";
     try{
         List<String> lines = Files.readAllLines(Paths.get(path));
         Random random = new Random();
@@ -22,14 +26,14 @@ public class FileHandler{
     double atkMod = Double.parseDouble(s.substring(0, s.indexOf(" ")));
     s = s.substring(s.indexOf(" ") + 1);
     int k = 0;
-    for(int i = 0; i < s.length(); s++){
+    for(int i = 0; i < s.length(); i++){
       if(s.charAt(i) == 'ẅ'){
         k++;
       }
     }
     Weapon[] attack = new Weapon[k];
     k = 0;
-    for(int i = 0; i < s.length(); s++){
+    for(int i = 0; i < s.length(); i++){
       if(s.charAt(i) == 'ẅ'){
         String wName = s.substring(i+1, s.indexOf(" "));
         s = s.substring(s.indexOf(" ") + 1);
@@ -41,5 +45,20 @@ public class FileHandler{
         k++;
       }
     }
+    Armor[] armor = new Armor[4];
+    k =0;
+    for(int i = 0; i < s.length(); i++){
+      if(s.charAt(i) == 'ä'){
+        String aName = s.substring(i+1, s.indexOf(" "));
+        s = s.substring(s.indexOf(" ") + 1);
+        double aArmor = Double.parseDouble(s.substring(0, s.indexOf(" ")));
+        s = s.substring(s.indexOf(" ") + 1);
+        int aType = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+        s = s.substring(s.indexOf(" ") + 1);
+        armor[k] = new Armor(aName, aArmor, aType);
+        k++;
+      }
+    }
+    return new Enemy(name, health, init, atkMod, attack, armor);
   }
 }

@@ -268,7 +268,7 @@ public class Place{
         break;
       case 3:
         //evil chances
-        return ((int)(difficulty * Math.random))/difficulty >= 1 ? 1 : 0;
+        // return ((int)(difficulty * Math.random))/difficulty >= 1 ? 1 : 0;
         break;
       default:
         System.out.println("something strange has occured");
