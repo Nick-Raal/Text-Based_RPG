@@ -1,3 +1,5 @@
+
+
 public class Graphics{
   public String graphics(int type){
     switch(type){
@@ -7,5 +9,24 @@ public class Graphics{
         break;
     }
     return " ";
+  }
+
+  //do cool transitions
+  public void transition(){
+    
+  }
+
+  public String fancyWord(String word){
+    String s = "";
+    int k = 0;
+    for(int i = 0; i<word.length(); i++){
+      if(k % 2 == 0){
+         s += Color.BLUE + word.substring(i,i+1) + Color.RESET; 
+      }else{
+        s += Color.PURPLE + word.substring(i,i+1) + Color.RESET; 
+      }
+      k += word.charAt(i) != ' ' ? 1 : 0;
+    }
+    return s;
   }
 }

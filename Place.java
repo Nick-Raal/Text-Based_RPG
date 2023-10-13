@@ -13,8 +13,8 @@ public class Place{
   int pppX = 0;
   int pppY = 0;
 
-  public Place(int size){
-    data = gen(size, 1);
+  public Place(int size, int size1){
+    data = gen(size, size1, 1);
   }
 
   public String display(){
@@ -41,7 +41,10 @@ public class Place{
             s += Color.RED + "m";
             break;
           case 6:
-            s += Color.PURPLE + "■";
+            s += Color.PURPLE + "c";
+            break;
+          case 7:
+            s+= Color.YELLOW + "v";
             break;
           default:
             System.out.println("print ERROR:" + data[y][x] + Color.RESET);
@@ -122,26 +125,26 @@ public class Place{
     return y;
   }
 
-  private int[][] gen(int size, int difficulty){
+  private int[][] gen(int size, int size1, int difficulty){
 
     
   
-    int[][] map = new int[size][size];
-    // for(int i = 0; i < map.length; i++){
-    //   for(int j = 0; j < map.length; j++){
-    //     int n = r.nextInt(6);
-    //     while(n == 4){
-    //       n = r.nextInt(6);
-    //     }
-    //     map[i][j] = n;
-    //   }
-    // }
+    int[][] map = new int[size][size1];
+    for(int i = 0; i < map.length; i++){
+      for(int j = 0; j < map.length; j++){
+        int n = r.nextInt(7);
+        while(n == 4){
+          n = r.nextInt(7);
+        }
+        map[i][j] = n;
+      }
+    }
     map[0][0] = 2;
     // System.out.println("a thingy");
     for(int i = 0; i < map.length; i++){
       for(int j = 0; j < map[i].length; j++){
-        //forest, grassland, evil, mountain, castle, ocean
-        double[] chances = {0, 0, 0, 0, 0, 0};
+        //forest, grassland, evil, mountain, castle, ocean, village
+        double[] chances = {0, 0, 0, 0, 0, 0, 0};
         // System.out.println("tile #" + (i+j));
         if( (i > 0 && j > 0) && (i < map.length -1 && j < map[i].length -1)){
           chances = tile(chances, map[i - 1][j], 0.25);
@@ -162,7 +165,7 @@ public class Place{
         }else if(i == map.length - 1 && j == map[i].length -1){
           chances = tile(chances, map[map.length - 2][map.length - 1], 0.5);
           chances = tile(chances, map[map.length - 1][map.length - 2], 0.5);
-        }else if (i == map.length - 1 && j < map.length - 1 && j > 0){
+        }else if (i == map.length - 1 && j < map[i].length - 1 && j > 0){
           chances = tile(chances, map[i - 1][j], 0.33);
           chances = tile(chances, map[i][j + 1], 0.33);
           chances = tile(chances, map[i][j - 1], 0.33);
@@ -177,18 +180,18 @@ public class Place{
           chances = tile(chances, map[i][j + 1], 0.5);
           chances = tile(chances, map[i - 1][j], 0.5);
         }else{
-          System.out.println("ERROR");
+          System.out.println("GEN ERROR" + " i: " + i + " j: " + j);
         }
         int n = r.nextInt(99) + 1;
         int running = 0;
         for(int k = 0; k < chances.length; k++){
           
-          // System.out.print("chances " + chances[k] + " ");
+          System.out.print("chances " + chances[k] + " ");
           if(chances[k] != 0){
             // System.out.println("n " + n);
             // System.out.println("n max" + (chances[k] * 100 + running));
             if(n >= running && n < chances[k] * 100 + running){
-              System.out.println("Type: " + (k + 1));
+              System.out.println("Type: " + (k!= 5 ? (k != 3 ? k + 1 : 3) : 0));
               map[i][j] = (k!= 5 ? (k != 3 ? k + 1 : 3) : 0); 
               break;
             }
@@ -203,13 +206,14 @@ public class Place{
     return map;
   }
   private double[] tile(double[]chances, int type, double factor){
-    //forest, grassland, evil, mountain, castle, ocean
-    double[] FC = {0.25, 0.25, 0.25, 0.25, 0, 0};
-    double[] GC = {0.4, 0.1, 0.25, 0, 0, 0.25};
-    double[] EC = {0, 0.1, 0.5, 0.25, 0.15, 0};
-    double[] MC = {0.25, 0, 0.25, 0.5, 0, 0};
-    double[] CC = {0, 0, 0.55, 0.44, 0.01, 0};
-    double[] OC = {0, 0.75, 0, 0, 0, 0.25};
+    //forest, grassland, evil, mountain, castle, ocean, village
+    double[] FC = {0.15, 0.25, 0.20, 0.10, 01, 0, 0.2};
+    double[] GC = {0.4, 0.05, 0.1, 0, 0, 0.25, 0.2};
+    double[] EC = {0, 0.1, 0.4, 0.25, 0.25, 0, 0};
+    double[] MC = {0.25, 0, 0.25, 0.45, 0, 0, 0.05};
+    double[] CC = {0, 0, 0.54, 0.44, 0.01, 0, 0.01};
+    double[] OC = {0.4, 0.35, 0, 0, 0, 0.25, 0.1};
+    double[] VC = {0.5, 0.3, 0, 0.1, 0.01, 0.09, 0};
 
     if(type == 1){
       for(int i = 0; i < chances.length; i++){
@@ -235,13 +239,17 @@ public class Place{
       for(int i = 0; i < chances.length; i++){
         chances[i] += OC[i] * factor;
       }
+    }else if (type == 7){
+      for(int i = 0; i < chances.length; i++){
+        chances[i] += VC[i] * factor;
+      }
     }
     // System.out.println("type " + type);
-    double tC = 0;
-    for(int i = 0; i < chances.length; i++){
-      // System.out.print("initial chances " + chances[i] + " ");
-      tC += chances[i];
-    }
+    // double tC = 0;
+    // for(int i = 0; i < chances.length; i++){
+    //   // System.out.print("initial chances " + chances[i] + " ");
+    //   tC += chances[i];
+    // }
     // System.out.println("total chance " + tC + "\n");
     return chances;
   }
