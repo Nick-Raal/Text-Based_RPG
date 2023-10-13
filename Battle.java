@@ -117,6 +117,7 @@ public class Battle{
   }
 
   public void enemyTurn(){
+    int k = 0;
     for(int i = 0; i < e.length; i++){
       if(e[i] != null && e[i].getHealth() <= 0){
         p.add(e[i].die());
@@ -129,7 +130,12 @@ public class Battle{
         for(int j = i; j < e.length - 1; j++){
           e[j] = e[j+1];
         }
+        k++;
       }
+    }
+    if(k == e.length){
+      end();
+      return;
     }
     for(int  i = 0; i < e.length; i++){
       
