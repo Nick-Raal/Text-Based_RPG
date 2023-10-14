@@ -65,7 +65,7 @@ public class Enemy{
     // }
     
     
-    return name + " (HP:" + health + ")";
+    return name + " (HP: " + health + ")";
     
   }
 

@@ -11,13 +11,6 @@ class Main {
     Scenario scen = new Scenario();
     p.setPlayerPos(0, 0);
     Graphics g = new Graphics();
-//    Enemy liza = new Enemy("Polonius", 100, 0, 1);
-//    Enemy king = new Enemy("Kai", 150, 0, 1);
-//    Enemy[] e = {king};
-//    Battle b = new Battle(play, e);
-//    rest(10);
-//    b.turn();
-
 
       while(true){
         while(!play.getIn()){
@@ -25,8 +18,9 @@ class Main {
           n1 = Integer.parseInt(s.nextLine());
           p.move(n, n1);
           Object o = scen.scenario(play, p.getTile(), 1);
-          System.out.println(o);
           if(o instanceof Battle){
+            System.out.println("ENEMY ENCOUNTERED!");
+            s.nextLine();
             Battle b = (Battle)o;
             b.turn();
           } 
