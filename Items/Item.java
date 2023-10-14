@@ -27,7 +27,9 @@ public class Item{
     return name;
   }
 
-  
+  public int getValue(){
+      return value;
+  }
 
   // public double getDamage(){
   //   return 0;
@@ -55,5 +57,9 @@ public class Item{
 
   public String toString(){
     return name + " " + value + " " + rarity;
+  }
+
+  public int getRarity() {
+    return rarity;
   }
 }

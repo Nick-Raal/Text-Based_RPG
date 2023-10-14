@@ -10,7 +10,7 @@ public class Scenario{
   //4. Unique
 
   double[] scenarioChancesF = {0, 0, 0, 0};
-  double[] scenarioChancesG = {0, 0, 0, 0};
+  double[] scenarioChancesG = {0, 1.0, 0, 0};
   double[] scenarioChancesE = {1.0, 0, 0, 0};
   double[] scenarioChancesM = {0, 0, 0, 0};
   double[] scenarioChancesC = {0, 0, 0, 0};
@@ -49,15 +49,15 @@ public class Scenario{
         // }
         // running += scenarioChancesE[k] * 100;
       //}
-    }else if(tileType == 4){
-      for(int k = 0; k < scenarioChancesM.length; k++){
-        if(scenarioChancesM[k] != 0){
-          if(n >= running && n < scenarioChancesM[k] * 100 + running){
-            return null;
-          }
-        }
-      }
     }else if(tileType == 5){
+//      for(int k = 0; k < scenarioChancesM.length; k++){
+//        if(scenarioChancesM[k] != 0){
+//          if(n >= running && n < scenarioChancesM[k] * 100 + running){
+            return new Village(p);
+//          }
+//        }
+//      }
+    }else if(tileType == 6){
       for(int k = 0; k < scenarioChancesC.length; k++){
         if(scenarioChancesC[k] != 0){
           if(n >= running && n < scenarioChancesC[k] * 100 + running){

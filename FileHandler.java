@@ -67,6 +67,18 @@ public class FileHandler{
     System.out.println(s);
     return new Enemy(name, health, init, atkMod, attack, armor);
   }
-
+  public static Item createItem(String path){
+    String s = "";
+    try{
+      List<String> lines = Files.readAllLines(Paths.get(path));
+      Random random = new Random();
+      int randomIndex = random.nextInt(lines.size());
+      s = lines.get(randomIndex);
+    }catch(Exception e){
+      System.out.println(e);
+    }
+    String name = s.substring(0, s.indexOf(" "));
+    return null;
+  }
 
 }

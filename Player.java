@@ -138,6 +138,16 @@ public class Player{
     System.out.print(Color.RESET);
   }
 
+  public void dispInven(){
+    for(int i = 0; i < inventory.size(); i++){
+      System.out.println(inventory.get(i));
+    }
+  }
+  public int getInvenL(){
+    return inventory.size();
+  }
+
+
   public int getItemL(){
     int k =0;
     for(int i = 0; i < inventory.size(); i++){
@@ -255,5 +265,17 @@ public class Player{
 
   public String toString(){
     return name + "\n" + Color.RED + "HP: " + health+ "\n" + Color.YELLOW + "STR: " + str + Color.RESET + " | " + Color.CYAN + "MANA: " + mana + Color.RESET;
+  }
+
+    public int getGold() {
+      return gold;
+    }
+
+  public Item getItem(int i) {
+    return inventory.get(i);
+  }
+
+  public void removeItem(int i) {
+    inventory.remove(i);
   }
 }

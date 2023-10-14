@@ -23,7 +23,12 @@ class Main {
             s.nextLine();
             Battle b = (Battle)o;
             b.turn();
-          } 
+          }else if(o instanceof Village){
+            System.out.println("VILLAGE ENCOUNTERED");
+            s.nextLine();
+            Village v = (Village)o;
+            v.village();
+          }
          rest(10);
         }
       s.close();

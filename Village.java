@@ -1,5 +1,6 @@
 import Items.Item;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Village {
     //WIP
@@ -10,12 +11,87 @@ public class Village {
     //just general variety to keep the game interesting
 
     private ArrayList<Item> wares;
+    private String name;
+    private int gold = (int)Math.random()*2000;
 
+    private Player p;
+
+    public Village(Player p){
+        this.p = p;
+        wares.add(FileHandler.);
+    }
 
     public Item buyItem(int select){
-        return null;
+        Item itm = wares.get(select);
+        gold += (int)itm.getValue() * 1.1;
+        wares.remove(select);
+        return itm;
     }
     public void sellItem(Item itm){
 
+    }
+    public void inn(Player p){
+
+    }
+
+    public void village(){
+        Main.rest(10);
+        System.out.println("WELCOME TO " + name);
+        System.out.println(this);
+        int n = 0;
+        Scanner in = new Scanner(System.in);
+        while(n < 3){
+            System.out.println("1: BUY\n2: SELL\n3: EXIT");
+            try{
+                n = Integer.parseInt(in.nextLine());
+            }catch(Exception e) {
+                System.out.println("ERROR");
+            }
+            if(n==1){
+                Main.rest(10);
+                int select = 0;
+                while(select < 1 || select > wares.size()){
+                    System.out.println("FOR SALE:");
+                    System.out.println(this);
+                    try{
+                        select = Integer.parseInt(in.nextLine());
+                    }catch(Exception e){
+                        System.out.println("ERROR");
+                    }
+                }
+                if(wares.get(select - 1).getValue() <= p.getGold()){
+                    p.add(buyItem(select - 1));
+                    p.addG(-1 * wares.get(select - 1).getValue());
+                }
+            } else if (n == 2) {
+                Main.rest(10);
+                System.out.println("WHAT DO YOU WANT TO SELL?");
+                p.dispInven();
+                int select = 0;
+                while(select < 1 || select > p.getInvenL()){
+                    try{
+                        select = Integer.parseInt(in.nextLine());
+                    }catch(Exception e){
+                        System.out.println("ERROR");
+                    }
+                }
+                if(p.getItem(select - 1).getValue() <= gold){
+                    sellItem(p.getItem(select - 1));
+                    gold -= p.getItem(select - 1).getValue();
+                    p.addG(p.getItem(select - 1).getValue());
+                    p.removeItem(select - 1);
+                }
+            }
+        }
+        in.close();
+        return;
+    }
+
+    public String toString(){
+        String s = "";
+        for(int i = 0; i < wares.size(); i++){
+            s += wares.get(i).getName() + " | G: " + wares.get(i).getValue() + " | R: " + wares.get(i).getRarity() + "\n";
+        }
+        return s;
     }
 }
