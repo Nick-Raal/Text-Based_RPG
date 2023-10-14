@@ -10,7 +10,7 @@ public class Village {
     //mages (to learn spells)
     //just general variety to keep the game interesting
 
-    private ArrayList<Item> wares;
+    private ArrayList<Item> wares = new ArrayList<>();
     private String name;
     private int gold = (int)Math.random()*2000;
 
@@ -18,13 +18,12 @@ public class Village {
 
     public Village(Player p){
         this.p = p;
-        wares.add(FileHandler.);
+        wares.add(FileHandler.createItem("itm.dat"));
     }
 
     public Item buyItem(int select){
         Item itm = wares.get(select);
         gold += (int)itm.getValue() * 1.1;
-        wares.remove(select);
         return itm;
     }
     public void sellItem(Item itm){
@@ -62,7 +61,11 @@ public class Village {
                 if(wares.get(select - 1).getValue() <= p.getGold()){
                     p.add(buyItem(select - 1));
                     p.addG(-1 * wares.get(select - 1).getValue());
+                    wares.remove(select - 1);
                 }
+                System.out.println(p);
+                p.dispInven();
+                System.out.println(wares);
             } else if (n == 2) {
                 Main.rest(10);
                 System.out.println("WHAT DO YOU WANT TO SELL?");

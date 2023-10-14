@@ -11,7 +11,7 @@ public class Scenario{
 
   double[] scenarioChancesF = {0, 0, 0, 0};
   double[] scenarioChancesG = {0, 1.0, 0, 0};
-  double[] scenarioChancesE = {1.0, 0, 0, 0};
+  double[] scenarioChancesE = {0, 0, 0, 0};
   double[] scenarioChancesM = {0, 0, 0, 0};
   double[] scenarioChancesC = {0, 0, 0, 0};
   //placeholder where ocean chances would be stored
@@ -44,7 +44,7 @@ public class Scenario{
       // for(int k = 0; k < scenarioChancesE.length; k++){
       //   if(scenarioChancesE[k] != 0){
       //     if(n >= running && n < scenarioChancesE[k] * 100 + running){
-            return battleScenario(p, tileType, difficulty);
+            //return battleScenario(p, tileType, difficulty);
         //   }
         // }
         // running += scenarioChancesE[k] * 100;

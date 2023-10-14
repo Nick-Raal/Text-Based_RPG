@@ -77,8 +77,37 @@ public class FileHandler{
     }catch(Exception e){
       System.out.println(e);
     }
-    String name = s.substring(0, s.indexOf(" "));
-    return null;
+    if(s.charAt(0) == 'ẅ'){
+      String wName = s.substring(1, s.indexOf(" "));
+      s = s.substring(s.indexOf(" ") + 1);
+      System.out.println(s);
+      wName = wName.replaceAll("_", " ");
+      double wDamage = Double.parseDouble(s.substring(0, s.indexOf(" ")));
+      s = s.substring(s.indexOf(" ") + 1);
+      System.out.println(s);
+      int wType = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+      s = s.substring(s.indexOf(" ") + 1);
+      System.out.println(s);
+      int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+      s = s.substring(s.indexOf(" ") + 1);
+      System.out.println(s);
+      int value = Integer.parseInt(s);
+      return new Weapon(wName, rarity, value, wDamage, wType);
+    }else{
+      String name = s.substring(0, s.indexOf(" "));
+      s = s.substring(s.indexOf(" ") + 1);
+      name = name.replaceAll("_", " ");
+      int value = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+      s = s.substring(s.indexOf(" ") + 1);
+      int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+      s = s.substring(s.indexOf(" ") + 1);
+      double healthE = Double.parseDouble(s.substring(0, s.indexOf(" ")));
+      s = s.substring(s.indexOf(" ") + 1);
+      double strE = Double.parseDouble(s.substring(0, s.indexOf(" ")));
+      s = s.substring(s.indexOf(" ") + 1);
+      double manaE = Double.parseDouble(s);
+      return new Item(name, value, rarity, healthE, strE, manaE);
+    }
   }
 
 }

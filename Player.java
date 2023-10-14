@@ -17,7 +17,7 @@ public class Player{
   private double initiative = 1;
   
   private int level = 1;
-  private int gold = 0;
+  private int gold = 100;
   private long exp = 10;
 
   //how much strength and mana the player instantaneously has
