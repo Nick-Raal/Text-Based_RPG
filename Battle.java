@@ -10,6 +10,7 @@ public class Battle{
     p = play;
     e = enemy;
     p.recover();
+    p.full();
   }
   
   public void turn(){

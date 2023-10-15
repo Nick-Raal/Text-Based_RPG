@@ -11,7 +11,8 @@ public class Player{
   private String name = "Nemo";
   private boolean in;
   private ArrayList<Item> inventory = new ArrayList<Item>();
-  private int health;
+  private double health;
+  private double healthMax;
   private double atkMod = 1;
   private double defMod = 1;
   private double initiative = 1;
@@ -19,6 +20,10 @@ public class Player{
   private int level = 1;
   private int gold = 100;
   private long exp = 10;
+
+  //the maximum strength and mana a player can have
+  private double strMax = 100;
+  private double manaMax = 100;
 
   //how much strength and mana the player instantaneously has
   private double str = 100;
@@ -277,5 +282,12 @@ public class Player{
 
   public void removeItem(int i) {
     inventory.remove(i);
+  }
+
+  public void full() {
+
+    str = str <= strMax ? strMax : str;
+    mana = mana <= manaMax ? manaMax : mana;
+    health = health <= healthMax ? healthMax : health;
   }
 }

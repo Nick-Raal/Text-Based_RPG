@@ -2,5 +2,7 @@ continue to link the battle and the world exploration systems
 continue creating file system for saving player data as well as for the easy creation and retention of entities
 create a system for equipping armor
 enemy AI
-add more changes when the player levels up
+add more changes when the player levels up (str and mana, por ejemplo)
 expand difficulty system
+give each object a text based sprite
+expand create enemy to include drops and other such info
