@@ -91,7 +91,7 @@ public class FileHandler{
       int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
       System.out.println(s);
-      int value = Integer.parseInt(s);
+      int value = Integer.parseInt(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
       String demo = s;
       return new Weapon(wName, rarity, value, wDamage, wType, demo);

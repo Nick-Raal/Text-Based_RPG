@@ -1,4 +1,6 @@
 continue to link the battle and the world exploration systems
 continue creating file system for saving player data as well as for the easy creation and retention of entities
-finish the Battle.end method
+create a system for equipping armor
 enemy AI
+add more changes when the player levels up
+expand difficulty system
