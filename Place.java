@@ -57,34 +57,48 @@ public class Place{
   }
 
   //1 = up. 2 = right. 3 = down. 4 = left
-  public void move(int dist, int dir){
+  //return to check success
+  public boolean move(int dist, int dir){
     switch(dir){
       case 1:
         if(checkTile(x, y + dist)){
            y+=dist;
-          setPlayerPos(x, y); 
+          setPlayerPos(x, y);
+          return true;
+        }else{
+          return false;
         }
-        break;
+
       case 2:
         if(checkTile(x+dist, y)){
           x+=dist;
           setPlayerPos(x, y);
+          return true;
+        }else{
+          return false;
         }
-        break;
+
       case 3:
         if(checkTile(x, y-dist)){
           y-=dist;
-          setPlayerPos(x, y); 
+          setPlayerPos(x, y);
+          return true;
+        }else{
+          return false;
         }
-        break;
+
       case 4:
         if(checkTile(x-dist, y)){
           x-=dist;
           setPlayerPos(x, y);
+          return true;
+        }else{
+          return false;
         }
-        break;
+
       default:
         System.out.println("ERROR");
+        return false;
     }
   }
 

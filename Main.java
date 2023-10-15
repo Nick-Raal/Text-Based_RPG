@@ -13,28 +13,29 @@ class Main {
     Graphics g = new Graphics();
 
       while(true){
-        while(!play.getIn()){
+        while(!play.getIn()) {
           System.out.println(p.display());
           n1 = Integer.parseInt(s.nextLine());
-          p.move(n, n1);
-          Object o = scen.scenario(play, p.getTile(), 1);
-          if(o instanceof Battle){
-            System.out.println("ENEMY ENCOUNTERED!");
-            s.nextLine();
-            Battle b = (Battle)o;
-            b.turn();
-          }else if(o instanceof Village){
-            System.out.println("VILLAGE ENCOUNTERED");
-            s.nextLine();
-            Village v = (Village)o;
-            v.village();
-          }else if(o instanceof Loot){
-            System.out.println("CHEST DISCOVERED");
-            s.nextLine();
-            Loot l = (Loot)o;
-            play.add(l.loot());
+          if (p.move(n, n1)) {
+            Object o = scen.scenario(play, p.getTile(), 1);
+            if (o instanceof Battle) {
+              System.out.println("ENEMY ENCOUNTERED!");
+              s.nextLine();
+              Battle b = (Battle) o;
+              b.turn();
+            } else if (o instanceof Village) {
+              System.out.println("VILLAGE ENCOUNTERED");
+              s.nextLine();
+              Village v = (Village) o;
+              v.village();
+            } else if (o instanceof Loot) {
+              System.out.println("CHEST DISCOVERED");
+              s.nextLine();
+              Loot l = (Loot) o;
+              play.add(l.loot());
+            }
+            rest(10);
           }
-         rest(10);
         }
       s.close();
      }
