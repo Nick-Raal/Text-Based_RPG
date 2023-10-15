@@ -92,7 +92,9 @@ public class FileHandler{
       s = s.substring(s.indexOf(" ") + 1);
       System.out.println(s);
       int value = Integer.parseInt(s);
-      return new Weapon(wName, rarity, value, wDamage, wType);
+      s = s.substring(s.indexOf(" ") + 1);
+      String demo = s;
+      return new Weapon(wName, rarity, value, wDamage, wType, demo);
     }else{
       String name = s.substring(0, s.indexOf(" "));
       s = s.substring(s.indexOf(" ") + 1);

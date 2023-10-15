@@ -28,6 +28,11 @@ class Main {
             s.nextLine();
             Village v = (Village)o;
             v.village();
+          }else if(o instanceof Loot){
+            System.out.println("CHEST DISCOVERED");
+            s.nextLine();
+            Loot l = (Loot)o;
+            play.add(l.loot());
           }
          rest(10);
         }

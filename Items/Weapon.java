@@ -42,6 +42,14 @@ public class Weapon extends Item {
     this.manaC = manaC;
     this.demo = demo;
   }
+
+  public Weapon(String name, int rarity, int value, double damage, int type, String demo) {
+    super(name, rarity, value);
+    this.damage = damage;
+    this.type = type;
+    this.demo = demo;
+  }
+
   public double getDamage(){
     return damage;
   }
@@ -56,6 +64,6 @@ public class Weapon extends Item {
     return manaC;
   }
   public String toString(){
-    return demo + " " + this.getName();
+    return (demo != null ? demo : "" )+ " " + this.getName();
   }
 }
