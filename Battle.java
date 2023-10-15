@@ -104,7 +104,7 @@ public class Battle{
         //pass turn
         enemyTurn();
       }    
-      in.close();
+//      in.close();
     }
   }
 

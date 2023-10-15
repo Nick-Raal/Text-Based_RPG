@@ -18,7 +18,9 @@ public class Village {
 
     public Village(Player p){
         this.p = p;
-        wares.add(FileHandler.createItem("itm.dat"));
+        for(int i = 0; i < (int)(Math.random() * 3) + 1; i++) {
+            wares.add(FileHandler.createItem("itm.dat"));
+        }
     }
 
     public Item buyItem(int select){
@@ -86,7 +88,7 @@ public class Village {
                 }
             }
         }
-        in.close();
+        //in.close();
         return;
     }
 

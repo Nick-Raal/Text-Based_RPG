@@ -9,13 +9,13 @@ public class Scenario{
   //3. Loot
   //4. Unique
 
-  double[] scenarioChancesF = {0, 0, 0, 0};
-  double[] scenarioChancesG = {0, 1.0, 0, 0};
-  double[] scenarioChancesE = {0, 0, 0, 0};
-  double[] scenarioChancesM = {0, 0, 0, 0};
+  double[] scenarioChancesF = {0.2, 0, 0, 0};
+  double[] scenarioChancesG = {0.2, 1.0, 0, 0};
+  double[] scenarioChancesE = {0.5, 0, 0, 0};
+  double[] scenarioChancesM = {0.3, 0, 0, 0};
   double[] scenarioChancesC = {0, 0, 0, 0};
   //placeholder where ocean chances would be stored
-  double[] scenarioChancesV = {0, 0, 0, 0};
+  double[] scenarioChancesV = {0, 1.0, 0, 0};
 
   //this method should return what type of encounter occurs, a different method will handle the internals of the encounter
   public Object scenario(Player p, int tileType, int difficulty){
@@ -26,7 +26,17 @@ public class Scenario{
       for(int k = 0; k < scenarioChancesF.length; k++){
         if(scenarioChancesF[k] != 0){
           if(n >= running && n < scenarioChancesF[k] * 100 + running){
-            return null;
+            switch (k){
+              case 1:
+                return battleScenario(p, tileType, difficulty);
+              case 2:
+                return new Village(p);
+              case 3:
+                return new Loot();
+              default:
+                System.out.println("something fishy ha occurre");
+                break;
+            };
           }
         }
         running += scenarioChancesF[k] * 100;
@@ -35,33 +45,73 @@ public class Scenario{
       for(int k = 0; k < scenarioChancesG.length; k++){
         if(scenarioChancesG[k] != 0){
           if(n >= running && n < scenarioChancesG[k] * 100 + running){
-            return null;
+            switch (k){
+              case 1:
+                return battleScenario(p, tileType, difficulty);
+              case 2:
+                return new Village(p);
+              case 3:
+                return new Loot();
+              default:
+                System.out.println("something fishy ha occurre");
+                break;
+            }
           }
         }
         running += scenarioChancesG[k] * 100;
       }
     }else if(tileType == 3){
-      // for(int k = 0; k < scenarioChancesE.length; k++){
-      //   if(scenarioChancesE[k] != 0){
-      //     if(n >= running && n < scenarioChancesE[k] * 100 + running){
-            //return battleScenario(p, tileType, difficulty);
-        //   }
-        // }
-        // running += scenarioChancesE[k] * 100;
-      //}
+       for(int k = 0; k < scenarioChancesE.length; k++){
+         if(scenarioChancesE[k] != 0){
+           if(n >= running && n < scenarioChancesE[k] * 100 + running){
+             switch (k){
+               case 1:
+                 return battleScenario(p, tileType, difficulty);
+               case 2:
+                 return new Village(p);
+               case 3:
+                 return new Loot();
+               default:
+                 System.out.println("something fishy ha occurre");
+                 break;
+             }
+           }
+         }
+         running += scenarioChancesE[k] * 100;
+      }
     }else if(tileType == 5){
-//      for(int k = 0; k < scenarioChancesM.length; k++){
-//        if(scenarioChancesM[k] != 0){
-//          if(n >= running && n < scenarioChancesM[k] * 100 + running){
-            return new Village(p);
-//          }
-//        }
-//      }
+      for(int k = 0; k < scenarioChancesM.length; k++){
+        if(scenarioChancesM[k] != 0){
+          if(n >= running && n < scenarioChancesM[k] * 100 + running){
+            switch (k){
+              case 1:
+                return battleScenario(p, tileType, difficulty);
+              case 2:
+                return new Village(p);
+              case 3:
+                return new Loot();
+              default:
+                System.out.println("something fishy ha occurre");
+                break;
+            }
+          }
+        }
+      }
     }else if(tileType == 6){
       for(int k = 0; k < scenarioChancesC.length; k++){
         if(scenarioChancesC[k] != 0){
           if(n >= running && n < scenarioChancesC[k] * 100 + running){
-            return null;
+            switch (k){
+              case 1:
+                return battleScenario(p, tileType, difficulty);
+              case 2:
+                return new Village(p);
+              case 3:
+                return new Loot();
+              default:
+                System.out.println("something fishy ha occurre");
+                break;
+            }
           }
         }
       }
