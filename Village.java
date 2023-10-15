@@ -29,7 +29,8 @@ public class Village {
         return itm;
     }
     public void sellItem(Item itm){
-
+        wares.add(itm);
+        gold -= itm.getValue();
     }
     public void inn(Player p){
 
@@ -82,7 +83,6 @@ public class Village {
                 }
                 if(p.getItem(select - 1).getValue() <= gold){
                     sellItem(p.getItem(select - 1));
-                    gold -= p.getItem(select - 1).getValue();
                     p.addG(p.getItem(select - 1).getValue());
                     p.removeItem(select - 1);
                 }
