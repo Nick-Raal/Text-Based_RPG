@@ -4,9 +4,10 @@ public class StringHandler{
   public StringHandler(String body){
     this.body = body;
   }
-  public String toString(){
+  public String getString(){
     return body;
   }
+  
   public void setString(String body){
     this.body = body;
   }
