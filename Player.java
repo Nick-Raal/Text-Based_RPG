@@ -1,7 +1,5 @@
-import Items.Armor;
-import Items.Item;
-import Items.Weapon;
-import Items.Potion;
+import Items.*;
+
 
 import java.util.ArrayList;
 
@@ -13,7 +11,7 @@ public class Player{
   private boolean in;
   private ArrayList<Item> inventory = new ArrayList<Item>();
   private double health;
-  private double healthMax;
+  private double healthMax = 100;
   private double atkMod = 1;
   private double defMod = 1;
   private double initiative = 1;
@@ -44,6 +42,7 @@ public class Player{
 //    inventory.add(new Item("Potion of Major Healing", 50, 2, 10, 0, 0));
     inventory.add(new Potion("Root of Fervor", 10, 1, 0, 5, 0));
     inventory.add( new Weapon("relief", 450, 2, 250, 1,2 ,2, ""));
+    full();
   }
 
   public void recover(){
@@ -141,7 +140,7 @@ public class Player{
 
           System.out.print("\t" + (((Potion)inventory.get(i)).use()[0] != 0 ? Color.RED + "HP: " + ((Potion)inventory.get(i)).use()[0] : ""));
           System.out.print(Color.RESET + (((Potion)inventory.get(i)).use()[0] != 0 ? " | " : "") + Color.YELLOW + (((Potion)inventory.get(i)).use()[1] != 0 ? " STR: " + ((Potion)inventory.get(i)).use()[1] : ""));
-          System.out.println(((Color.RESET + (((((Potion)inventory.get(i)).use()[1] != 0) && ((Potion)inventory.get(i)).use()[0] != 0) ? " | " : "") + Color.CYAN + ((Potion)inventory.get(i)).use()[2] != 0 ? " MANA: " + ((Potion)inventory.get(i)).use()[2] : "")));
+          // System.out.println(((Color.RESET + (((Potion)inventory.get(i)).use()[0] != 0 && ((Potion)inventory.get(i)).use()[1] != 0 ? " | " : "") + Color.CYAN + ((Potion)inventory.get(i)).use()[2] != 0 ? " MANA: " + ((Potion)inventory.get(i)).use()[2] : "")));
 
         }
       }
@@ -267,11 +266,12 @@ public class Player{
     }
     // System.out.println(inventory.get(select));
     // System.out.println(select);
-    
-    health += inventory.get(select).use()[0];
-    str += inventory.get(select).use()[1];
-    mana += inventory.get(select).use()[2];
-    inventory.remove(select);
+    if(inventory.get(select) instanceof Potion || inventory.get(select) instanceof Book){
+      health += inventory.get(select).use()[0];
+      str += inventory.get(select).use()[1];
+      mana += inventory.get(select).use()[2];
+      inventory.remove(select);
+    }
   }
 
   public String toString(){

@@ -1,10 +1,10 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Random;
 
-import Items.Weapon;
-import Items.Armor;
-import Items.Item;
+import Items.*;
+
 
 public class FileHandler{
   public static Enemy createEnemy(String path){
@@ -63,8 +63,18 @@ public class FileHandler{
       armor[k] = new Armor(aName, aArmor, aType);
       k++;
     }
-    
-    System.out.println(s);
+    //create a system to account for drops
+    double gold = Double.parseDouble(s.substring(0, s.indexOf(" ")));
+    s = s.substring(s.indexOf(" ") + 1);
+    double exp = Double.parseDouble(s.substring(0, s.indexOf(" ")));
+    s = s.substring(s.indexOf(" ") + 1);
+
+    ArrayList<Item> drops = new ArrayList<Item>();
+    while(s.indexOf("ḃ") != -1 || s.indexOf("ẅ") != -1 || s.indexOf("Ṗ") != -1){
+      createItemS(s);
+      
+    }
+    // System.out.println(s);
     return new Enemy(name, health, init, atkMod, attack, armor);
   }
   public static Item createItem(String path){
@@ -77,26 +87,46 @@ public class FileHandler{
     }catch(Exception e){
       System.out.println(e);
     }
+    
+    return createItemS(new StringHandler(s));
+  }
+
+  public static Item createItemS(StringHandler data){
+    String s = data.toString();
     if(s.charAt(0) == 'ẅ'){
       String wName = s.substring(1, s.indexOf(" "));
       s = s.substring(s.indexOf(" ") + 1);
-      System.out.println(s);
+      // System.out.println(s);
       wName = wName.replaceAll("_", " ");
       double wDamage = Double.parseDouble(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
-      System.out.println(s);
+        // System.out.println(s);
       int wType = Integer.parseInt(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
-      System.out.println(s);
+        // System.out.println(s);
       int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
-      System.out.println(s);
+      // System.out.println(s);
+      int value = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
+      s = s.substring(s.indexOf(" ") + 1);
+      String demo = s.substring(0,(s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length()));
+      return new Weapon(wName, rarity, value, wDamage, wType, demo);
+    }else if(s.charAt(0) == 'Ṗ'){
+      String name = s.substring(1, s.indexOf(" "));
+      s = s.substring(s.indexOf(" ") + 1);
+      name = name.replaceAll("_", " ");
       int value = Integer.parseInt(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
-      String demo = s;
-      return new Weapon(wName, rarity, value, wDamage, wType, demo);
-    }else{
-      String name = s.substring(0, s.indexOf(" "));
+      int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+      s = s.substring(s.indexOf(" ") + 1);
+      double healthE = Double.parseDouble(s.substring(0, s.indexOf(" ")));
+      s = s.substring(s.indexOf(" ") + 1);
+      double strE = Double.parseDouble(s.substring(0, s.indexOf(" ")));
+      s = s.substring(s.indexOf(" ") + 1);
+      double manaE = Double.parseDouble(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
+      return new Potion(name, value, rarity, healthE, strE, manaE);
+    }else if(s.charAt(0) == 'ḃ'){
+      String name = s.substring(1, s.indexOf(" "));
       s = s.substring(s.indexOf(" ") + 1);
       name = name.replaceAll("_", " ");
       int value = Integer.parseInt(s.substring(0, s.indexOf(" ")));
@@ -108,8 +138,11 @@ public class FileHandler{
       double strE = Double.parseDouble(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
       double manaE = Double.parseDouble(s);
-      return new Potion(name, value, rarity, healthE, strE, manaE);
+      s = s.substring(s.indexOf(" ") + 1);
+      String body = s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length()));
+      body = body.replaceAll("_", " ");
+      return new Book(name, value, rarity, healthE, strE, manaE, body);
     }
+    return null;
   }
-
 }

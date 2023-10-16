@@ -34,7 +34,7 @@ public class Battle{
           System.out.println(e);
         }
       }
-      System.out.println("Nikhil was here");
+      // System.out.println("Nikhil was here");
       Main.rest(10);
       if(n == 1){
         p.dispAtk();
@@ -151,6 +151,8 @@ public class Battle{
     System.out.println("YOU WIN");
     System.out.println(p);
     p.dispLvl();
+    Main.rest(5000);
+    
   }
   public void exitTurn(){
     Main.rest(100);

@@ -1,6 +1,7 @@
 import Items.Armor;
 import Items.Item;
 import Items.Weapon;
+import Items.Potion;
 
 import java.util.*;
 
@@ -11,7 +12,7 @@ public class Enemy{
   private double initiative = 0;
   private double atkMod = 1;
   private Armor[] armor;
-//  private Item[] drops = {new Item("magic potion of ultimate magic", 150, 3, 0, 0, 100)};
+ private Item[] drops = {new Potion("magic potion of ultimate magic", 150, 3, 0, 0, 100)};
   private double[] dropC = {1.0};
   private int dropG = 100;
   private int dropE = 10000;
