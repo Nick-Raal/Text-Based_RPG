@@ -5,9 +5,7 @@ public class Item{
   private String name;
   private int value;
   private int rarity;
-  private double healthE;
-  private double strE;
-  private double manaE;
+
 
   public Item(String name, int value, int rarity){
     this.name = name;
@@ -15,14 +13,7 @@ public class Item{
     this.rarity = rarity;
   }
 
-  public Item(String name, int value, int rarity, double healthE, double strE, double manaE){
-    this.name = name;
-    this.value = value;
-    this.rarity = rarity;
-    this.healthE = healthE;
-    this.strE = strE;
-    this.manaE = manaE;
-  }
+
   public String getName(){
     return name;
   }
@@ -51,8 +42,8 @@ public class Item{
   }
 
   public double[] use(){
-    double[] u = {healthE, strE, manaE};
-    return u;
+    System.out.println("NOTHING HAPPENED");
+    return null;
   }
 
   public String toString(){

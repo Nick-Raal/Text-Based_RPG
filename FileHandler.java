@@ -108,7 +108,7 @@ public class FileHandler{
       double strE = Double.parseDouble(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
       double manaE = Double.parseDouble(s);
-      return new Item(name, value, rarity, healthE, strE, manaE);
+      return new Potion(name, value, rarity, healthE, strE, manaE);
     }
   }
 

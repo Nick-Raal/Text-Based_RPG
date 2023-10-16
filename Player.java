@@ -1,6 +1,7 @@
 import Items.Armor;
 import Items.Item;
 import Items.Weapon;
+import Items.Potion;
 
 import java.util.ArrayList;
 
@@ -37,10 +38,11 @@ public class Player{
   private Armor[] armor;
 
   public Player(){
+    //test items
     inventory.add(new Weapon("Zorg, The Destroyer of Fools", 450, 3, 35, 3, 3, 5, ""));
     inventory.add( new Weapon("Adamantium Spear", 450, 2, 25, 1,3 ,0, "the"));
-    inventory.add(new Item("Potion of Major Healing", 50, 2, 10, 0, 0));
-    inventory.add(new Item("Root of Fervor", 10, 1, 0, 5, 0));
+//    inventory.add(new Item("Potion of Major Healing", 50, 2, 10, 0, 0));
+    inventory.add(new Potion("Root of Fervor", 10, 1, 0, 5, 0));
     inventory.add( new Weapon("relief", 450, 2, 250, 1,2 ,2, ""));
   }
 
@@ -135,9 +137,13 @@ public class Player{
       if(!(inventory.get(i) instanceof Weapon) && !(inventory.get(i) instanceof Armor)){
         k++;
         System.out.println(Color.RESET + (k) + ": " + inventory.get(i).getName());
-        System.out.print("\t" + (inventory.get(i).use()[0] != 0 ? Color.RED + "HP: " + inventory.get(i).use()[0] : ""));
-        System.out.print(Color.RESET + (inventory.get(i).use()[0] != 0 ? " | " : "") + Color.YELLOW + (inventory.get(i).use()[1] != 0 ? " STR: " + inventory.get(i).use()[1] : ""));
-        System.out.println(Color.RESET + ((inventory.get(i).use()[1] != 0 && inventory.get(i).use()[0] != 0) ? " | " : "") + Color.CYAN + (inventory.get(i).use()[2] != 0 ? " MANA: " + inventory.get(i).use()[2] : ""));
+        if(inventory.get(i) instanceof Potion){
+
+          System.out.print("\t" + (((Potion)inventory.get(i)).use()[0] != 0 ? Color.RED + "HP: " + ((Potion)inventory.get(i)).use()[0] : ""));
+          System.out.print(Color.RESET + (((Potion)inventory.get(i)).use()[0] != 0 ? " | " : "") + Color.YELLOW + (((Potion)inventory.get(i)).use()[1] != 0 ? " STR: " + ((Potion)inventory.get(i)).use()[1] : ""));
+          System.out.println(((Color.RESET + (((((Potion)inventory.get(i)).use()[1] != 0) && ((Potion)inventory.get(i)).use()[0] != 0) ? " | " : "") + Color.CYAN + ((Potion)inventory.get(i)).use()[2] != 0 ? " MANA: " + ((Potion)inventory.get(i)).use()[2] : "")));
+
+        }
       }
     }
     System.out.print(Color.RESET);
