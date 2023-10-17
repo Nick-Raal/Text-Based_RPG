@@ -42,6 +42,7 @@ public class Player{
 //    inventory.add(new Item("Potion of Major Healing", 50, 2, 10, 0, 0));
     inventory.add(new Potion("Root of Fervor", 10, 1, 0, 5, 0));
     inventory.add( new Weapon("relief", 450, 2, 250, 1,2 ,2, ""));
+    inventory.add(new Armor("Armoury Chestplate", 29, 2, 1));
     armor = new Armor[]{new Armor("Chain Helm", 5, 1, 0), new Armor("Chain Chestplate", 5, 1, 1), new Armor("Chain Leggings", 5, 1, 2), new Armor("Chain Boots", 5, 1, 3)};
     full();
   }
