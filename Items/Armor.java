@@ -21,7 +21,10 @@ public class Armor extends Item {
     this.armor = armor;
     this.slot = slot;
   }
-  
+
+  public Armor getObj(){
+    return this;
+  }
   public double getArmor(){
     return armor;
   }

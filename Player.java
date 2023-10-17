@@ -42,6 +42,7 @@ public class Player{
 //    inventory.add(new Item("Potion of Major Healing", 50, 2, 10, 0, 0));
     inventory.add(new Potion("Root of Fervor", 10, 1, 0, 5, 0));
     inventory.add( new Weapon("relief", 450, 2, 250, 1,2 ,2, ""));
+    armor = new Armor[]{new Armor("Chain Helm", 5, 1, 0), new Armor("Chain Chestplate", 5, 1, 1), new Armor("Chain Leggings", 5, 1, 2), new Armor("Chain Boots", 5, 1, 3)};
     full();
   }
 
@@ -141,7 +142,7 @@ public class Player{
           System.out.print("\t" + (((Potion)inventory.get(i)).use()[0] != 0 ? Color.RED + "HP: " + ((Potion)inventory.get(i)).use()[0] : ""));
           System.out.print(Color.RESET + (((Potion)inventory.get(i)).use()[0] != 0 ? " | " : "") + Color.YELLOW + (((Potion)inventory.get(i)).use()[1] != 0 ? " STR: " + ((Potion)inventory.get(i)).use()[1] : ""));
           // System.out.println(((Color.RESET + (((Potion)inventory.get(i)).use()[0] != 0 && ((Potion)inventory.get(i)).use()[1] != 0 ? " | " : "") + Color.CYAN + ((Potion)inventory.get(i)).use()[2] != 0 ? " MANA: " + ((Potion)inventory.get(i)).use()[2] : "")));
-
+          System.out.println();
         }
       }
     }
@@ -274,16 +275,37 @@ public class Player{
     }
   }
 
-  public void equip(Armor arm){
-    Armor temp = armor[arm.getSlot()]
+  public void equip(int select){
+    int k = 0;
+    for(int i = 0; i < inventory.size(); i++){
+      if(inventory.get(i) instanceof Armor) {
+        if (k == select) {
+          select = i;
+          break;
+        }
+        k++;
+      }
+    }
+    Armor arm = (Armor)inventory.get(select);
+    Armor temp = armor[arm.getSlot()];
     armor[arm.getSlot()] = arm;
     inventory.add(temp);
+    inventory.remove(select);
   }
 
   public void dispArm(){
-    System.out.println(Color.RESET + "Armor:" + (armor[0] + armor[1] + armor[2] + armor[3]));
+    int k = 0;
+    for(int i = 0; i < inventory.size(); i++) {
+      if (inventory.get(i) instanceof Armor) {
+        k++;
+        System.out.println(Color.BLUE + ((((Armor) inventory.get(i)).getSlot() == 0) ? "Head: " : (((Armor) inventory.get(i)).getSlot() == 1 ? "Torso: " : (((Armor) inventory.get(i)).getSlot() == 2 ? "Legs: " : (((Armor) inventory.get(i)).getSlot() == 3 ? "Feet: " : "")))) + ((Armor) inventory.get(i)).getName() + " | AMR: " + ((Armor) inventory.get(i)).getArmor() + " | TYPE: " + (((Armor) inventory.get(i)).getType() == 1 ? "bludgeon" : (((Armor) inventory.get(i)).getType() == 2 ? "piercing" : (((Armor) inventory.get(i)).getType() == 3 ? "magic" : ""))));
+      }
+    }
+  }
+  public void dispCArm(){
+    System.out.println(Color.RESET + "Total Armor: " + (armor[0].getArmor() + armor[1].getArmor() + armor[2].getArmor() + armor[3].getArmor()));
     for(int i = 0; i < armor.length; i++){
-      System.out.println(Color.BLUE + "Slot: " + (i+1) + ": " + armor[i]);
+      System.out.println(Color.BLUE + (i == 0 ? "Head: " : (i== 1 ? "Torso: " : (i == 2 ? "Legs: " : (i == 3 ? "Feet: " : ""))))  + armor[i].getName() + " | AMR: " + armor[i].getArmor() + " | TYPE: " + (armor[i].getType() == 1 ? "bludgeon" : (armor[i].getType() == 2 ? "piercing" : (armor[i].getType() == 3 ? "magic" : ""))));
     }
   }
 
@@ -309,4 +331,15 @@ public class Player{
     mana = mana <= manaMax ? manaMax : mana;
     health = health <= healthMax ? healthMax : health;
   }
+
+  public int getArmorL() {
+    int k = 0;
+    for(int i = 0; i < inventory.size(); i++){
+      if(inventory.get(i) instanceof Armor){
+        k++;
+      }
+    }
+    return k;
+  }
+
 }
