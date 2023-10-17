@@ -1,11 +1,13 @@
 import java.util.Random;
 import java.util.ArrayList;
+import java.io.*;
 
 public class Place{
   Random r = new Random();
   
   private int x = 0;
   private int y = 0;
+  File file;
   //
   int[][] data = {{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)}};
 
