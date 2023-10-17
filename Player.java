@@ -274,6 +274,19 @@ public class Player{
     }
   }
 
+  public void equip(Armor arm){
+    Armor temp = armor[arm.getSlot()]
+    armor[arm.getSlot()] = arm;
+    inventory.add(temp);
+  }
+
+  public void dispArm(){
+    System.out.println(Color.RESET + "Armor:" + (armor[0] + armor[1] + armor[2] + armor[3]));
+    for(int i = 0; i < armor.length; i++){
+      System.out.println(Color.BLUE + "Slot: " + (i+1) + ": " + armor[i]);
+    }
+  }
+
   public String toString(){
     return name + "\n" + Color.RED + "HP: " + health+ "\n" + Color.YELLOW + "STR: " + str + Color.RESET + " | " + Color.CYAN + "MANA: " + mana + Color.RESET;
   }

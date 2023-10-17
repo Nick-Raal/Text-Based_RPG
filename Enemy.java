@@ -12,7 +12,7 @@ public class Enemy{
   private double initiative = 0;
   private double atkMod = 1;
   private Armor[] armor;
- private Item[] drops = {new Potion("magic potion of ultimate magic", 150, 3, 0, 0, 100)};
+ private Item[] drops;
   private double[] dropC = {1.0};
   private int dropG = 100;
   private int dropE = 10000;
@@ -32,7 +32,21 @@ public class Enemy{
     this.attack = attack;
     this.armor = armor;
   }
-  
+
+  public Enemy(String name, double health, double initiative, double atkMod, Weapon[] attack, Armor[] armor, double dropG, double dropE, ArrayList<Item> drops){
+    this.name = name;
+    this.health = health;
+    this.initiative = initiative;
+    this.atkMod = atkMod;
+    this.attack = attack;
+    this.armor = armor;
+    this.dropG = (int)dropG;
+    this.dropE = (int)dropE;
+    this.drops = new Item[drops.size()];
+    for(int i =0; i< drops.size(); i++){
+      this.drops[i] = drops.get(i);
+    }
+  }
   public double[] Attack(int select){
     double[] attack = new double[2];
     attack[0] =  this.attack[select].getDamage() * atkMod;

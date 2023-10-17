@@ -2,6 +2,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
+
+
+
 import java.util.ArrayList;
 
 import Items.*;
@@ -28,14 +31,16 @@ public class FileHandler{
     double atkMod = Double.parseDouble(s.substring(0, s.indexOf(" ")));
     s = s.substring(s.indexOf(" ") + 1);
     StringHandler sh = new StringHandler (s);
-    System.out.println(sh.getString());
+    // System.out.println(sh.getString());
     int k = 0;
     for(int i = 0; i < s.length(); i++){
       if(s.charAt(i) == 'ẅ'){
         k++;
+      }else if(s.charAt(i) == 'ä'){
+        break;
       }
     }
-    System.out.println("k: " + k);
+    // System.out.println("k: " + k);
     Weapon[] attack = new Weapon[k];
     k = 0;
     
@@ -75,6 +80,7 @@ public class FileHandler{
     }
     s = sh.getString();
     //create a system to account for drops
+    // System.out.println(Color.RED + s);
     double gold = Double.parseDouble(s.substring(0, s.indexOf(" ")));
     s = s.substring(s.indexOf(" ") + 1);
     double exp = Double.parseDouble(s.substring(0, s.indexOf(" ")));
@@ -82,12 +88,11 @@ public class FileHandler{
     
     ArrayList<Item> drops = new ArrayList<Item>();
     sh.setString(s);
-    while(s.indexOf("ḃ") != -1 || s.indexOf("ẅ") != -1 || s.indexOf("Ṗ") != -1){
-      createItemS(sh);
-      
+    while(sh.getString().indexOf("ḃ") != -1 || sh.getString().indexOf("ẅ") != -1 || sh.getString().indexOf("Ṗ") != -1){
+      drops.add(createItemS(sh));
     }
     // System.out.println(s);
-    return new Enemy(name, health, init, atkMod, attack, armor);
+    return new Enemy(name, health, init, atkMod, attack, armor, gold, exp, drops);
   }
   public static Item createItem(String path){
     String s = "";
@@ -170,7 +175,14 @@ public class FileHandler{
       int aType = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
       s = s.substring(s.indexOf(" ") + 1);
       data.setString(s);
-      return new Armor(aName, aArmor, aType);
+      try{
+        int aSlot = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+        s =s.substring(s.indexOf(" ") + 1);
+        data.setString(s);
+        return new Armor(aName, aArmor, aType, aSlot);
+      }catch(Exception e){
+        return new Armor(aName, aArmor, aType);
+      }
     }
     return null;
   }
