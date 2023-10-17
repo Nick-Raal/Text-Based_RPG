@@ -33,7 +33,7 @@ public class Enemy{
     this.armor = armor;
   }
 
-  public Enemy(String name, double health, double initiative, double atkMod, Weapon[] attack, Armor[] armor, double dropG, double dropE, ArrayList<Item> drops){
+  public Enemy(String name, double health, double initiative, double atkMod, Weapon[] attack, Armor[] armor, double dropG, double dropE, ArrayList<Item> drops, double[] dropsC){
     this.name = name;
     this.health = health;
     this.initiative = initiative;
@@ -46,6 +46,7 @@ public class Enemy{
     for(int i =0; i< drops.size(); i++){
       this.drops[i] = drops.get(i);
     }
+    this.dropC = dropsC;
   }
   public double[] Attack(int select){
     double[] attack = new double[2];

@@ -91,8 +91,17 @@ public class FileHandler{
     while(sh.getString().indexOf("ḃ") != -1 || sh.getString().indexOf("ẅ") != -1 || sh.getString().indexOf("Ṗ") != -1){
       drops.add(createItemS(sh));
     }
+    System.out.println(sh.getString());
+    double[] dropC = new double[drops.size()];
+    k = 0;
+    s = sh.getString();
+    while(k < dropC.length){
+      dropC[k] = Double.parseDouble(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
+      s = s.substring((s.indexOf(" ") != -1 ? s.indexOf(" ") + 1 : 0));
+      k++;
+    }
     // System.out.println(s);
-    return new Enemy(name, health, init, atkMod, attack, armor, gold, exp, drops);
+    return new Enemy(name, health, init, atkMod, attack, armor, gold, exp, drops, dropC);
   }
   public static Item createItem(String path){
     String s = "";
@@ -128,6 +137,7 @@ public class FileHandler{
         int value = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
         s = s.substring(s.indexOf(" ") + 1);
         String demo = s.substring(0,(s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length()));
+        s = s.substring(s.indexOf(" ") + 1);
         data.setString(s);
         return new Weapon(wName, rarity, value, wDamage, wType, demo);
       }catch(NumberFormatException e){

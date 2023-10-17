@@ -11,7 +11,7 @@ public class Scenario{
 
   double[] scenarioChancesF = {0.2, 0, 0, 0};
   double[] scenarioChancesG = {0.2, 0.0, 0, 0};
-  double[] scenarioChancesE = {0.0, 1.0, 0.0, 0};
+  double[] scenarioChancesE = {1.0, 0.0, 0.0, 0};
   double[] scenarioChancesM = {0.3, 0, 0, 0};
   double[] scenarioChancesC = {0, 0, 0, 0};
   //placeholder where ocean chances would be stored
