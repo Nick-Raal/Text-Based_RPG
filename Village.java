@@ -1,6 +1,7 @@
 import Items.Item;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.*;
 
 public class Village {
     //WIP
@@ -13,17 +14,48 @@ public class Village {
     private ArrayList<Item> wares = new ArrayList<>();
     private String name;
     private int gold = (int)Math.random()*2000;
-
+    private File file;
     private Player p;
 
-    public Village(Player p){
+    private int x;
+    private int y;
+
+    public Village(Player p, int x, int y){
+        
         name = FileHandler.nameVillage("vlg.dat");
         this.p = p;
         for(int i = 0; i < (int)(Math.random() * 3) + 1; i++) {
             wares.add(FileHandler.createItem("itm.dat"));
         }
+      this.x = x;
+      this.y = y;
+      try{
+        file = new File(name.replaceAll("\\s", "") + ".dat");
+        file.createNewFile();
+        update();
+      }catch(Exception e){
+        System.out.println(e.getMessage());
+      }
     }
 
+  public Village(File f){
+    file = f;
+    try{
+      Scanner s = new Scanner(f);
+      name = s.nextLine();
+      gold = s.nextInt();
+      x = s.nextInt();
+      y = s.nextInt();
+      while(s.hasNextLine()){
+        wares.add(FileHandler.createItem(s.nextLine()));
+      }
+      s.close();
+    
+    }catch(Exception e){
+      System.out.println(e.getMessage());
+    }
+  }
+  
     public Item buyItem(int select){
         Item itm = wares.get(select);
         gold += (int)itm.getValue() * 1.1;
@@ -90,6 +122,7 @@ public class Village {
             }
         }
         //in.close();
+        update();
         return;
     }
 
@@ -100,4 +133,30 @@ public class Village {
         }
         return s;
     }
+
+  public int getX(){
+    return x;
+  }
+  public int getY(){
+    return y;
+  }
+
+  public File getFile(){
+    return file;
+  }
+
+  private void update(){
+    try{
+      FileWriter fw = new FileWriter(file, false);
+      fw.write(name + "\n" + gold + "\n" + x + "\n" + y + "\n");
+      for(int i = 0; i < wares.size(); i++){
+        //write item
+        fw.write(wares.get(i).getFH() + "\n");
+      }
+      fw.close();
+      }catch(Exception e){
+        System.out.println(e.getMessage());
+      }
+    }
+  
 }

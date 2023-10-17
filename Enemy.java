@@ -48,6 +48,19 @@ public class Enemy{
     }
     this.dropC = dropsC;
   }
+
+  public Enemy(String name, double health, double initiative, double atkMod, Weapon[] attack, Armor[] armor, double dropG, double dropE){
+    this.name = name;
+    this.health = health;
+    this.initiative = initiative;
+    this.atkMod = atkMod;
+    this.attack = attack;
+    this.armor = armor;
+    this.dropG = (int)dropG;
+    this.dropE = (int)dropE;
+    this.drops = null;
+    this.dropC = null;
+  }
   public double[] Attack(int select){
     double[] attack = new double[2];
     attack[0] =  this.attack[select].getDamage() * atkMod;
@@ -94,6 +107,9 @@ public class Enemy{
   }
 
   public ArrayList<Item> die(){
+    if(drops == null){
+      return null;
+    }
     ArrayList<Item> d = new ArrayList<Item>();
     System.out.println(name + " was vanquished");
     Random r = new Random();

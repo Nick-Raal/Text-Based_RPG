@@ -3,6 +3,7 @@ import java.util.*;
 class Main {
   static int n = 1;
   static int n1;
+  
   public static void main(String[] args)
   {
     Scanner s = new Scanner(System.in);
@@ -62,7 +63,7 @@ class Main {
              System.out.println("impossible input string");
             }
             if (p.move(n, n1)) {
-              Object o = scen.scenario(play, p.getTile(), 1);
+              Object o = scen.scenario(play, p.getTile(), 1, p);
               if (o instanceof Battle) {
                 System.out.println("ENEMY ENCOUNTERED!");
                 s.nextLine();

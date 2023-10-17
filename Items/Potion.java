@@ -14,4 +14,7 @@ public class Potion extends Item{
         double[] u = {healthE, strE, manaE};
         return u;
     }
+  public String getFH(){
+    return "Ṗ" + super.getName() + " " + super.getValue() + " " + super.getRarity() + " " + healthE + " " + strE + " " + manaE;
+  }
 }

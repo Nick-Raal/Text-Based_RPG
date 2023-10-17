@@ -1,8 +1,9 @@
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Place{
   Random r = new Random();
-
+  
   private int x = 0;
   private int y = 0;
   //

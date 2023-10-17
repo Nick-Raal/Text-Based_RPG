@@ -63,7 +63,7 @@ public class Battle{
           System.out.println("Select which enemy to VANQUISH");
           n = Integer.parseInt(in.nextLine());
         }
-        e[n-1].damage(atk[0], (int)atk[1], true);
+        e[n-1].damage(atk[0], (int)atk[1], false);
         String s = e[n-1].getName();
         try{
             List<String> lines = Files.readAllLines(Paths.get("atk.dat"));
@@ -143,6 +143,10 @@ public class Battle{
       System.out.println(e[i] != null ? ((i + 1) +": " +  e[i]) : "");
     }
     System.out.println("EVIL PLACEHOLDER");
+    for(int i = 0; i < e.length; i++){
+      Random r = new Random();
+      int n = r.nextInt();
+    }
     Main.rest(10000);
     p.recover();
     turn();

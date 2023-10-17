@@ -53,4 +53,8 @@ public class Item{
   public int getRarity() {
     return rarity;
   }
+
+  public String getFH(){
+    return name + " " + value + " " + rarity;
+  }
 }

@@ -18,4 +18,8 @@ public class Book extends Item{
     System.out.println("TXT:\n" + body);
     return u;
   }
+
+  public String getFH(){
+    return "Ṗ" + super.getName() + " " + super.getValue() + " " + super.getRarity() + " " + healthE + " " + strE + " " + manaE + " " + body;
+  }
 }

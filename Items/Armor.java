@@ -36,4 +36,8 @@ public class Armor extends Item {
   public int getSlot(){
     return slot;
   }
+
+  public String getFH(){
+    return "ä" + super.getName() + " " + armor + " "+ type+ " " + slot;
+  }
 }

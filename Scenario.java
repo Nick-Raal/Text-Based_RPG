@@ -1,8 +1,13 @@
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.*;
 public class Scenario{
   //the goal of this class is to create a system whereby a place can return a simple situation that can be turned into a battle;
   //furthermore, this could be used to handle other place scenarios, like loot and unique things
-
+  
+  private ArrayList<Village> vlgs = new ArrayList<Village>();
+  private File vlgFile = new File("vlgs.dat");
   //possible scenarios:
   //1. Battle
   //2. Village
@@ -11,14 +16,19 @@ public class Scenario{
 
   double[] scenarioChancesF = {0.2, 0, 0, 0};
   double[] scenarioChancesG = {0.2, 0.0, 0, 0};
-  double[] scenarioChancesE = {1.0, 0.0, 0.0, 0};
+  double[] scenarioChancesE = {0.0, 1.0, 0.0, 0};
   double[] scenarioChancesM = {0.3, 0, 0, 0};
   double[] scenarioChancesC = {0, 0, 0, 0};
   //placeholder where ocean chances would be stored
   double[] scenarioChancesV = {0, 1.0, 0, 0};
 
+  public Scenario(){
+    initializeList();
+  }
+
   //this method should return what type of encounter occurs, a different method will handle the internals of the encounter
-  public Object scenario(Player p, int tileType, int difficulty){
+  public Object scenario(Player p, int tileType, int difficulty, Place play){
+    
     Random r = new Random();
     int n = r.nextInt(99) + 1;
     int running = 0;
@@ -30,7 +40,7 @@ public class Scenario{
               case 0:
                 return battleScenario(p, tileType, difficulty);
               case 1:
-                return new Village(p);
+                return new Village(p, play.getX(), play.getY());
               case 2:
                 return new Loot(difficulty);
               default:
@@ -49,7 +59,20 @@ public class Scenario{
               case 0:
                 return battleScenario(p, tileType, difficulty);
               case 1:
-                return new Village(p);
+                for(int i = 0; i < vlgs.size(); i++){
+                  if(vlgs.get(i).getX() == play.getX() && vlgs.get(i).getY() == play.getY()){
+                    return vlgs.get(i);
+                  }
+                }
+                vlgs.add(new Village(p, play.getX(), play.getY()));
+                try{
+                  FileWriter fw = new FileWriter(vlgFile, false);
+                  fw.write(vlgs.get(vlgs.size() - 1).getFile().getName() + "\n");
+                  fw.close();
+                }catch(Exception e){
+                  System.out.println("error");
+                }
+                return vlgs.get(vlgs.size() - 1);
               case 2:
                 return new Loot(difficulty);
               default:
@@ -68,7 +91,20 @@ public class Scenario{
                case 0:
                  return battleScenario(p, tileType, difficulty);
                case 1:
-                 return new Village(p);
+                 for(int i = 0; i < vlgs.size(); i++){
+                   if(vlgs.get(i).getX() == play.getX() && vlgs.get(i).getY() == play.getY()){
+                     return vlgs.get(i);
+                   }
+                 }
+                 vlgs.add(new Village(p, play.getX(), play.getY()));
+                 try{
+                   FileWriter fw = new FileWriter(vlgFile, false);
+                   fw.write(vlgs.get(vlgs.size() - 1).getFile().getName() + "\n");
+                   fw.close();
+                 }catch(Exception e){
+                   System.out.println("error");
+                 }
+                 return vlgs.get(vlgs.size() - 1);
                case 2:
                  return new Loot(difficulty);
                default:
@@ -87,7 +123,7 @@ public class Scenario{
               case 0:
                 return battleScenario(p, tileType, difficulty);
               case 1:
-                return new Village(p);
+                return new Village(p, play.getX(), play.getY());
               case 2:
                 return new Loot(difficulty);
               default:
@@ -105,7 +141,7 @@ public class Scenario{
               case 0:
                 return battleScenario(p, tileType, difficulty);
               case 1:
-                return new Village(p);
+                return new Village(p, play.getX(), play.getY());
               case 2:
                 return new Loot(difficulty);
               default:
@@ -123,8 +159,22 @@ public class Scenario{
     int numEnmies = 0 + (int)(Math.random() * (difficulty)) + 1;
     Enemy[] e = new Enemy[numEnmies];
     for(int i = 0; i< numEnmies; i++){
+      
       e[i] = FileHandler.createEnemy("enmy.dat");
     }
     return new Battle(p, e);
+  }
+
+  public void initializeList(){
+    try{
+      Scanner scan = new Scanner(vlgFile);
+      while(scan.hasNext()){
+        File fileName = new File(scan.nextLine());
+        vlgs.add(new Village(fileName));
+      }
+    }catch(Exception e){
+      System.out.println(e.getMessage());
+    }
+    
   }
 }
