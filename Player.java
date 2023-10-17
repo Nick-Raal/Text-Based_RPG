@@ -152,7 +152,7 @@ public class Player{
 
   public void dispInven(){
     for(int i = 0; i < inventory.size(); i++){
-      System.out.println(inventory.get(i));
+      System.out.println((i + 1) + ": " + inventory.get(i));
     }
   }
   public int getInvenL(){
@@ -295,16 +295,19 @@ public class Player{
   }
 
   public void dispArm(){
+    System.out.println(Color.RESET + "ARMOR:");
     int k = 0;
     for(int i = 0; i < inventory.size(); i++) {
       if (inventory.get(i) instanceof Armor) {
         k++;
-        System.out.println(Color.RESET + (i+1) + Color.BLUE + ((((Armor) inventory.get(i)).getSlot() == 0) ? "Head: " : (((Armor) inventory.get(i)).getSlot() == 1 ? "Torso: " : (((Armor) inventory.get(i)).getSlot() == 2 ? "Legs: " : (((Armor) inventory.get(i)).getSlot() == 3 ? "Feet: " : "")))) + ((Armor) inventory.get(i)).getName() + " | AMR: " + ((Armor) inventory.get(i)).getArmor() + " | TYPE: " + (((Armor) inventory.get(i)).getType() == 1 ? "bludgeon" : (((Armor) inventory.get(i)).getType() == 2 ? "piercing" : (((Armor) inventory.get(i)).getType() == 3 ? "magic" : ""))));
+        System.out.println(Color.RESET + (k) + ": "+ Color.BLUE + ((((Armor) inventory.get(i)).getSlot() == 0) ? "Head: " : (((Armor) inventory.get(i)).getSlot() == 1 ? "Torso: " : (((Armor) inventory.get(i)).getSlot() == 2 ? "Legs: " : (((Armor) inventory.get(i)).getSlot() == 3 ? "Feet: " : "")))) + ((Armor) inventory.get(i)).getName() + " | AMR: " + ((Armor) inventory.get(i)).getArmor() + " | TYPE: " + (((Armor) inventory.get(i)).getType() == 1 ? "bludgeon" : (((Armor) inventory.get(i)).getType() == 2 ? "piercing" : (((Armor) inventory.get(i)).getType() == 3 ? "magic" : ""))));
       }
     }
+    System.out.println(Color.RESET);
   }
   public void dispCArm(){
-    System.out.println(Color.RESET + "Total Armor: " + (armor[0].getArmor() + armor[1].getArmor() + armor[2].getArmor() + armor[3].getArmor()));
+    System.out.println(Color.RESET + "Currently Equipped Armor:");
+    System.out.println("Total Armor: " + (armor[0].getArmor() + armor[1].getArmor() + armor[2].getArmor() + armor[3].getArmor()));
     for(int i = 0; i < armor.length; i++){
       System.out.println(Color.BLUE + (i == 0 ? "Head: " : (i== 1 ? "Torso: " : (i == 2 ? "Legs: " : (i == 3 ? "Feet: " : ""))))  + armor[i].getName() + " | AMR: " + armor[i].getArmor() + " | TYPE: " + (armor[i].getType() == 1 ? "bludgeon" : (armor[i].getType() == 2 ? "piercing" : (armor[i].getType() == 3 ? "magic" : ""))));
     }

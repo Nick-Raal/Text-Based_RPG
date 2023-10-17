@@ -11,7 +11,11 @@ class Main {
     Scenario scen = new Scenario();
     p.setPlayerPos(0, 0);
     Graphics g = new Graphics();
-
+    System.out.println(g.fancyWord(" oOoOOoOOo                             o.oOOOo.                          o\n     o                                  o     o                         O\n     o                   O              O     O                         o\n     O                  oOo             oOooOO.                         o\n     o     .oOo. o   O   o   ooooooooo  o     `O .oOoO' .oOo  .oOo. .oOoO\n     O     OooO'  OoO    O              O      o O   o  `Ooo. OooO' o   O\n     O     O      o o    o              o     .O o   O      O O     O   o\n     o'    `OoO' O   O   `oO            `OooOO'  `OoO'o `OoO' `OoO' `OoO'o\n\n\n `OooOOo.  OooOOo.   .oOOOo.\n  o     `o O     `O .O     o\n  O      O o      O o\n  o     .O O     .o O\n  OOooOO'  oOooOO'  O   .oOOo\n  o    o   o        o.      O\n  O     O  O         O.    oO\n  O      o o'         `OooO'                                              "));
+    System.out.println();
+    System.out.println("created by Nicholas Raal");
+    System.out.println("press enter to start or help for a list of commands");
+    s.nextLine();
       while(true){
         while(!play.getIn()) {
           System.out.println(p.display());
@@ -57,27 +61,27 @@ class Main {
             }catch(Exception e){
              System.out.println("impossible input string");
             }
-          }
-          if (p.move(n, n1)) {
-            Object o = scen.scenario(play, p.getTile(), 1);
-            if (o instanceof Battle) {
-              System.out.println("ENEMY ENCOUNTERED!");
-              s.nextLine();
-              Battle b = (Battle) o;
-              b.turn();
-            } else if (o instanceof Village) {
-              System.out.println("VILLAGE ENCOUNTERED");
-              s.nextLine();
-              Village v = (Village) o;
-              v.village();
-            } else if (o instanceof Loot) {
-              System.out.println("CHEST DISCOVERED");
-              s.nextLine();
-              Loot l = (Loot) o;
-              play.add(l.loot());
+            if (p.move(n, n1)) {
+              Object o = scen.scenario(play, p.getTile(), 1);
+              if (o instanceof Battle) {
+                System.out.println("ENEMY ENCOUNTERED!");
+                s.nextLine();
+                Battle b = (Battle) o;
+                b.turn();
+              } else if (o instanceof Village) {
+                System.out.println("VILLAGE ENCOUNTERED");
+                s.nextLine();
+                Village v = (Village) o;
+                v.village();
+              } else if (o instanceof Loot) {
+                System.out.println("CHEST DISCOVERED");
+                s.nextLine();
+                Loot l = (Loot) o;
+                play.add(l.loot());
+              }
+              rest(10);
             }
-            rest(10);
-          }
+          }          
         }
       s.close();
      }

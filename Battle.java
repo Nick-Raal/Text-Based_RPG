@@ -56,7 +56,7 @@ public class Battle{
         double[] atk = p.Attack(select-1);
         Main.rest(10);
         for(int  i = 0; i < e.length; i++){
-          System.out.println(e[i] != null ? e[i] : "");
+          System.out.println(e[i] != null ? ((i+1) + ": " + e[i]) : "");
         }
         n = -1;
         while(n < 1 || n > e.length){

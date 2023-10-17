@@ -48,7 +48,7 @@ public class FileHandler{
       attack[k] = (Weapon)createItemS(sh);
       k++;
     }
-    System.out.println(sh.getString());
+    // System.out.println(sh.getString());
     // for(int i = 0; i < s.length(); i++){
     //   if(s.charAt(i) == 'ẅ'){
     //     String wName = s.substring(i+1, s.indexOf(" "));
@@ -185,5 +185,19 @@ public class FileHandler{
       }
     }
     return null;
+  }
+
+  public static String nameVillage(String path){
+    String s = "";
+      try{
+        List<String> lines = Files.readAllLines(Paths.get(path));
+        Random random = new Random();
+        int randomIndex = random.nextInt(lines.size());
+        s = lines.get(randomIndex);
+      }catch(Exception e){
+        System.out.println(e);
+      }
+
+      return s;
   }
 }

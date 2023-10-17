@@ -204,12 +204,12 @@ public class Place{
         int running = 0;
         for(int k = 0; k < chances.length; k++){
           
-          System.out.print("chances " + chances[k] + " ");
+          // System.out.print("chances " + chances[k] + " ");
           if(chances[k] != 0){
             // System.out.println("n " + n);
             // System.out.println("n max" + (chances[k] * 100 + running));
             if(n >= running && n < chances[k] * 100 + running){
-              System.out.println("Type: " + (k!= 5 ? (k != 3 ? k + 1 : 3) : 0));
+              // System.out.println("Type: " + (k!= 5 ? (k != 3 ? k + 1 : 3) : 0));
               map[i][j] = (k!= 5 ? (k != 3 ? k + 1 : 3) : 0); 
               break;
             }
@@ -217,7 +217,7 @@ public class Place{
           // System.out.println("running " + running);
           running += chances[k] * 100;
         }
-        System.out.println();
+        // System.out.println();
         //moths? ye :(
       }
     }

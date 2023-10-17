@@ -17,6 +17,7 @@ public class Village {
     private Player p;
 
     public Village(Player p){
+        name = FileHandler.nameVillage("vlg.dat");
         this.p = p;
         for(int i = 0; i < (int)(Math.random() * 3) + 1; i++) {
             wares.add(FileHandler.createItem("itm.dat"));
