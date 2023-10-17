@@ -299,7 +299,7 @@ public class Player{
     for(int i = 0; i < inventory.size(); i++) {
       if (inventory.get(i) instanceof Armor) {
         k++;
-        System.out.println(Color.BLUE + ((((Armor) inventory.get(i)).getSlot() == 0) ? "Head: " : (((Armor) inventory.get(i)).getSlot() == 1 ? "Torso: " : (((Armor) inventory.get(i)).getSlot() == 2 ? "Legs: " : (((Armor) inventory.get(i)).getSlot() == 3 ? "Feet: " : "")))) + ((Armor) inventory.get(i)).getName() + " | AMR: " + ((Armor) inventory.get(i)).getArmor() + " | TYPE: " + (((Armor) inventory.get(i)).getType() == 1 ? "bludgeon" : (((Armor) inventory.get(i)).getType() == 2 ? "piercing" : (((Armor) inventory.get(i)).getType() == 3 ? "magic" : ""))));
+        System.out.println(Color.RESET + (i+1) + Color.BLUE + ((((Armor) inventory.get(i)).getSlot() == 0) ? "Head: " : (((Armor) inventory.get(i)).getSlot() == 1 ? "Torso: " : (((Armor) inventory.get(i)).getSlot() == 2 ? "Legs: " : (((Armor) inventory.get(i)).getSlot() == 3 ? "Feet: " : "")))) + ((Armor) inventory.get(i)).getName() + " | AMR: " + ((Armor) inventory.get(i)).getArmor() + " | TYPE: " + (((Armor) inventory.get(i)).getType() == 1 ? "bludgeon" : (((Armor) inventory.get(i)).getType() == 2 ? "piercing" : (((Armor) inventory.get(i)).getType() == 3 ? "magic" : ""))));
       }
     }
   }
