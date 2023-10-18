@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class Place{
   Random r = new Random();
   
-  private int x = 0;
-  private int y = 0;
+  private int x;
+  private int y;
   File file;
   //
   //int[][] data = {{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)}};
@@ -345,6 +345,10 @@ public class Place{
         String[] s = scan.nextLine().split(",");
         for(int i = 0; i < s.length; i++){
           data[k][i] = Integer.parseInt(s[i]);
+          if(data[k][i] == 4){
+            x = i;
+            y = k;
+          }
         }
         k++;
       }
