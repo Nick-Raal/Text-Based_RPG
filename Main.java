@@ -12,7 +12,7 @@ class Main {
     Place p = new Place(10, 20);
     Player play = new Player();      
     Scenario scen = new Scenario();
-    p.setPlayerPos(0, 0);
+    // p.setPlayerPos(0, 0);
     Graphics g = new Graphics();
     System.out.println(g.fancyWord(" oOoOOoOOo                             o.oOOOo.                          o\n     o                                  o     o                         O\n     o                   O              O     O                         o\n     O                  oOo             oOooOO.                         o\n     o     .oOo. o   O   o   ooooooooo  o     `O .oOoO' .oOo  .oOo. .oOoO\n     O     OooO'  OoO    O              O      o O   o  `Ooo. OooO' o   O\n     O     O      o o    o              o     .O o   O      O O     O   o\n     o'    `OoO' O   O   `oO            `OooOO'  `OoO'o `OoO' `OoO' `OoO'o\n\n\n `OooOOo.  OooOOo.   .oOOOo.\n  o     `o O     `O .O     o\n  O      O o      O o\n  o     .O O     .o O\n  OOooOO'  oOooOO'  O   .oOOo\n  o    o   o        o.      O\n  O     O  O         O.    oO\n  O      o o'         `OooO'                                              "));
     System.out.println();

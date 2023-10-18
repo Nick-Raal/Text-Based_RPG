@@ -38,6 +38,6 @@ public class Armor extends Item {
   }
 
   public String getFH(){
-    return "ä" + super.getName() + " " + armor + " "+ type+ " " + slot;
+    return "ä" + super.getName().replaceAll(" ", "_") + " " + armor + " "+ type+ " " + slot;
   }
 }

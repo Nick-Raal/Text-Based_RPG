@@ -1,10 +1,12 @@
 import Items.*;
-
+import java.io.*;
 
 import java.util.ArrayList;
 
 public class Player{
 
+
+  File file;
   // private int x = 0;
   // private int y = 0;
   private String name = "Nemo";
@@ -346,4 +348,35 @@ public class Player{
     return k;
   }
 
+  public void update(){
+    try{
+      FileWriter fw = new FileWriter(file, false);
+      fw.write(name + "\n");
+      fw.write(health + "\n");
+      fw.write(healthMax + "\n");
+      fw.write(atkMod + "\n");
+      fw.write(defMod + "\n");
+      fw.write(initiative + "\n");
+      fw.write(level + "\n");
+      fw.write(gold + "\n");
+      fw.write(exp + "\n");
+      fw.write(strMax + "\n");
+      fw.write(manaMax + "\n");
+      fw.write(str + "\n");
+      fw.write(mana + "\n");
+      fw.write(strR + "\n");
+      fw.write(manaR + "\n");
+      fw.write(armor[0].getFH() + "\n");
+      fw.write(armor[1].getFH() + "\n");
+      fw.write(armor[2].getFH() + "\n");
+      fw.write(armor[3].getFH() + "\n");
+      fw.write("ARMOREND\n");
+      for(int i = 0; i < inventory.size(); i++){
+        fw.write(inventory.get(i).getFH() + "\n");
+      }
+      fw.close();
+    }catch(Exception e){
+      System.out.println("PLAY ERR " + e.getMessage());
+    }
+  }
 }

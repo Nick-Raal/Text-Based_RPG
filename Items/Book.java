@@ -20,6 +20,6 @@ public class Book extends Item{
   }
 
   public String getFH(){
-    return "Ṗ" + super.getName() + " " + super.getValue() + " " + super.getRarity() + " " + healthE + " " + strE + " " + manaE + " " + body;
+    return "Ṗ" + super.getName().replaceAll(" ", "_") + " " + super.getValue() + " " + super.getRarity() + " " + healthE + " " + strE + " " + manaE + " " + body;
   }
 }

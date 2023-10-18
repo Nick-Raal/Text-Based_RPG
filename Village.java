@@ -1,4 +1,5 @@
 import Items.Item;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
@@ -40,19 +41,24 @@ public class Village {
 
   public Village(File f){
     file = f;
+    System.out.println("test");
     try{
-      Scanner s = new Scanner(f);
+      Scanner s = new Scanner(file);
       name = s.nextLine();
-      gold = s.nextInt();
-      x = s.nextInt();
-      y = s.nextInt();
-      while(s.hasNextLine()){
-        wares.add(FileHandler.createItem(s.nextLine()));
+      gold = Integer.parseInt(s.nextLine());
+      x = Integer.parseInt(s.nextLine());
+      y = Integer.parseInt(s.nextLine());
+      System.out.println("x " + x);
+      // String spring = s.nextLine();
+      // System.out.println("nxt: " + spring);
+      while(s.hasNext()){
+        String spring = s.nextLine();
+        System.out.println("asd " + spring);
+        wares.add(FileHandler.createItemS(spring));
       }
       s.close();
-    
     }catch(Exception e){
-      System.out.println(e.getMessage());
+      System.out.println("VI: " + e);
     }
   }
   
@@ -141,6 +147,9 @@ public class Village {
     return y;
   }
 
+  public String getName(){
+    return name;
+  }
   public File getFile(){
     return file;
   }

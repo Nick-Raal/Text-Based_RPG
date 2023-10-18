@@ -11,3 +11,4 @@ ensure there is always a castle
 create area specific enemies and loot
 village saving system
 improve Place.update's efficiency
+can't escape buying screen

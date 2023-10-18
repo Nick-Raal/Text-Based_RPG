@@ -28,7 +28,7 @@ public class Scenario{
 
   //this method should return what type of encounter occurs, a different method will handle the internals of the encounter
   public Object scenario(Player p, int tileType, int difficulty, Place play){
-    
+
     Random r = new Random();
     int n = r.nextInt(99) + 1;
     int running = 0;
@@ -66,7 +66,7 @@ public class Scenario{
                 }
                 vlgs.add(new Village(p, play.getX(), play.getY()));
                 try{
-                  FileWriter fw = new FileWriter(vlgFile, false);
+                  FileWriter fw = new FileWriter(vlgFile, true);
                   fw.write(vlgs.get(vlgs.size() - 1).getFile().getName() + "\n");
                   fw.close();
                 }catch(Exception e){
@@ -93,17 +93,19 @@ public class Scenario{
                case 1:
                  for(int i = 0; i < vlgs.size(); i++){
                    if(vlgs.get(i).getX() == play.getX() && vlgs.get(i).getY() == play.getY()){
+                     // System.out.println("extant");
                      return vlgs.get(i);
                    }
                  }
                  vlgs.add(new Village(p, play.getX(), play.getY()));
                  try{
-                   FileWriter fw = new FileWriter(vlgFile, false);
+                   FileWriter fw = new FileWriter(vlgFile, true);
                    fw.write(vlgs.get(vlgs.size() - 1).getFile().getName() + "\n");
                    fw.close();
                  }catch(Exception e){
                    System.out.println("error");
                  }
+                 // System.out.println("new");
                  return vlgs.get(vlgs.size() - 1);
                case 2:
                  return new Loot(difficulty);
@@ -130,7 +132,7 @@ public class Scenario{
                 }
               vlgs.add(new Village(p, play.getX(), play.getY()));
               try{
-                FileWriter fw = new FileWriter(vlgFile, false);
+                FileWriter fw = new FileWriter(vlgFile, true);
                 fw.write(vlgs.get(vlgs.size() - 1).getFile().getName() + "\n");
                 fw.close();
               }catch(Exception e){
@@ -160,8 +162,8 @@ public class Scenario{
                 }
                 vlgs.add(new Village(p, play.getX(), play.getY()));
                 try{
-                  FileWriter fw = new FileWriter(vlgFile, false);
-                  fw.write(vlgs.get(vlgs.size() - 1).getFile().getName() + "\n");
+                  FileWriter fw = new FileWriter(vlgFile, true);
+                  fw.write(vlgs.get(vlgs.size() - 1).getFile().getName() +"\n");
                   fw.close();
                 }catch(Exception e){
                   System.out.println("error");
@@ -189,15 +191,23 @@ public class Scenario{
     return new Battle(p, e);
   }
 
+  //the issue lies here
   public void initializeList(){
     try{
       Scanner scan = new Scanner(vlgFile);
+      
       while(scan.hasNext()){
-        File fileName = new File(scan.nextLine());
-        vlgs.add(new Village(fileName));
+        String s = scan.nextLine();
+
+        //redundant
+        if(!s.equals("")){
+          File fileName = new File(s);
+          vlgs.add(new Village(fileName));
+        }
       }
+      scan.close();
     }catch(Exception e){
-      System.out.println(e.getMessage());
+      System.out.println("ISSUE: " + e.getMessage());
     }
     
   }

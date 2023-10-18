@@ -23,13 +23,14 @@ public class Place{
         file = new File("map.dat");
         if(file.createNewFile()){
           data = gen(size, size1, 1);
+          setPlayerPos(0, 0);
+          update();
         }
-        playerTile = data[0][0];
-        update();
+        
       }catch(Exception e){
         System.out.println(e);
       }
-       initialize();
+      initialize();
   }
 
 //  public Place (File f){
@@ -329,6 +330,7 @@ public class Place{
         System.out.println();
         fw.write("\n");
       }
+      fw.write(pppX + ","+pppY +","+ playerTile);
       fw.close();
     }catch(Exception e){
       System.out.println(e);
@@ -343,6 +345,12 @@ public class Place{
       int k=0;
       while(scan.hasNext()){
         String[] s = scan.nextLine().split(",");
+        if(s.length == 3){
+          pppX = Integer.parseInt(s[0]);
+          pppY = Integer.parseInt(s[1]);
+          playerTile = Integer.parseInt(s[2]);
+          break;
+        }
         for(int i = 0; i < s.length; i++){
           data[k][i] = Integer.parseInt(s[i]);
           if(data[k][i] == 4){
@@ -351,6 +359,7 @@ public class Place{
           }
         }
         k++;
+        
       }
     }catch(Exception e){
       System.out.println(e);

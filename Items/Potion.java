@@ -15,6 +15,6 @@ public class Potion extends Item{
         return u;
     }
   public String getFH(){
-    return "Ṗ" + super.getName() + " " + super.getValue() + " " + super.getRarity() + " " + healthE + " " + strE + " " + manaE;
+    return "Ṗ" + super.getName().replaceAll(" ", "_") + " " + super.getValue() + " " + super.getRarity() + " " + healthE + " " + strE + " " + manaE;
   }
 }
