@@ -10,3 +10,4 @@ allow inventory access while on the world map (mostly done)
 ensure there is always a castle
 create area specific enemies and loot
 village saving system
+improve Place.update's efficiency

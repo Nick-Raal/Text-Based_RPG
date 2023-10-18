@@ -123,7 +123,19 @@ public class Scenario{
               case 0:
                 return battleScenario(p, tileType, difficulty);
               case 1:
-                return new Village(p, play.getX(), play.getY());
+                for(int i = 0; i < vlgs.size(); i++){
+                  if(vlgs.get(i).getX() == play.getX() && vlgs.get(i).getY() == play.getY()){
+                    return vlgs.get(i);
+                  }
+                }
+              vlgs.add(new Village(p, play.getX(), play.getY()));
+              try{
+                FileWriter fw = new FileWriter(vlgFile, false);
+                fw.write(vlgs.get(vlgs.size() - 1).getFile().getName() + "\n");
+                fw.close();
+              }catch(Exception e){
+                System.out.println("error");
+              }
               case 2:
                 return new Loot(difficulty);
               default:
@@ -141,7 +153,19 @@ public class Scenario{
               case 0:
                 return battleScenario(p, tileType, difficulty);
               case 1:
-                return new Village(p, play.getX(), play.getY());
+                for(int i = 0; i < vlgs.size(); i++){
+                  if(vlgs.get(i).getX() == play.getX() && vlgs.get(i).getY() == play.getY()){
+                    return vlgs.get(i);
+                  }
+                }
+                vlgs.add(new Village(p, play.getX(), play.getY()));
+                try{
+                  FileWriter fw = new FileWriter(vlgFile, false);
+                  fw.write(vlgs.get(vlgs.size() - 1).getFile().getName() + "\n");
+                  fw.close();
+                }catch(Exception e){
+                  System.out.println("error");
+                }
               case 2:
                 return new Loot(difficulty);
               default:

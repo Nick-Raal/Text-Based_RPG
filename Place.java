@@ -1,6 +1,7 @@
 import java.util.Random;
 import java.util.ArrayList;
 import java.io.*;
+import java.util.Scanner;
 
 public class Place{
   Random r = new Random();
@@ -9,17 +10,34 @@ public class Place{
   private int y = 0;
   File file;
   //
-  int[][] data = {{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)}};
-
+  //int[][] data = {{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)},{r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4),r.nextInt(4)}};
+  int[][] data;
   //determines the chances for bad things to happen
   private int difficulty;
-  int playerTile = data[0][0];
+  int playerTile;
   int pppX = 0;
   int pppY = 0;
 
   public Place(int size, int size1){
-    data = gen(size, size1, 1);
+      try{
+        file = new File("map.dat");
+        if(file.createNewFile()){
+          data = gen(size, size1, 1);
+        }
+        playerTile = data[0][0];
+        update();
+      }catch(Exception e){
+        System.out.println(e);
+      }
+       initialize();
   }
+
+//  public Place (File f){
+//    file = f;
+//    initialize();
+//  }
+
+
 
   public String display(){
     String s = "";
@@ -67,6 +85,7 @@ public class Place{
         if(checkTile(x, y + dist)){
            y+=dist;
           setPlayerPos(x, y);
+          update();
           return true;
         }else{
           return false;
@@ -76,6 +95,7 @@ public class Place{
         if(checkTile(x+dist, y)){
           x+=dist;
           setPlayerPos(x, y);
+          update();
           return true;
         }else{
           return false;
@@ -85,6 +105,7 @@ public class Place{
         if(checkTile(x, y-dist)){
           y-=dist;
           setPlayerPos(x, y);
+          update();
           return true;
         }else{
           return false;
@@ -94,6 +115,7 @@ public class Place{
         if(checkTile(x-dist, y)){
           x-=dist;
           setPlayerPos(x, y);
+          update();
           return true;
         }else{
           return false;
@@ -295,6 +317,42 @@ public class Place{
     }
     return 1;
   }
+
+  //update the saved map
+  public void update(){
+    try{
+      FileWriter fw = new FileWriter(file, false);
+      for(int i = 0; i < data.length; i++){
+        for(int j = 0; j<data[i].length; j++){
+          fw.write(data[i][j] + ",");
+        }
+        System.out.println();
+        fw.write("\n");
+      }
+      fw.close();
+    }catch(Exception e){
+      System.out.println(e);
+    }
+
+  }
+
+  private void initialize() {
+    try{
+      Scanner scan = new Scanner(file);
+      data = new int[10][20];
+      int k=0;
+      while(scan.hasNext()){
+        String[] s = scan.nextLine().split(",");
+        for(int i = 0; i < s.length; i++){
+          data[k][i] = Integer.parseInt(s[i]);
+        }
+        k++;
+      }
+    }catch(Exception e){
+      System.out.println(e);
+    }
+  }
+
 }
 
 
