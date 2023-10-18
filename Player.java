@@ -1,5 +1,6 @@
 import Items.*;
 import java.io.*;
+import java.util.Scanner;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,16 @@ public class Player{
   private Armor[] armor;
 
   public Player(){
+    try{
+      file = new File("player.dat");
+      if(file.createNewFile()){
+        update();
+      }
+    }catch(Exception e){
+      System.out.println(e);
+    }
+    initialize();
+    
     //test items
     inventory.add(new Weapon("Zorg, The Destroyer of Fools", 450, 3, 35, 3, 3, 5, ""));
     inventory.add( new Weapon("Adamantium Spear", 450, 2, 25, 1,3 ,0, "the"));
@@ -348,6 +359,35 @@ public class Player{
     return k;
   }
 
+  public void initialize(){
+    try{
+      Scanner s = new Scanner(file);
+      name = s.nextLine();
+      health = Double.parseDouble(s.nextLine());
+      healthMax = Double.parseDouble(s.nextLine());
+      atkMod = Double.parseDouble(s.nextLine());
+      defMod = Double.parseDouble(s.nextLine());
+      initiative = Double.parseDouble(s.nextLine());
+      level = Integer.parseInt(s.nextLine());
+      gold = Integer.parseInt(s.nextLine());
+      exp = Long.parseLong(s.nextLine());
+      strMax = Double.parseDouble(s.nextLine());
+      manaMax = Double.parseDouble(s.nextLine());
+      str = Double.parseDouble(s.nextLine());
+      mana = Double.parseDouble(s.nextLine());
+      strR = Double.parseDouble(s.nextLine());
+      manaR = Double.parseDouble(s.nextLine());
+      armor[0] = (Armor)FileHandler.createItemS(s.nextLine());
+      armor[1] = (Armor)FileHandler.createItemS(s.nextLine());
+      armor[2] = (Armor)FileHandler.createItemS(s.nextLine());
+      armor[3] = (Armor)FileHandler.createItemS(s.nextLine());
+      while(s.hasNext()){
+        inventory.add(FileHandler.createItemS(s.nextLine()));
+      }
+    }catch(Exception e){
+      System.out.println(e.getMessage());
+    }
+  }
   public void update(){
     try{
       FileWriter fw = new FileWriter(file, false);

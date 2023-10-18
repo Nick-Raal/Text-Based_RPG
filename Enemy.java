@@ -14,8 +14,8 @@ public class Enemy{
   private Armor[] armor;
  private Item[] drops;
   private double[] dropC = {1.0};
-  private int dropG = 100;
-  private int dropE = 10000;
+  private int dropG;
+  private int dropE;
 
   public Enemy(String name, double health, double initiative, double atkMod){
     this.name = name;

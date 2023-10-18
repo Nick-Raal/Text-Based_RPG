@@ -19,6 +19,7 @@ class Main {
     System.out.println("created by Nicholas Raal");
 //    System.out.println("press enter to start or help for a list of commands");
 //    s.nextLine();
+    play.update();
       while(true){
         while(!play.getIn()) {
           System.out.println(p.display());
@@ -84,7 +85,8 @@ class Main {
               }
               rest(10);
             }
-          }          
+          }
+          play.update();
         }
       s.close();
      }
