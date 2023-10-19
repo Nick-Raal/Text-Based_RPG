@@ -41,7 +41,6 @@ public class Village {
 
   public Village(File f){
     file = f;
-    System.out.println("test");
     try{
       Scanner s = new Scanner(file);
       name = s.nextLine();
@@ -53,7 +52,6 @@ public class Village {
       // System.out.println("nxt: " + spring);
       while(s.hasNext()){
         String spring = s.nextLine();
-        System.out.println("asd " + spring);
         wares.add(FileHandler.createItemS(spring));
       }
       s.close();
