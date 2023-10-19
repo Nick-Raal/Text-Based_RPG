@@ -4,11 +4,11 @@ create a system for equipping armor which requits a slot system (mostly done)
 enemy AI
 add more changes when the player levels up (str and mana, por ejemplo)
 expand difficulty system (loot implementation)
-give each object a text based sprite
-expand create enemy to include drops and other such info (mostly done) need to add drop chances
+give each object a text based sprite (idk if i'll aactually do this)
+expand create enemy to include drops and other such info (mostly done) need to add drop chances (mostly done)
 allow inventory access while on the world map (mostly done)
 ensure there is always a castle
-create area specific enemies and loot
-village saving system
+create area specific enemies and loot (in progress)
+village saving system (done)
 improve Place.update's efficiency
 can't escape buying screen

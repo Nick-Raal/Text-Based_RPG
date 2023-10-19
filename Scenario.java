@@ -16,7 +16,7 @@ public class Scenario{
 
   double[] scenarioChancesF = {0.2, 0, 0, 0};
   double[] scenarioChancesG = {0.2, 0.0, 0, 0};
-  double[] scenarioChancesE = {0.0, 1.0, 0.0, 0};
+  double[] scenarioChancesE = {0.5, 0.0, 0.0, 0};
   double[] scenarioChancesM = {0.3, 0, 0, 0};
   double[] scenarioChancesC = {0, 0, 0, 0};
   //placeholder where ocean chances would be stored
@@ -168,25 +168,58 @@ public class Scenario{
         }
       }
     }else if(tileType == 6){
-      for(int k = 0; k < scenarioChancesC.length; k++){
-        if(scenarioChancesC[k] != 0){
-          if(n >= running && n < scenarioChancesC[k] * 100 + running){
-            switch (k){
+      for(int k = 0; k < scenarioChancesC.length; k++) {
+        if (scenarioChancesC[k] != 0) {
+          if (n >= running && n < scenarioChancesC[k] * 100 + running) {
+            switch (k) {
               case 0:
                 return battleScenario(p, tileType, difficulty);
               case 1:
-                for(int i = 0; i < vlgs.size(); i++){
-                  if(vlgs.get(i).getX() == play.getX() && vlgs.get(i).getY() == play.getY()){
+                for (int i = 0; i < vlgs.size(); i++) {
+                  if (vlgs.get(i).getX() == play.getX() && vlgs.get(i).getY() == play.getY()) {
                     // System.out.println("extant");
                     return vlgs.get(i);
                   }
                 }
                 vlgs.add(new Village(p, play.getX(), play.getY()));
-                try{
+                try {
                   FileWriter fw = new FileWriter(vlgFile, true);
                   fw.write(vlgs.get(vlgs.size() - 1).getFile().getName() + "\n");
                   fw.close();
-                }catch(Exception e){
+                } catch (Exception e) {
+                  System.out.println("error");
+                }
+                // System.out.println("new");
+                return vlgs.get(vlgs.size() - 1);
+              case 2:
+                return new Loot(difficulty);
+              default:
+//                 System.out.println("something fishy ha occurre");
+                break;
+            }
+          }
+        }
+      }
+    }else if(tileType == 7){
+      for(int k = 0; k < scenarioChancesV.length; k++) {
+        if (scenarioChancesV[k] != 0) {
+          if (n >= running && n < scenarioChancesV[k] * 100 + running) {
+            switch (k) {
+              case 0:
+                return battleScenario(p, tileType, difficulty);
+              case 1:
+                for (int i = 0; i < vlgs.size(); i++) {
+                  if (vlgs.get(i).getX() == play.getX() && vlgs.get(i).getY() == play.getY()) {
+                    // System.out.println("extant");
+                    return vlgs.get(i);
+                  }
+                }
+                vlgs.add(new Village(p, play.getX(), play.getY()));
+                try {
+                  FileWriter fw = new FileWriter(vlgFile, true);
+                  fw.write(vlgs.get(vlgs.size() - 1).getFile().getName() + "\n");
+                  fw.close();
+                } catch (Exception e) {
                   System.out.println("error");
                 }
                 // System.out.println("new");
@@ -204,12 +237,23 @@ public class Scenario{
     return null;
   }
 
+  //add a difficulty scaling system
   public Battle battleScenario(Player p, int tileType, int difficulty){
+    File enemyFile = new File("Enemies/eenmy.dat");
+    switch(tileType){
+      case 1:
+        enemyFile = new File("Enemies/genmy.dat");
+        break;
+      case 2:
+        enemyFile = new File("Enemies/enmy.dat");
+      case 3:
+        enemyFile = new File("Enemies/eenmy.dat");
+    }
     int numEnmies = 0 + (int)(Math.random() * (difficulty)) + 1;
     Enemy[] e = new Enemy[numEnmies];
     for(int i = 0; i< numEnmies; i++){
-      
-      e[i] = FileHandler.createEnemy("enmy.dat");
+
+      e[i] = FileHandler.createEnemy(enemyFile.getPath());
     }
     return new Battle(p, e);
   }
