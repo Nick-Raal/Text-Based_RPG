@@ -1,5 +1,6 @@
 import Items.*;
 import java.io.*;
+import java.util.Collections;
 import java.util.Scanner;
 
 import java.util.ArrayList;
@@ -232,14 +233,10 @@ public class Player{
     inventory.add(item);
   }
   public void add(ArrayList<Item> items){
-    for(int i = 0; i <items.size(); i++){
-      inventory.add(items.get(i));
-    }
+    inventory.addAll(items);
   }
   public void add(Item[] items){
-    for(int i = 0; i < items.length; i++){
-      inventory.add(items[i]);
-    }
+    Collections.addAll(inventory, items);
   }
   public void addG(int g){
     gold += g;
@@ -350,9 +347,9 @@ public class Player{
 
   public void full() {
 
-    str = str <= strMax ? strMax : str;
-    mana = mana <= manaMax ? manaMax : mana;
-    health = health <= healthMax ? healthMax : health;
+    str = Math.max(str, strMax);
+    mana = Math.max(mana, manaMax);
+    health = Math.max(health, healthMax);
   }
 
   public int getArmorL() {
