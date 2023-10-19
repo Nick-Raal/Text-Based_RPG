@@ -37,7 +37,7 @@ public class Player{
   
   //head, torso, legs
   //bludgeon, piercing, magic
-  private Armor[] armor;
+  private Armor[] armor = new Armor[4];
 
   public Player(String namey){
     try{
@@ -46,8 +46,16 @@ public class Player{
         name = namey;
         inventory.add(new Weapon("Training Sword", 1, 5, 5, 2, "the"));
         //create default armor
+        armor[0] = new Armor("Training Helm", 5 , 1, 0, 5, 1);
+        armor[1] = new Armor("Training Chestplate", 5 , 1, 1, 5, 1);
+        armor[2] = new Armor("Training Leggings", 5 , 1, 2, 5, 1);
+        armor[3] = new Armor("Training Boots", 5 , 1, 30, 5, 1);
         update();
       }
+      armor[0] = new Armor("Training Helm", 5 , 1, 0, 5, 1);
+      armor[1] = new Armor("Training Chestplate", 5 , 1, 1, 5, 1);
+      armor[2] = new Armor("Training Leggings", 5 , 1, 2, 5, 1);
+      armor[3] = new Armor("Training Boots", 5 , 1, 30, 5, 1);
     }catch(Exception e){
       System.out.println(e);
     }

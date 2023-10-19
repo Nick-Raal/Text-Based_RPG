@@ -22,6 +22,12 @@ public class Armor extends Item {
     this.slot = slot;
   }
 
+  public Armor(String name, double armor, int type, int slot, int value, int rarity){
+    super(name, value, rarity);
+    this.type = type;
+    this.armor = armor;
+    this.slot = slot;
+  }
   public Armor getObj(){
     return this;
   }
@@ -38,6 +44,6 @@ public class Armor extends Item {
   }
 
   public String getFH(){
-    return "ä" + super.getName().replaceAll(" ", "_") + " " + armor + " "+ type+ " " + slot;
+    return "ä" + super.getName().replaceAll(" ", "_") + " " + armor + " "+ type+ " " + slot + " " + super.getValue() + " " +  super.getRarity();
   }
 }

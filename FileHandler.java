@@ -194,8 +194,17 @@ public class FileHandler{
       try{
         int aSlot = Integer.parseInt(s.substring(0, s.indexOf(" ")));
         s =s.substring(s.indexOf(" ") + 1);
-        data.setString(s);
-        return new Armor(aName, aArmor, aType, aSlot);
+        try{
+          int value = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+          s =s.substring(s.indexOf(" ") + 1);
+          int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+          s = s.substring(s.indexOf(" ") + 1);
+          data.setString(s);
+          return new Armor(aName, aArmor, aType, aSlot, value, rarity);
+        }catch(Exception e){
+          data.setString(s);
+          return new Armor(aName, aArmor, aType, aSlot);
+        }
       }catch(Exception e){
         return new Armor(aName, aArmor, aType);
       }
@@ -265,12 +274,16 @@ public class FileHandler{
       s = s.substring(s.indexOf(" ") + 1);
       int aType = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
       s = s.substring(s.indexOf(" ") + 1);
-      try{
-        int aSlot = Integer.parseInt(s.substring(0, s.indexOf(" ")));
-        s =s.substring(s.indexOf(" ") + 1);
+      int aSlot = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+      s =s.substring(s.indexOf(" ") + 1);
+      if(s.length() >= 2){
+        int value = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+        s = s.substring(s.indexOf(" ") + 1);
+        int rarity = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
+        s = s.substring((s.indexOf(" ") != -1 ? s.indexOf(" ") + 1 : 0));
+        return new Armor(aName, aArmor, aType, aSlot, value, rarity);
+      }else{
         return new Armor(aName, aArmor, aType, aSlot);
-      }catch(Exception e){
-        return new Armor(aName, aArmor, aType);
       }
     }
     return null;

@@ -1,6 +1,6 @@
 continue to link the battle and the world exploration systems
 continue creating file system for saving player data as well as for the easy creation and retention of entities
-create a system for equipping armor which requits a slot system (mostly done)
+create a system for equipping armor which requits a slot system (done)
 enemy AI
 add more changes when the player levels up (str and mana, por ejemplo)
 expand difficulty system (loot implementation)

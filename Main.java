@@ -26,11 +26,18 @@ class Main {
       System.out.println("E: INVENTORY/PLAYER INFO");
 //      s.nextLine();
     }
-    Player play = new Player(stringput);
-    if(!play.getFile().exists()){
-      System.out.println("WHAT IS YOUR NAME?");
-//      play.setName(s.nextLine());
+    if(!new File("player.dat").exists()){
+      p.setPlayerPos(0, 0);
+//      System.out.println("WHAT IS YOUR NAME?");
+////      play.setName(s.nextLine());
     }
+    Player play = new Player(stringput);
+//    if(!play.getFile().exists()){
+//      p.setPlayerPos(0, 0);
+//      System.out.println("WHAT IS YOUR NAME?");
+////      play.setName(s.nextLine());
+//    }
+
     play.update();
       while(true){
         while(!play.getIn()) {
