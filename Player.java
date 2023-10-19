@@ -38,25 +38,31 @@ public class Player{
   //bludgeon, piercing, magic
   private Armor[] armor;
 
-  public Player(){
+  public Player(String namey){
     try{
       file = new File("player.dat");
       if(file.createNewFile()){
+        name = namey;
+        inventory.add(new Weapon("Training Sword", 1, 5, 5, 2, "the"));
+        //create default armor
         update();
       }
     }catch(Exception e){
       System.out.println(e);
     }
     initialize();
+
+    //starting items
+//    inventory.add(new Weapon("Training Sword", 1, 5, 5, 2, "the"));
     
     //test items
-    inventory.add(new Weapon("Zorg, The Destroyer of Fools", 450, 3, 35, 3, 3, 5, ""));
-    inventory.add( new Weapon("Adamantium Spear", 450, 2, 25, 1,3 ,0, "the"));
-//    inventory.add(new Item("Potion of Major Healing", 50, 2, 10, 0, 0));
-    inventory.add(new Potion("Root of Fervor", 10, 1, 0, 5, 0));
-    inventory.add( new Weapon("relief", 450, 2, 250, 1,2 ,2, ""));
-    inventory.add(new Armor("Armoury Chestplate", 29, 2, 1));
-    armor = new Armor[]{new Armor("Chain Helm", 5, 1, 0), new Armor("Chain Chestplate", 5, 1, 1), new Armor("Chain Leggings", 5, 1, 2), new Armor("Chain Boots", 5, 1, 3)};
+//    inventory.add(new Weapon("Zorg, The Destroyer of Fools", 450, 3, 35, 3, 3, 5, ""));
+//    inventory.add( new Weapon("Adamantium Spear", 450, 2, 25, 1,3 ,0, "the"));
+////    inventory.add(new Item("Potion of Major Healing", 50, 2, 10, 0, 0));
+//    inventory.add(new Potion("Root of Fervor", 10, 1, 0, 5, 0));
+//    inventory.add( new Weapon("relief", 450, 2, 250, 1,2 ,2, ""));
+//    inventory.add(new Armor("Armoury Chestplate", 29, 2, 1));
+//    armor = new Armor[]{new Armor("Chain Helm", 5, 1, 0), new Armor("Chain Chestplate", 5, 1, 1), new Armor("Chain Leggings", 5, 1, 2), new Armor("Chain Boots", 5, 1, 3)};
     full();
   }
 
@@ -418,5 +424,13 @@ public class Player{
     }catch(Exception e){
       System.out.println("PLAY ERR " + e.getMessage());
     }
+  }
+
+  public File getFile() {
+    return file;
+  }
+
+  public void setName(String nextLine) {
+    name = nextLine;
   }
 }
