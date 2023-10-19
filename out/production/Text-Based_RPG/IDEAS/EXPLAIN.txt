@@ -1,3 +1,6 @@
 Enemy Files:
 Easy Forest: enmy.dat
 Hard Forest: HFE.dat
+
+Skeleton 80 1.0 1.0 ẅBow 12 2 äwood 2 2 0 0 0 äwood 2 2 1 0 0 äwood 2 2 2 0 0 äwood 2 2 3 0 0 50 30 ẅThe_Rib_Tickler 150 5 1 125 the 0.05
+Malicious_Spirit 40 1.15 1.0 ẅPunch 5 1 ẅMagic_Blast 10 3 0 0 äwood 1 1 0 0 0 äwood 1 1 1 0 0 äwood 1 1 2 0 0 äwood 1 1 3 0 0 20 20 ṖRed_Juice 10 1 3 2 1 0.5

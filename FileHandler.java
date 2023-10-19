@@ -198,7 +198,7 @@ public class FileHandler{
           int value = Integer.parseInt(s.substring(0, s.indexOf(" ")));
           s =s.substring(s.indexOf(" ") + 1);
           int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
-          s = s.substring(s.indexOf(" ") + 1);
+          s = s.substring((s.indexOf(" ") != -1 ? s.indexOf(" ") + 1 : 0));
           data.setString(s);
           return new Armor(aName, aArmor, aType, aSlot, value, rarity);
         }catch(Exception e){

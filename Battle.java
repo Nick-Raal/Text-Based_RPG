@@ -106,6 +106,8 @@ public class Battle{
         enemyTurn();
       }    
 //      in.close();
+    }else{
+      enemyTurn();
     }
   }
 
@@ -145,7 +147,13 @@ public class Battle{
     System.out.println("EVIL PLACEHOLDER");
     for(int i = 0; i < e.length; i++){
       Random r = new Random();
-      int n = r.nextInt();
+      int n = r.nextInt(10);
+      if(n < (e[i].getInitiative() * 5)){
+        //enemy attack
+        n = r.nextInt(e[i].getAtkL());
+        double[] atk = e[i].atk(n);
+        p.damage(atk[0], (int)atk[1], false);
+      }
     }
     Main.rest(10000);
     p.recover();

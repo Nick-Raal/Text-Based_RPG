@@ -246,8 +246,10 @@ public class Scenario{
         break;
       case 2:
         enemyFile = new File("Enemies/enmy.dat");
+        break;
       case 3:
         enemyFile = new File("Enemies/eenmy.dat");
+        break;
     }
     int numEnmies = 0 + (int)(Math.random() * (difficulty)) + 1;
     Enemy[] e = new Enemy[numEnmies];

@@ -61,7 +61,7 @@ public class Enemy{
     this.drops = null;
     this.dropC = null;
   }
-  public double[] Attack(int select){
+  public double[] atk(int select){
     double[] attack = new double[2];
     attack[0] =  this.attack[select].getDamage() * atkMod;
     attack[1] = this.attack[select].getType();
@@ -130,5 +130,8 @@ public class Enemy{
     return numD;
   }
 
-  
+
+    public int getAtkL() {
+      return attack.length;
+    }
 }
