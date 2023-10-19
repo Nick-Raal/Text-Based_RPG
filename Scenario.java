@@ -40,13 +40,28 @@ public class Scenario{
               case 0:
                 return battleScenario(p, tileType, difficulty);
               case 1:
-                return new Village(p, play.getX(), play.getY());
+                for(int i = 0; i < vlgs.size(); i++){
+                  if(vlgs.get(i).getX() == play.getX() && vlgs.get(i).getY() == play.getY()){
+                    // System.out.println("extant");
+                    return vlgs.get(i);
+                  }
+                }
+                vlgs.add(new Village(p, play.getX(), play.getY()));
+                try{
+                  FileWriter fw = new FileWriter(vlgFile, true);
+                  fw.write(vlgs.get(vlgs.size() - 1).getFile().getName() + "\n");
+                  fw.close();
+                }catch(Exception e){
+                  System.out.println("error");
+                }
+                // System.out.println("new");
+                return vlgs.get(vlgs.size() - 1);
               case 2:
                 return new Loot(difficulty);
               default:
-                System.out.println("something fishy ha occurre");
+//                 System.out.println("something fishy ha occurre");
                 break;
-            };
+            }
           }
         }
         running += scenarioChancesF[k] * 100;
@@ -61,6 +76,7 @@ public class Scenario{
               case 1:
                 for(int i = 0; i < vlgs.size(); i++){
                   if(vlgs.get(i).getX() == play.getX() && vlgs.get(i).getY() == play.getY()){
+                    // System.out.println("extant");
                     return vlgs.get(i);
                   }
                 }
@@ -72,11 +88,12 @@ public class Scenario{
                 }catch(Exception e){
                   System.out.println("error");
                 }
+                // System.out.println("new");
                 return vlgs.get(vlgs.size() - 1);
               case 2:
                 return new Loot(difficulty);
               default:
-                System.out.println("something fishy ha occurre");
+//                 System.out.println("something fishy ha occurre");
                 break;
             }
           }
@@ -110,7 +127,7 @@ public class Scenario{
                case 2:
                  return new Loot(difficulty);
                default:
-                 System.out.println("something fishy ha occurre");
+//                 System.out.println("something fishy ha occurre");
                  break;
              }
            }
@@ -127,21 +144,24 @@ public class Scenario{
               case 1:
                 for(int i = 0; i < vlgs.size(); i++){
                   if(vlgs.get(i).getX() == play.getX() && vlgs.get(i).getY() == play.getY()){
+                    // System.out.println("extant");
                     return vlgs.get(i);
                   }
                 }
-              vlgs.add(new Village(p, play.getX(), play.getY()));
-              try{
-                FileWriter fw = new FileWriter(vlgFile, true);
-                fw.write(vlgs.get(vlgs.size() - 1).getFile().getName() + "\n");
-                fw.close();
-              }catch(Exception e){
-                System.out.println("error");
-              }
+                vlgs.add(new Village(p, play.getX(), play.getY()));
+                try{
+                  FileWriter fw = new FileWriter(vlgFile, true);
+                  fw.write(vlgs.get(vlgs.size() - 1).getFile().getName() + "\n");
+                  fw.close();
+                }catch(Exception e){
+                  System.out.println("error");
+                }
+                // System.out.println("new");
+                return vlgs.get(vlgs.size() - 1);
               case 2:
                 return new Loot(difficulty);
               default:
-                System.out.println("something fishy ha occurre");
+//                 System.out.println("something fishy ha occurre");
                 break;
             }
           }
@@ -157,21 +177,24 @@ public class Scenario{
               case 1:
                 for(int i = 0; i < vlgs.size(); i++){
                   if(vlgs.get(i).getX() == play.getX() && vlgs.get(i).getY() == play.getY()){
+                    // System.out.println("extant");
                     return vlgs.get(i);
                   }
                 }
                 vlgs.add(new Village(p, play.getX(), play.getY()));
                 try{
                   FileWriter fw = new FileWriter(vlgFile, true);
-                  fw.write(vlgs.get(vlgs.size() - 1).getFile().getName() +"\n");
+                  fw.write(vlgs.get(vlgs.size() - 1).getFile().getName() + "\n");
                   fw.close();
                 }catch(Exception e){
                   System.out.println("error");
                 }
+                // System.out.println("new");
+                return vlgs.get(vlgs.size() - 1);
               case 2:
                 return new Loot(difficulty);
               default:
-                System.out.println("something fishy ha occurre");
+//                 System.out.println("something fishy ha occurre");
                 break;
             }
           }
