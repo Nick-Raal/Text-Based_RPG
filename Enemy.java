@@ -68,13 +68,20 @@ public class Enemy{
     return attack;
   }
   
-  public void damage(double atk, int type, boolean ignoreArmor){
+  public double damage(double atk, int type, boolean ignoreArmor){
+
+    //the total amount of damage that the enemy has taken;
+    double total = 0;
     if(ignoreArmor){
       health -= atk;
+      return atk;
     }else{
       for(int i = 0; i < armor.length; i++){
-        health -= Math.max(0, armor[i].getType() == type ? atk/3 - 1.5 * armor[i].getArmor() : atk/3 - 1.5*armor[i].getArmor());
+        double damage = Math.max(0, armor[i].getType() == type ? atk/3 - 1.5 * armor[i].getArmor() : atk/3 - 1.5*armor[i].getArmor());
+        health -= damage;
+        total += damage;
       }
+      return total;
     }
   }
 

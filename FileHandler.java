@@ -304,6 +304,25 @@ public class FileHandler{
       return s;
   }
 
+  //ratio is equivalent to enemy damage taken / enemy health
+  public static String atkMessage(String path, double ratio){
+    String s = "";
+    //the greatest line that will be retrieved
+    double maxRand = 1;
+    if (ratio <= 0.25){
+      maxRand = 0.5;
+    }
+    try{
+      List<String> lines = Files.readAllLines(Paths.get(path));
+      Random random = new Random();
+      int randomIndex = random.nextInt((int)(lines.size() *  maxRand));
+      s = lines.get(randomIndex);
+    }catch(Exception e){
+      System.out.println("ATK MESSAGE " + e);
+    }
+    return s;
+  }
+
   
 }
 

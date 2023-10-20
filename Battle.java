@@ -63,16 +63,9 @@ public class Battle{
           System.out.println("Select which enemy to VANQUISH");
           n = Integer.parseInt(in.nextLine());
         }
-        e[n-1].damage(atk[0], (int)atk[1], false);
+        double damage = e[n-1].damage(atk[0], (int)atk[1], false);
         String s = e[n-1].getName();
-        try{
-            List<String> lines = Files.readAllLines(Paths.get("atk.dat"));
-            Random random = new Random();
-            int randomIndex = random.nextInt(lines.size());
-            s += lines.get(randomIndex);
-        }catch(Exception e){
-          System.out.println(e);
-        }
+        s+= FileHandler.atkMessage("atk.dat", damage/e[n-1].getHealth());
         s += p.getWeapon(select-1);
         // Main.rest(10);
         System.out.println(s);
