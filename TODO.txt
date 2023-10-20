@@ -12,3 +12,4 @@ create area specific enemies and loot (in progress)
 village saving system (done)
 improve Place.update's efficiency
 can't escape buying screen
+the great simplification (standardize everythin in filehandling)
