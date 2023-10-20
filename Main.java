@@ -37,13 +37,11 @@ class Main {
 //      System.out.println("WHAT IS YOUR NAME?");
 ////      play.setName(s.nextLine());
 //    }
-
-    play.update();
       while(true){
         while(!play.getIn()) {
           System.out.println(p.display());
           String input = s.nextLine();
-          if(input.toUpperCase().charAt(0) == 'E'){
+          if(input != "" && input.toUpperCase().charAt(0) == 'E'){
             System.out.println(play);
             play.dispItm();
             play.dispArm();
@@ -109,6 +107,7 @@ class Main {
         }
       s.close();
      }
+    
   }
   
   

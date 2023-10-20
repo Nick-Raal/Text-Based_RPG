@@ -19,7 +19,7 @@ public class FileHandler{
         int randomIndex = random.nextInt(lines.size());
         s = lines.get(randomIndex);
     }catch(Exception e){
-      System.out.println(e);
+      // System.out.println(e);
     }
     String name = s.substring(0, s.indexOf(" "));
     s = s.substring(s.indexOf(" ") + 1);
@@ -31,7 +31,7 @@ public class FileHandler{
     double atkMod = Double.parseDouble(s.substring(0, s.indexOf(" ")));
     s = s.substring(s.indexOf(" ") + 1);
     StringHandler sh = new StringHandler (s);
-    // System.out.println(sh.getString());
+    // // System.out.println(sh.getString());
     int k = 0;
     for(int i = 0; i < s.length(); i++){
       if(s.charAt(i) == 'ẅ'){
@@ -40,7 +40,7 @@ public class FileHandler{
         break;
       }
     }
-    // System.out.println("k: " + k);
+    // // System.out.println("k: " + k);
     Weapon[] attack = new Weapon[k];
     k = 0;
     
@@ -48,7 +48,7 @@ public class FileHandler{
       attack[k] = (Weapon)createItemS(sh);
       k++;
     }
-    // System.out.println(sh.getString());
+    // // System.out.println(sh.getString());
     // for(int i = 0; i < s.length(); i++){
     //   if(s.charAt(i) == 'ẅ'){
     //     String wName = s.substring(i+1, s.indexOf(" "));
@@ -66,7 +66,7 @@ public class FileHandler{
     k =0;
     while (k<4){
 
-      // System.out.println("ind:" + s.indexOf(" ") + " i: " + i);
+      // // System.out.println("ind:" + s.indexOf(" ") + " i: " + i);
       // String aName = s.substring(1, s.indexOf(" "));
       // s = s.substring(s.indexOf(" ") + 1);
       // double aArmor = Double.parseDouble(s.substring(0, s.indexOf(" ")));
@@ -80,7 +80,7 @@ public class FileHandler{
     }
     s = sh.getString();
     //create a system to account for drops
-    // System.out.println(Color.RED + s);
+    // // System.out.println(Color.RED + s);
     double gold = Double.parseDouble(s.substring(0, s.indexOf(" ")));
     s = s.substring(s.indexOf(" ") + 1);
     double exp = Double.parseDouble(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
@@ -93,7 +93,7 @@ public class FileHandler{
       while(sh.getString().indexOf("ḃ") != -1 || sh.getString().indexOf("ẅ") != -1 || sh.getString().indexOf("Ṗ") != -1){
         drops.add(createItemS(sh));
       }
-      System.out.println(sh.getString());
+      // // System.out.println(sh.getString());
       double[] dropC = new double[drops.size()];
       k = 0;
       s = sh.getString();
@@ -102,7 +102,7 @@ public class FileHandler{
         s = s.substring((s.indexOf(" ") != -1 ? s.indexOf(" ") + 1 : 0));
         k++;
       }
-      // System.out.println(s);
+      // // System.out.println(s);
       return new Enemy(name, health, init, atkMod, attack, armor, gold, exp, drops, dropC);
     }else{
       return new Enemy(name, health, init, atkMod, attack, armor, gold, exp);
@@ -117,7 +117,7 @@ public class FileHandler{
       int randomIndex = random.nextInt(lines.size());
       s = lines.get(randomIndex);
     }catch(Exception e){
-      System.out.println(e);
+      // System.out.println(e);
     }
     
     return createItemS(new StringHandler(s));
@@ -128,25 +128,25 @@ public class FileHandler{
     if(s.charAt(0) == 'ẅ'){
       String wName = s.substring(1, s.indexOf(" "));
       s = s.substring(s.indexOf(" ") + 1);
-      // System.out.println(s);
+      // // System.out.println(s);
       wName = wName.replaceAll("_", " ");
       double wDamage = Double.parseDouble(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
-        // System.out.println(s);
+        // // System.out.println(s);
       int wType = Integer.parseInt(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
-        // System.out.println(s);
+        // // System.out.println(s);
       try{
         int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
         s = s.substring(s.indexOf(" ") + 1);
-        // System.out.println(s);
+        // // System.out.println(s);
         int value = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
         s = s.substring(s.indexOf(" ") + 1);
         String demo = s.substring(0,(s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length()));
         s = s.substring(s.indexOf(" ") + 1);
         data.setString(s);
         return new Weapon(wName, rarity, value, wDamage, wType, demo);
-      }catch(NumberFormatException e){
+      }catch (Exception e){
         data.setString(s);
         return new Weapon(wName, wDamage, wType);
       }
@@ -191,21 +191,22 @@ public class FileHandler{
       int aType = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
       s = s.substring(s.indexOf(" ") + 1);
       data.setString(s);
-      try{
+      if(s.length() >= 2){
         int aSlot = Integer.parseInt(s.substring(0, s.indexOf(" ")));
         s =s.substring(s.indexOf(" ") + 1);
-        try{
+        if(s.length() >= 2){
           int value = Integer.parseInt(s.substring(0, s.indexOf(" ")));
           s =s.substring(s.indexOf(" ") + 1);
           int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
           s = s.substring((s.indexOf(" ") != -1 ? s.indexOf(" ") + 1 : 0));
           data.setString(s);
           return new Armor(aName, aArmor, aType, aSlot, value, rarity);
-        }catch(Exception e){
+        }else{
           data.setString(s);
           return new Armor(aName, aArmor, aType, aSlot);
         }
-      }catch(Exception e){
+      }else{
+        data.setString(s);
         return new Armor(aName, aArmor, aType);
       }
     }
@@ -216,24 +217,24 @@ public class FileHandler{
     if(s.charAt(0) == 'ẅ'){
       String wName = s.substring(1, s.indexOf(" "));
       s = s.substring(s.indexOf(" ") + 1);
-      // System.out.println(s);
+      // // System.out.println(s);
       wName = wName.replaceAll("_", " ");
       double wDamage = Double.parseDouble(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
-        // System.out.println(s);
+        // // System.out.println(s);
       int wType = Integer.parseInt(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
-        // System.out.println(s);
-      try{
+        // // System.out.println(s);
+      if(s.length() >= 2){
         int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
         s = s.substring(s.indexOf(" ") + 1);
-        // System.out.println(s);
+        // // System.out.println(s);
         int value = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
         s = s.substring(s.indexOf(" ") + 1);
         String demo = s.substring(0,(s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length()));
         s = s.substring(s.indexOf(" ") + 1);
         return new Weapon(wName, rarity, value, wDamage, wType, demo);
-      }catch(NumberFormatException e){
+      }else{
         return new Weapon(wName, wDamage, wType);
       }
     }else if(s.charAt(0) == 'Ṗ'){
@@ -297,9 +298,12 @@ public class FileHandler{
         int randomIndex = random.nextInt(lines.size());
         s = lines.get(randomIndex);
       }catch(Exception e){
-        System.out.println(e);
+        // System.out.println(e);
       }
 
       return s;
   }
+
+  
 }
+

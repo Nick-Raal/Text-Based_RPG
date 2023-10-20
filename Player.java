@@ -11,7 +11,7 @@ public class Player{
   File file;
   // private int x = 0;
   // private int y = 0;
-  private String name = "Nemo";
+  private String name;
   private boolean in;
   private ArrayList<Item> inventory = new ArrayList<Item>();
   private double health;
@@ -51,11 +51,12 @@ public class Player{
         armor[2] = new Armor("Training Leggings", 5 , 1, 2, 5, 1);
         armor[3] = new Armor("Training Boots", 5 , 1, 30, 5, 1);
         update();
+        inventory.remove(0);
       }
-      armor[0] = new Armor("Training Helm", 5 , 1, 0, 5, 1);
-      armor[1] = new Armor("Training Chestplate", 5 , 1, 1, 5, 1);
-      armor[2] = new Armor("Training Leggings", 5 , 1, 2, 5, 1);
-      armor[3] = new Armor("Training Boots", 5 , 1, 30, 5, 1);
+      // armor[0] = new Armor("Training Helm", 5 , 1, 0, 5, 1);
+      // armor[1] = new Armor("Training Chestplate", 5 , 1, 1, 5, 1);
+      // armor[2] = new Armor("Training Leggings", 5 , 1, 2, 5, 1);
+      // armor[3] = new Armor("Training Boots", 5 , 1, 30, 5, 1);
     }catch(Exception e){
       System.out.println(e);
     }
@@ -72,6 +73,7 @@ public class Player{
 //    inventory.add( new Weapon("relief", 450, 2, 250, 1,2 ,2, ""));
 //    inventory.add(new Armor("Armoury Chestplate", 29, 2, 1));
 //    armor = new Armor[]{new Armor("Chain Helm", 5, 1, 0), new Armor("Chain Chestplate", 5, 1, 1), new Armor("Chain Leggings", 5, 1, 2), new Armor("Chain Boots", 5, 1, 3)};
+  
     full();
   }
 
@@ -392,14 +394,31 @@ public class Player{
       armor[1] = (Armor)FileHandler.createItemS(s.nextLine());
       armor[2] = (Armor)FileHandler.createItemS(s.nextLine());
       armor[3] = (Armor)FileHandler.createItemS(s.nextLine());
+      
+
+      //create a check system to cast objects
       while(s.hasNext()){
-        inventory.add(FileHandler.createItemS(s.nextLine()));
+        Item itm =FileHandler.createItemS(s.nextLine());
+        if(itm instanceof Weapon){
+          inventory.add((Weapon)itm);
+        }else if(itm instanceof Potion){
+          inventory.add((Potion)itm);
+        }else if(itm instanceof Armor){
+          inventory.add((Armor)itm);
+        }else if(itm instanceof Book){
+          inventory.add((Book)itm);
+        }else{
+          inventory.add(itm);
+        }
+        
       }
+      s.close();
     }catch(Exception e){
-      System.out.println(e.getMessage());
+      System.out.println("initialization error " + e);
     }
   }
   public void update(){
+    System.out.println(inventory);
     try{
       FileWriter fw = new FileWriter(file, false);
       fw.write(name + "\n");
@@ -421,8 +440,8 @@ public class Player{
       fw.write(armor[1].getFH() + "\n");
       fw.write(armor[2].getFH() + "\n");
       fw.write(armor[3].getFH() + "\n");
-      fw.write("ARMOREND\n");
       for(int i = 0; i < inventory.size(); i++){
+        // System.out.println("this shouldn't happen " + inventory.get(i));
         fw.write(inventory.get(i).getFH() + "\n");
       }
       fw.close();
