@@ -233,6 +233,8 @@ public class Scenario{
           }
         }
       }
+    }else if (tileType == 8){
+      //unique ruined castle thingy
     }
     return null;
   }

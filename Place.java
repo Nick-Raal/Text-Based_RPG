@@ -69,6 +69,8 @@ public class Place{
           case 7:
             s+= Color.YELLOW + "v";
             break;
+          case 8:
+            s+= Color.WHITE + "c";
           default:
             System.out.println("print ERROR:" + data[y][x] + Color.RESET);
         }
@@ -238,9 +240,15 @@ public class Place{
               // System.out.println("Type: " + (k!= 5 ? (k != 3 ? k + 1 : 3) : 0));
               map[i][j] = (k!= 5 ? (k != 3 ? k + 1 : 3) : 0); 
               if(castle == true){
-                map[i][j] == true;
-              }else if(k + 1 == 7){
+                map[i][j] = 8;
+              }else if(k + 1 == 6){
                 castle = true;
+              }
+              //assuming a maximum i and j of 28
+              if(i + j >= 18){
+                if (n +i + j>= 28){
+                  map[i][j] = 6;
+                }
               }
               break;
             }
@@ -291,6 +299,11 @@ public class Place{
     }else if (type == 7){
       for(int i = 0; i < chances.length; i++){
         chances[i] += VC[i] * factor;
+      }
+    //destroyed castle
+    }else if(type == 8){
+      for(int i = 0; i < chances.length; i++){
+        chances[i] += CC[i] * factor;
       }
     }
     // System.out.println("type " + type);
