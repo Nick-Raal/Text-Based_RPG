@@ -171,7 +171,7 @@ public class Place{
   }
   private int[][] gen(int size, int size1, int difficulty){
 
-    
+    boolean castle = false;
   
     int[][] map = new int[size][size1];
     for(int i = 0; i < map.length; i++){
@@ -237,6 +237,11 @@ public class Place{
             if(n >= running && n < chances[k] * 100 + running){
               // System.out.println("Type: " + (k!= 5 ? (k != 3 ? k + 1 : 3) : 0));
               map[i][j] = (k!= 5 ? (k != 3 ? k + 1 : 3) : 0); 
+              if(castle == true){
+                map[i][j] == true;
+              }else if(k + 1 == 7){
+                castle = true;
+              }
               break;
             }
           }

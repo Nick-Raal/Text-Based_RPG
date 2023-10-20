@@ -143,7 +143,7 @@ public class Battle{
       int n = r.nextInt(10);
       if(n < (e[i].getInitiative() * 5)){
         //enemy attack
-        System.out.println("enemy atk");
+        System.out.println(e[i].getName() + " attacks");
         n = r.nextInt(e[i].getAtkL());
         double[] atk = e[i].atk(n);
         p.damage(atk[0], (int)atk[1], false);
