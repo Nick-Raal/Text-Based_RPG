@@ -21,9 +21,9 @@ public class Place{
   public Place(int size, int size1){
       try{
         file = new File("map.dat");
+        data = gen(size, size1, 1);
         if(file.createNewFile()){
           data = gen(size, size1, 1);
-          setPlayerPos(0, 0);
           update();
         }
         
@@ -234,27 +234,27 @@ public class Place{
         for(int k = 0; k < chances.length; k++){
           
           // System.out.print("chances " + chances[k] + " ");
-          if(chances[k] != 0){
-            // System.out.println("n " + n);
-            // System.out.println("n max" + (chances[k] * 100 + running));
-            if(n >= running && n < chances[k] * 100 + running){
-              // System.out.println("Type: " + (k!= 5 ? (k != 3 ? k + 1 : 3) : 0));
-              map[i][j] = (k!= 5 ? (k != 3 ? k + 1 : 3) : 0); 
-              if(castle == true && k+1 == 6){
-                map[i][j] = 8;
-              }else if(k + 1 == 6){
+
+          if(n >= running && n < chances[k] * 100 + running){
+            map[i][j] = (k!= 5 ? (k < 3 ? k + 1 : (k < 6 ? k + 2 : k +1)) : 0); 
+            if(!castle && k == 4){
+              System.out.println("castle " + castle);
+              map[i][j] = 6;
+              castle = true;
+            }else if (k ==4){
+              System.out.println(chances[k]);
+              map[i][j] = 8;
+            }
+            //assuming a maximum i and j of 28
+            if(!castle &&i + j >= 18){
+              if (!castle && n +i + j>= 28){
+                map[i][j] = 6;
                 castle = true;
               }
-              //assuming a maximum i and j of 28
-              if(i + j >= 18 && !castle){
-                if (n +i + j>= 28){
-                  map[i][j] = 6;
-                  castle = true;
-                }
               }
               break;
             }
-          }
+          
           // System.out.println("running " + running);
           running += chances[k] * 100;
         }
@@ -266,9 +266,9 @@ public class Place{
   }
   private double[] tile(double[]chances, int type, double factor){
     //forest, grassland, evil, mountain, castle, ocean, village
-    double[] FC = {0.15, 0.25, 0.20, 0.10, 01, 0, 0.2};
+    double[] FC = {0.15, 0.25, 0.20, 0.10, 0.1, 0, 0.2};
     double[] GC = {0.4, 0.05, 0.1, 0, 0, 0.25, 0.2};
-    double[] EC = {0, 0.1, 0.4, 0.25, 0.25, 0, 0};
+    double[] EC = {0.1, 0.2, 0.4, 0.25, 0.05, 0, 0};
     double[] MC = {0.25, 0, 0.25, 0.45, 0, 0, 0.05};
     double[] CC = {0, 0, 0.54, 0.44, 0.01, 0, 0.01};
     double[] OC = {0.4, 0.35, 0, 0, 0, 0.25, 0.1};
