@@ -3,8 +3,6 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
 
-
-
 import java.util.ArrayList;
 
 import Items.*;
@@ -12,7 +10,6 @@ import Items.*;
 
 public class FileHandler{
   public static Enemy createEnemy(String path){
-    
     String s = "";
     try{
         List<String> lines = Files.readAllLines(Paths.get(path));

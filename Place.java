@@ -71,6 +71,7 @@ public class Place{
             break;
           case 8:
             s+= Color.WHITE + "c";
+            break;
           default:
             System.out.println("print ERROR:" + data[y][x] + Color.RESET);
         }
@@ -239,15 +240,16 @@ public class Place{
             if(n >= running && n < chances[k] * 100 + running){
               // System.out.println("Type: " + (k!= 5 ? (k != 3 ? k + 1 : 3) : 0));
               map[i][j] = (k!= 5 ? (k != 3 ? k + 1 : 3) : 0); 
-              if(castle == true){
+              if(castle == true && k+1 == 6){
                 map[i][j] = 8;
               }else if(k + 1 == 6){
                 castle = true;
               }
               //assuming a maximum i and j of 28
-              if(i + j >= 18){
+              if(i + j >= 18 && !castle){
                 if (n +i + j>= 28){
                   map[i][j] = 6;
+                  castle = true;
                 }
               }
               break;
