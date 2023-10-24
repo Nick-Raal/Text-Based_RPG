@@ -113,14 +113,22 @@ public class FileHandler{
       s = s.substring(s.indexOf(" ") + 1);
       int wType = Integer.parseInt(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
-      int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
-      s = s.substring(s.indexOf(" ") + 1);
-      int value = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
-      s = s.substring(s.indexOf(" ") + 1);
-      String demo = s.substring(0,(s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length()));
-      s = s.substring(s.indexOf(" ") + 1);
-      data.setString(s);
-      return new Weapon(wName, rarity, value, wDamage, wType, demo);
+
+      try{
+        int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+        s = s.substring(s.indexOf(" ") + 1);
+        int value = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
+        s = s.substring(s.indexOf(" ") + 1);
+        String demo = s.substring(0,(s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length()));
+        s = s.substring(s.indexOf(" ") + 1);
+        data.setString(s);
+        return new Weapon(wName, rarity, value, wDamage, wType, demo);
+      }catch(NumberFormatException e){
+        double chance = Double.parseDouble(s.substring(0, s.indexOf(" "));
+        s = s.substring(s.indexOf(" ") + 1);
+        data.setString(s);
+        return new EnemyWeapon(wName, wDamage, wType, chance);
+      }
     }else if(s.charAt(0) == 'Ṗ'){
       String name = s.substring(1, s.indexOf(" "));
       s = s.substring(s.indexOf(" ") + 1);
