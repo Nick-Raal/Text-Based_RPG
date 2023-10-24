@@ -1,4 +1,4 @@
-import Items.Weapon;
+
 
 import java.lang.Thread;
 import java.util.*;
@@ -103,11 +103,10 @@ class Main {
               rest(10);
             }
           }
-          play.update();
+          play.updater();
         }
       s.close();
      }
-    
   }
   
   

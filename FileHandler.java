@@ -162,15 +162,14 @@ public class FileHandler{
       s = s.substring(s.indexOf(" ") + 1);
       int aType = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
       s = s.substring(s.indexOf(" ") + 1);
-      data.setString(s);
       int aSlot = Integer.parseInt(s.substring(0, s.indexOf(" ")));
-        s =s.substring(s.indexOf(" ") + 1);
+      s =s.substring(s.indexOf(" ") + 1);
       int value = Integer.parseInt(s.substring(0, s.indexOf(" ")));
-        s =s.substring(s.indexOf(" ") + 1);
-        int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
-        s = s.substring((s.indexOf(" ") != -1 ? s.indexOf(" ") + 1 : 0));
-        data.setString(s);
-        return new Armor(aName, aArmor, aType, aSlot, value, rarity);
+      s =s.substring(s.indexOf(" ") + 1);
+      int rarity = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
+      s = s.substring((s.indexOf(" ") != -1 ? s.indexOf(" ") + 1 : 0));
+      data.setString(s);
+      return new Armor(aName.replaceAll("_", " "), aArmor, aType, aSlot, value, rarity);
     }
     return null;
   }

@@ -49,7 +49,7 @@ public class Player{
         armor[0] = new Armor("Training Helm", 5 , 1, 0, 5, 1);
         armor[1] = new Armor("Training Chestplate", 5 , 1, 1, 5, 1);
         armor[2] = new Armor("Training Leggings", 5 , 1, 2, 5, 1);
-        armor[3] = new Armor("Training Boots", 5 , 1, 30, 5, 1);
+        armor[3] = new Armor("Training Boots", 5 , 1, 3, 5, 1);
         update();
         inventory.remove(0);
       }
@@ -81,7 +81,10 @@ public class Player{
     str += strR;
     mana += manaR;
   }
-  
+
+  public void updater(){
+    update();
+  }
   // //1 = up. 2 = right. 3 = down. 4 = left
   // public void move(int dist, int dir){
   //   switch(dir){
@@ -390,11 +393,11 @@ public class Player{
       mana = Double.parseDouble(s.nextLine());
       strR = Double.parseDouble(s.nextLine());
       manaR = Double.parseDouble(s.nextLine());
+
       armor[0] = (Armor)FileHandler.createItemS(s.nextLine());
       armor[1] = (Armor)FileHandler.createItemS(s.nextLine());
       armor[2] = (Armor)FileHandler.createItemS(s.nextLine());
       armor[3] = (Armor)FileHandler.createItemS(s.nextLine());
-      
 
       //create a check system to cast objects
       while(s.hasNext()){
@@ -410,7 +413,6 @@ public class Player{
         }else{
           inventory.add(itm);
         }
-        
       }
       s.close();
     }catch(Exception e){
@@ -418,7 +420,6 @@ public class Player{
     }
   }
   public void update(){
-    System.out.println(inventory);
     try{
       FileWriter fw = new FileWriter(file, false);
       fw.write(name + "\n");
@@ -441,8 +442,8 @@ public class Player{
       fw.write(armor[2].getFH() + "\n");
       fw.write(armor[3].getFH() + "\n");
       for(int i = 0; i < inventory.size(); i++){
-        // System.out.println("this shouldn't happen " + inventory.get(i));
-        fw.write(inventory.get(i).getFH() + "\n");
+        System.out.println("bruh alert, major bruh alert");
+        fw.write(inventory.get(i).getFH() + (i < inventory.size() - 1 ? "\n" : ""));
       }
       fw.close();
     }catch(Exception e){

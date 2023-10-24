@@ -21,7 +21,6 @@ public class Place{
   public Place(int size, int size1){
       try{
         file = new File("map.dat");
-        data = gen(size, size1, 1);
         if(file.createNewFile()){
           data = gen(size, size1, 1);
           update();
