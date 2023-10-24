@@ -51,6 +51,12 @@ public class FileHandler{
       k++;
     }
 
+    s = sh.getString();
+    //create attack chances
+    k = 0;
+    while(k < attack.length){
+      
+    }
     //create an array to hold armor
     Armor[] armor = new Armor[4];
     k = 0;
@@ -84,10 +90,10 @@ public class FileHandler{
         k++;
       }
 
-      return new Enemy(name, health, init, atkMod, attack, armor, gold, exp, drops, dropC);
+      return new Enemy(name, health, init, atkMod, attack, armor, gold, exp, drops, dropC, atkChances);
     }else{
       //this may return an error
-      return new Enemy(name, health, init, atkMod, attack, armor, gold, exp);
+      return new Enemy(name, health, init, atkMod, attack, armor, gold, exp, atkChances);
     }
   }
   public static Item createItem(String path){
