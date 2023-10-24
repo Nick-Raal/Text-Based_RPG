@@ -43,19 +43,12 @@ public class FileHandler{
     }
 
     //create an array to hold all the enemies' weapons
-    Weapon[] attack = new Weapon[k];
+    EnemyWeapon[] attack = new EnemyWeapon[k];
     k = 0;
     
     while(k < attack.length){
-      attack[k] = (Weapon)createItemS(sh);
+      attack[k] = (EnemyWeapon)createItemS(sh);
       k++;
-    }
-
-    s = sh.getString();
-    //create attack chances
-    k = 0;
-    while(k < attack.length){
-      
     }
     //create an array to hold armor
     Armor[] armor = new Armor[4];
@@ -90,10 +83,10 @@ public class FileHandler{
         k++;
       }
 
-      return new Enemy(name, health, init, atkMod, attack, armor, gold, exp, drops, dropC, atkChances);
+      return new Enemy(name, health, init, atkMod, attack, armor, gold, exp, drops, dropC);
     }else{
       //this may return an error
-      return new Enemy(name, health, init, atkMod, attack, armor, gold, exp, atkChances);
+      return new Enemy(name, health, init, atkMod, attack, armor, gold, exp);
     }
   }
   public static Item createItem(String path){
