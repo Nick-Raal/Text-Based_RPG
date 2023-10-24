@@ -237,11 +237,9 @@ public class Place{
           if(n >= running && n < chances[k] * 100 + running){
             map[i][j] = (k!= 5 ? (k < 3 ? k + 1 : (k < 6 ? k + 2 : k +1)) : 0); 
             if(!castle && k == 4){
-              System.out.println("castle " + castle);
               map[i][j] = 6;
               castle = true;
             }else if (k ==4){
-              System.out.println(chances[k]);
               map[i][j] = 8;
             }
             //assuming a maximum i and j of 28

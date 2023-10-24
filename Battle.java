@@ -144,7 +144,7 @@ public class Battle{
         System.out.println(e[i].getName() + " attacks");
         n = r.nextInt(e[i].getAtkL());
         double[] atk = e[i].atk(n);
-        p.damage(atk[0], (int)atk[1], false);
+        System.out.println(e[i].getName() + " dealt " +p.damage(atk[0], (int)atk[1], false)+ " damage");
       }
     }
     Main.rest(10000);

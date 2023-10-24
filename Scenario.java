@@ -260,7 +260,7 @@ public class Scenario{
     Enemy[] e = new Enemy[numEnmies];
     for(int i = 0; i< numEnmies; i++){
 
-      e[i] = FileHandler.createEnemy(new File("Enemies/enemytest.dat").getPath());
+      e[i] = FileHandler.createEnemy(new File("Enemies/eenmy.dat").getPath());
     }
     return new Battle(p, e);
   }

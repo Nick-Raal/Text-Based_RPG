@@ -15,25 +15,25 @@ public class Player{
   private boolean in;
   private ArrayList<Item> inventory = new ArrayList<Item>();
   private double health;
-  private double healthMax = 100;
+  private double healthMax = 50;
   private double atkMod = 1;
   private double defMod = 1;
   private double initiative = 1;
   
   private int level = 1;
   private int gold = 100;
-  private long exp = 10;
+  private long exp = 0;
 
   //the maximum strength and mana a player can have
-  private double strMax = 100;
-  private double manaMax = 100;
+  private double strMax = 10;
+  private double manaMax = 10;
 
   //how much strength and mana the player instantaneously has
-  private double str = 100;
-  private double mana = 100;
+  private double str = 10;
+  private double mana = 10;
   //how much the player recovers each turn
-  private double manaR = 3;
-  private double strR = 3;
+  private double manaR = 2;
+  private double strR = 2;
   
   //head, torso, legs
   //bludgeon, piercing, magic
@@ -44,7 +44,7 @@ public class Player{
       file = new File("player.dat");
       if(file.createNewFile()){
         name = namey;
-        inventory.add(new Weapon("Training Sword", 1, 5, 5, 2, "the"));
+        inventory.add(new Weapon("Training Sword", 1, 5, 15, 2, 0, 3, "the"));
         //create default armor
         armor[0] = new Armor("Training Helm", 5 , 1, 0, 5, 1);
         armor[1] = new Armor("Training Chestplate", 5 , 1, 1, 5, 1);
@@ -153,13 +153,17 @@ public class Player{
     return attack;
   }
 
-  public void damage(double atk, int type, boolean ignoreArmor){
+  public double damage(double atk, int type, boolean ignoreArmor){
     if(ignoreArmor){
-      health -= atk;
+      health -= atk * 4;
+      return atk * 4;
     }else{
+      double total = 0;
       for(int i = 0; i < armor.length; i++){
-        health -= Math.max(0, armor[i].getType() == type ? atk/3 - 1.5 * armor[i].getArmor() *defMod: atk/3 - 1.0*armor[i].getArmor()*defMod);
+        health -= Math.max(0, armor[i].getType() == type ? atk - 1.5 * armor[i].getArmor() *defMod: atk - 1.0*armor[i].getArmor()*defMod);
+        total += Math.max(0, armor[i].getType() == type ? atk - 1.5 * armor[i].getArmor() *defMod: atk - 1.0*armor[i].getArmor()*defMod);
       }
+      return total;
     }
   }
 
@@ -442,7 +446,6 @@ public class Player{
       fw.write(armor[2].getFH() + "\n");
       fw.write(armor[3].getFH() + "\n");
       for(int i = 0; i < inventory.size(); i++){
-        System.out.println("bruh alert, major bruh alert");
         fw.write(inventory.get(i).getFH() + (i < inventory.size() - 1 ? "\n" : ""));
       }
       fw.close();
