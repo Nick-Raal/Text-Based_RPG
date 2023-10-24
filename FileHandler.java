@@ -124,7 +124,7 @@ public class FileHandler{
         data.setString(s);
         return new Weapon(wName, rarity, value, wDamage, wType, demo);
       }catch(NumberFormatException e){
-        double chance = Double.parseDouble(s.substring(0, s.indexOf(" "));
+        double chance = Double.parseDouble(s.substring(0, s.indexOf(" ")));
         s = s.substring(s.indexOf(" ") + 1);
         data.setString(s);
         return new EnemyWeapon(wName, wDamage, wType, chance);

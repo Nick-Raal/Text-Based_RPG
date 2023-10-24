@@ -1,3 +1,4 @@
+package Items;
 public class EnemyWeapon extends Weapon{
 
   // the cance that an enemy will use the weapon
