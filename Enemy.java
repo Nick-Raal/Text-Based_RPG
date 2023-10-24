@@ -1,7 +1,4 @@
-import Items.Armor;
-import Items.Item;
-import Items.Weapon;
-import Items.Potion;
+import Items.*;
 
 import java.util.*;
 
@@ -13,7 +10,7 @@ public class Enemy{
   private double atkMod = 1;
   private Armor[] armor;
  private Item[] drops;
-  private double[] dropC = {1.0};
+  private double[] dropC;
   private int dropG;
   private int dropE;
 
@@ -33,7 +30,7 @@ public class Enemy{
     this.armor = armor;
   }
 
-  public Enemy(String name, double health, double initiative, double atkMod, Weapon[] attack, Armor[] armor, double dropG, double dropE, ArrayList<Item> drops, double[] dropsC){
+  public Enemy(String name, double health, double initiative, double atkMod, EnemyWeapon[] attack, Armor[] armor, double dropG, double dropE, ArrayList<Item> drops, double[] dropsC){
     this.name = name;
     this.health = health;
     this.initiative = initiative;
@@ -49,7 +46,7 @@ public class Enemy{
     this.dropC = dropsC;
   }
 
-  public Enemy(String name, double health, double initiative, double atkMod, Weapon[] attack, Armor[] armor, double dropG, double dropE){
+  public Enemy(String name, double health, double initiative, double atkMod, EnemyWeapon[] attack, Armor[] armor, double dropG, double dropE){
     this.name = name;
     this.health = health;
     this.initiative = initiative;

@@ -43,19 +43,12 @@ public class FileHandler{
     }
 
     //create an array to hold all the enemies' weapons
-    Weapon[] attack = new Weapon[k];
+    EnemyWeapon[] attack = new EnemyWeapon[k];
     k = 0;
     
     while(k < attack.length){
-      attack[k] = (Weapon)createItemS(sh);
+      attack[k] = (EnemyWeapon)createItemS(sh);
       k++;
-    }
-
-    s = sh.getString();
-    //create attack chances
-    k = 0;
-    while(k < attack.length){
-      
     }
     //create an array to hold armor
     Armor[] armor = new Armor[4];
@@ -90,10 +83,10 @@ public class FileHandler{
         k++;
       }
 
-      return new Enemy(name, health, init, atkMod, attack, armor, gold, exp, drops, dropC, atkChances);
+      return new Enemy(name, health, init, atkMod, attack, armor, gold, exp, drops, dropC);
     }else{
       //this may return an error
-      return new Enemy(name, health, init, atkMod, attack, armor, gold, exp, atkChances);
+      return new Enemy(name, health, init, atkMod, attack, armor, gold, exp);
     }
   }
   public static Item createItem(String path){
@@ -120,14 +113,22 @@ public class FileHandler{
       s = s.substring(s.indexOf(" ") + 1);
       int wType = Integer.parseInt(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
-      int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
-      s = s.substring(s.indexOf(" ") + 1);
-      int value = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
-      s = s.substring(s.indexOf(" ") + 1);
-      String demo = s.substring(0,(s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length()));
-      s = s.substring(s.indexOf(" ") + 1);
-      data.setString(s);
-      return new Weapon(wName, rarity, value, wDamage, wType, demo);
+
+      try{
+        int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+        s = s.substring(s.indexOf(" ") + 1);
+        int value = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
+        s = s.substring(s.indexOf(" ") + 1);
+        String demo = s.substring(0,(s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length()));
+        s = s.substring(s.indexOf(" ") + 1);
+        data.setString(s);
+        return new Weapon(wName, rarity, value, wDamage, wType, demo);
+      }catch(NumberFormatException e){
+        double chance = Double.parseDouble(s.substring(0, s.indexOf(" ")));
+        s = s.substring(s.indexOf(" ") + 1);
+        data.setString(s);
+        return new EnemyWeapon(wName, wDamage, wType, chance);
+      }
     }else if(s.charAt(0) == 'Ṗ'){
       String name = s.substring(1, s.indexOf(" "));
       s = s.substring(s.indexOf(" ") + 1);
@@ -168,14 +169,19 @@ public class FileHandler{
       s = s.substring(s.indexOf(" ") + 1);
       int aType = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
       s = s.substring(s.indexOf(" ") + 1);
-      int aSlot = Integer.parseInt(s.substring(0, s.indexOf(" ")));
-      s =s.substring(s.indexOf(" ") + 1);
-      int value = Integer.parseInt(s.substring(0, s.indexOf(" ")));
-      s =s.substring(s.indexOf(" ") + 1);
-      int rarity = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
-      s = s.substring((s.indexOf(" ") != -1 ? s.indexOf(" ") + 1 : 0));
-      data.setString(s);
-      return new Armor(aName.replaceAll("_", " "), aArmor, aType, aSlot, value, rarity);
+      try{
+        int aSlot = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+        s =s.substring(s.indexOf(" ") + 1);
+        int value = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+        s =s.substring(s.indexOf(" ") + 1);
+        int rarity = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
+        s = s.substring((s.indexOf(" ") != -1 ? s.indexOf(" ") + 1 : 0));
+        data.setString(s);
+        return new Armor(aName.replaceAll("_", " "), aArmor, aType, aSlot, value, rarity);
+      }catch (NumberFormatException e){
+        data.setString(s);
+        return new Armor(aName.replaceAll("_", " "), aArmor, aType);
+      } 
     }
     return null;
   }
