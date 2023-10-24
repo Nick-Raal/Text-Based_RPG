@@ -8,4 +8,8 @@ public class EnemyWeapon extends Weapon{
     super(name, damage, type);
     this.chance = chance;
   }
+
+  public double getChance(){
+    return chance;
+  }
 }

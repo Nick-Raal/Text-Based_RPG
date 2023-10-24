@@ -116,10 +116,8 @@ public class Battle{
       if(e[i] != null && e[i].getHealth() <= 0){
         p.add(e[i].die());
         p.addE((int)e[i].numDeath()[1]);
-        // p.dispLvl();
         p.addG((int)e[i].numDeath()[0]);
         
-        // System.out.println("CLEANING UP");
         e[i] = null;
         for(int j = i; j < e.length - 1; j++){
           e[j] = e[j+1];
@@ -132,19 +130,24 @@ public class Battle{
       return;
     }
     for(int  i = 0; i < e.length; i++){
-      
       System.out.println(e[i] != null ? ((i + 1) +": " +  e[i]) : "");
     }
     System.out.println("EVIL PLACEHOLDER");
     for(int i = 0; i < e.length; i++){
       Random r = new Random();
-      int n = r.nextInt(10);
+      int n = r.nextInt(10) + 1;
       if(n < (e[i].getInitiative() * 5)){
         //enemy attack
         System.out.println(e[i].getName() + " attacks");
-        n = r.nextInt(e[i].getAtkL());
-        double[] atk = e[i].atk(n);
-        p.damage(atk[0], (int)atk[1], false);
+        int running = 0;
+        n = r.nextInt(100) + 1;
+        for(int j = 0; j < e[i].getAtkL(); j++){
+          if(n >= running && n <= running +e[i].getWeapon(j).getChance()){
+            double[] atk = e[i].atk(j);
+            p.damage(atk[0], (int)atk[1], false);
+          }
+          running += e[i].getWeapon(j).getChance();
+        }
       }
     }
     Main.rest(10000);

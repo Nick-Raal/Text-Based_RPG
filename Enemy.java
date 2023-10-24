@@ -5,7 +5,7 @@ import java.util.*;
 public class Enemy{
   private String name;
   private double health;
-  private Weapon attack[];
+  private EnemyWeapon attack[];
   private double initiative = 0;
   private double atkMod = 1;
   private Armor[] armor;
@@ -21,7 +21,7 @@ public class Enemy{
     this.atkMod = atkMod;
   }
 
-  public Enemy(String name, double health, double initiative, double atkMod, Weapon[] attack, Armor[] armor){
+  public Enemy(String name, double health, double initiative, double atkMod, EnemyWeapon[] attack, Armor[] armor){
     this.name = name;
     this.health = health;
     this.initiative = initiative;
@@ -138,4 +138,8 @@ public class Enemy{
     public int getAtkL() {
       return attack.length;
     }
+
+  public EnemyWeapon getWeapon(int n){
+    return attack[n];
+  }
 }
