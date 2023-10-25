@@ -14,7 +14,7 @@ public class Village {
 
     private ArrayList<Item> wares = new ArrayList<>();
     private String name;
-    private int gold = (int)Math.random()*2000;
+    private int gold = (int)(Math.random()*2000);
     private File file;
     private Player p;
 
@@ -137,6 +137,7 @@ public class Village {
 
     public String toString(){
         String s = "";
+        s+= "GOLD: " + gold;
         for(int i = 0; i < wares.size(); i++){
             s += wares.get(i).getName() + " | G: " + wares.get(i).getValue() + " | R: " + wares.get(i).getRarity() + "\n";
         }

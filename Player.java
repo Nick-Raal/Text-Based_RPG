@@ -167,6 +167,7 @@ public class Player{
     }
   }
 
+  //need to improve to include new item types
   public void dispItm(){
     // System.out.println(inventory.get(0).getName() + " " + !(inventory.get(0) instanceof Weapon));
     System.out.println(Color.RESET+ "Items: ");
@@ -179,7 +180,7 @@ public class Player{
 
           System.out.print("\t" + (((Potion)inventory.get(i)).use()[0] != 0 ? Color.RED + "HP: " + ((Potion)inventory.get(i)).use()[0] : ""));
           System.out.print(Color.RESET + (((Potion)inventory.get(i)).use()[0] != 0 ? " | " : "") + Color.YELLOW + (((Potion)inventory.get(i)).use()[1] != 0 ? " STR: " + ((Potion)inventory.get(i)).use()[1] : ""));
-          // System.out.println(((Color.RESET + (((Potion)inventory.get(i)).use()[0] != 0 && ((Potion)inventory.get(i)).use()[1] != 0 ? " | " : "") + Color.CYAN + ((Potion)inventory.get(i)).use()[2] != 0 ? " MANA: " + ((Potion)inventory.get(i)).use()[2] : "")));
+          // System.out.println(((Color.RESET + ((((Potion)inventory.get(i)).use()[0] != 0 && ((Potion)inventory.get(i)).use()[1] != 0 ? " | " : "") + Color.CYAN + ((Potion)inventory.get(i)).use()[2] != 0 ? " MANA: " + ((Potion)inventory.get(i)).use()[2] : "")));
           System.out.println();
         }
       }
