@@ -39,7 +39,8 @@ public class Village {
       }
     }
 
-  public Village(File f){
+  public Village(Player p, File f){
+    this.p = p;
     file = f;
     try{
       Scanner s = new Scanner(file);
@@ -47,7 +48,6 @@ public class Village {
       gold = Integer.parseInt(s.nextLine());
       x = Integer.parseInt(s.nextLine());
       y = Integer.parseInt(s.nextLine());
-      System.out.println("x " + x);
       // String spring = s.nextLine();
       // System.out.println("nxt: " + spring);
       while(s.hasNext()){
@@ -89,7 +89,6 @@ public class Village {
             if(n==1){
                 Main.rest(10);
                 int select = 0;
-                while(select < 1 || select > wares.size()){
                     System.out.println("FOR SALE:");
                     System.out.println(this);
                     try{
@@ -97,7 +96,9 @@ public class Village {
                     }catch(Exception e){
                         System.out.println("ERROR");
                     }
-                }
+              if(select < 1 || select > wares.size()){
+                village();
+              }
                 if(wares.get(select - 1).getValue() <= p.getGold()){
                     p.add(buyItem(select - 1));
                     p.addG(-1 * wares.get(select - 1).getValue());
@@ -105,24 +106,28 @@ public class Village {
                 }
                 System.out.println(p);
                 p.dispInven();
-                System.out.println(wares);
             } else if (n == 2) {
                 Main.rest(10);
                 System.out.println("WHAT DO YOU WANT TO SELL?");
                 p.dispInven();
-                int select = 0;
-                while(select < 1 || select > p.getInvenL()){
-                    try{
-                        select = Integer.parseInt(in.nextLine());
-                    }catch(Exception e){
-                        System.out.println("ERROR");
-                    }
-                }
+                int select = -1;
+
+                  try{
+                      select = Integer.parseInt(in.nextLine());
+                  }catch(Exception e){
+                      System.out.println("ERROR");
+                  }
+
+              if(select < 1 || select > p.getInvenL()){
+                village();
+              }
                 if(p.getItem(select - 1).getValue() <= gold){
                     sellItem(p.getItem(select - 1));
                     p.addG(p.getItem(select - 1).getValue());
                     p.removeItem(select - 1);
                 }
+            }else{
+              return;
             }
         }
         //in.close();
