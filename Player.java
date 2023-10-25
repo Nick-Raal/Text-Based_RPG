@@ -261,15 +261,26 @@ public class Player{
   }
   public void addE(int e){
     exp += e;
-    if(((int)Math.log(1+(Math.E -1) * exp)) / level > level){
+    if(exp >= (4 * Math.pow(level, 3))/5){
       //levelup
       atkMod += 0.05;
       defMod += 0.05;
       initiative += 0.05;
-      level++;
-      exp = 0;
       Graphics g = new Graphics();
       System.out.println(g.fancyWord("LVL UP"));
+      //every three levels, increase strength and mana recovery
+      if(level % 3 == 0){
+        strR++;
+        manaR++;
+        System.out.println("NEW MANA RECOVERY: "+strR+" | NEW MANA RECOVERY: " + manaR);
+      }
+      //every two levels, increasse max health
+      if(level % 2 == 0){
+        healthMax += 5;
+        System.out.println("NEW HEALTH MAX: " + healthMax);
+      }
+      level++;
+      exp = 0;
       dispLvl();
     }
   }
@@ -279,7 +290,7 @@ public class Player{
     System.out.println(Color.BLUE + "EXP: " + exp);
     System.out.println(Color.RESET + "PROGRESS:");
     for(int i = 0; i < 10; i++){
-      if(i<(Math.log(1+(Math.E -1) * exp) / level)*10){
+      if(i<(int)(((4 * Math.pow(level, 3))/5)/exp)){
         System.out.print(Color.GREEN + "■");
       }else{
         System.out.print(Color.RED + "■");

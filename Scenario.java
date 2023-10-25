@@ -29,7 +29,7 @@ public class Scenario{
   }
 
   //this method should return what type of encounter occurs, a different method will handle the internals of the encounter
-  public Object scenario(Player p, int tileType, int difficulty, Place play){
+  public Object scenario(Player p, int tileType, double difficulty, Place play){
     
     Random r = new Random();
     int n = r.nextInt(99) + 1;
@@ -262,7 +262,7 @@ public class Scenario{
     Enemy[] e = new Enemy[numEnmies];
     for(int i = 0; i< numEnmies; i++){
 
-      e[i] = FileHandler.createEnemy(new File("Enemies/eenmy.dat").getPath());
+      e[i] = FileHandler.createEnemy(new File("Enemies/eenmy.dat").getPath(), difficulty);
     }
     return new Battle(p, e);
   }
@@ -285,6 +285,5 @@ public class Scenario{
     }catch(Exception e){
       System.out.println("ISSUE: " + e.getMessage());
     }
-    
   }
 }

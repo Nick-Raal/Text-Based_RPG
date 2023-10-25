@@ -9,12 +9,12 @@ import Items.*;
 
 
 public class FileHandler{
-  public static Enemy createEnemy(String path){
+  public static Enemy createEnemy(String path, double difficulty){
     String s = "";
     try{
         List<String> lines = Files.readAllLines(Paths.get(path));
         Random random = new Random();
-        int randomIndex = random.nextInt(lines.size());
+        int randomIndex = random.nextInt(difficulty * 2 < lines.size() ? difficulty * 2 : lines.size());
         s = lines.get(randomIndex);
     }catch(Exception e){
       System.out.println(e);
@@ -28,7 +28,7 @@ public class FileHandler{
     s = s.substring(s.indexOf(" ") + 1);
     double init = Double.parseDouble(s.substring(0, s.indexOf(" ")));
     s = s.substring(s.indexOf(" ") + 1);
-    double atkMod = Double.parseDouble(s.substring(0, s.indexOf(" ")));
+    double atkMod = Double.parseDouble(s.substring(0, s.indexOf(" "))) * difficulty;
     s = s.substring(s.indexOf(" ") + 1);
     StringHandler sh = new StringHandler (s);
     int k = 0;
