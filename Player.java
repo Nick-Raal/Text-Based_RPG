@@ -47,7 +47,7 @@ public class Player{
       file = new File("player.dat");
       if(file.createNewFile()){
         name = namey;
-        inventory.add(new Weapon("Training Sword", 1, 5, 15, 2, 0, 3, "the"));
+        inventory.add(new Weapon("Training Sword", 1, 5, 10, 2, 0, 3, "the"));
         //create default armor
         armor[0] = new Armor("Training Helm", 1, 1, 0, 5, 1);
         armor[1] = new Armor("Training Chestplate", 1 , 1, 1, 5, 1);

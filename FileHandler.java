@@ -12,10 +12,13 @@ public class FileHandler{
   public static Enemy createEnemy(String path, double difficulty){
     String s = "";
     try{
-        List<String> lines = Files.readAllLines(Paths.get(path));
-        Random random = new Random();
-        int randomIndex = random.nextInt(difficulty * 2 < lines.size() ? difficulty * 2 : lines.size());
-        s = lines.get(randomIndex);
+      List<String> lines = Files.readAllLines(Paths.get(path));
+      Random random = new Random();
+      int max = random.nextInt(difficulty * 2 < lines.size() ? (int)(difficulty * 2) : lines.size());
+      for(int i = 0; i < max; i++){
+        lines.get(i)  
+      }
+      
     }catch(Exception e){
       System.out.println(e);
     }
