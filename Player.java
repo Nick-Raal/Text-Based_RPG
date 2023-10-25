@@ -46,10 +46,10 @@ public class Player{
         name = namey;
         inventory.add(new Weapon("Training Sword", 1, 5, 15, 2, 0, 3, "the"));
         //create default armor
-        armor[0] = new Armor("Training Helm", 5 , 1, 0, 5, 1);
-        armor[1] = new Armor("Training Chestplate", 5 , 1, 1, 5, 1);
-        armor[2] = new Armor("Training Leggings", 5 , 1, 2, 5, 1);
-        armor[3] = new Armor("Training Boots", 5 , 1, 3, 5, 1);
+        armor[0] = new Armor("Training Helm", 1, 1, 0, 5, 1);
+        armor[1] = new Armor("Training Chestplate", 1 , 1, 1, 5, 1);
+        armor[2] = new Armor("Training Leggings", 1 , 1, 2, 5, 1);
+        armor[3] = new Armor("Training Boots", 1 , 1, 3, 5, 1);
         update();
         inventory.remove(0);
       }
@@ -156,12 +156,12 @@ public class Player{
   public double damage(double atk, int type, boolean ignoreArmor){
     if(ignoreArmor){
       health -= atk * 4;
-      return atk * 4;
+      return atk;
     }else{
       double total = 0;
       for(int i = 0; i < armor.length; i++){
-        health -= Math.max(0, armor[i].getType() == type ? atk - 1.5 * armor[i].getArmor() *defMod: atk - 1.0*armor[i].getArmor()*defMod);
-        total += Math.max(0, armor[i].getType() == type ? atk - 1.5 * armor[i].getArmor() *defMod: atk - 1.0*armor[i].getArmor()*defMod);
+        health -= Math.max(0, armor[i].getType() == type ? atk/4 - 1.5 * armor[i].getArmor() *defMod: atk/4 - 1.0*armor[i].getArmor()*defMod);
+        total += Math.max(0, armor[i].getType() == type ? atk/4 - 1.5 * armor[i].getArmor() *defMod: atk/4 - 1.0*armor[i].getArmor()*defMod);
       }
       return total;
     }

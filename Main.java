@@ -20,16 +20,18 @@ class Main {
     System.out.println();
     System.out.println("created by Nicholas Raal");
     System.out.println("Enter player name to start or help for a list of commands");
-    String stringput = s.nextLine();
-    if(stringput != "" && stringput.toLowerCase().equals("help")){
-      System.out.println("1: MOVE DOWN\n2: MOVE RIGHT\n3: MOVE UP\n4: MOVE LEFT");
-      System.out.println("E: INVENTORY/PLAYER INFO");
-//      s.nextLine();
+    String stringput = "help";
+    while(stringput.toLowerCase().equals("help")){
+      stringput = s.nextLine();
+      if(stringput != "" && stringput.toLowerCase().equals("help")){
+        System.out.println("1: MOVE DOWN\n2: MOVE RIGHT\n3: MOVE UP\n4: MOVE LEFT");
+        System.out.println("E: INVENTORY/PLAYER INFO");
+        s.nextLine();
+      }
     }
+
     if(!new File("player.dat").exists()){
       p.setPlayerPos(0, 0);
-//      System.out.println("WHAT IS YOUR NAME?");
-////      play.setName(s.nextLine());
     }
     Player play = new Player(stringput);
     Scenario scen = new Scenario(play);
