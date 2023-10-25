@@ -39,6 +39,9 @@ public class Player{
   //bludgeon, piercing, magic
   private Armor[] armor = new Armor[4];
 
+  //the game's difficulty
+  private double difficulty = 1;
+
   public Player(String namey){
     try{
       file = new File("player.dat");
@@ -409,6 +412,7 @@ public class Player{
       mana = Double.parseDouble(s.nextLine());
       strR = Double.parseDouble(s.nextLine());
       manaR = Double.parseDouble(s.nextLine());
+      difficulty = Double.parseDouble(s.nextLine());
 
       armor[0] = (Armor)FileHandler.createItemS(s.nextLine());
       armor[1] = (Armor)FileHandler.createItemS(s.nextLine());
@@ -453,6 +457,7 @@ public class Player{
       fw.write(mana + "\n");
       fw.write(strR + "\n");
       fw.write(manaR + "\n");
+      fw.write(difficulty + "\n");
       fw.write(armor[0].getFH() + "\n");
       fw.write(armor[1].getFH() + "\n");
       fw.write(armor[2].getFH() + "\n");
@@ -472,5 +477,9 @@ public class Player{
 
   public void setName(String nextLine) {
     name = nextLine;
+  }
+
+  public double getDifficulty(){
+    return difficulty;
   }
 }

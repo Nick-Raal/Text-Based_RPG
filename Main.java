@@ -86,7 +86,7 @@ class Main {
              System.out.println("impossible input string");
             }
             if (p.move(n, n1)) {
-              Object o = scen.scenario(play, p.getTile(), 1, p);
+              Object o = scen.scenario(play, p.getTile(), play.getDifficulty(), p);
               if (o instanceof Battle) {
                 System.out.println("ENEMY ENCOUNTERED!");
                 s.nextLine();

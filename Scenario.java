@@ -242,7 +242,7 @@ public class Scenario{
   }
 
   //add a difficulty scaling system
-  public Battle battleScenario(Player p, int tileType, int difficulty){
+  public Battle battleScenario(Player p, int tileType, double difficulty){
     File enemyFile = new File("Enemies/eenmy.dat");
     switch(tileType){
       case 1:
