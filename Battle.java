@@ -99,6 +99,7 @@ public class Battle{
 //      in.close();
     }else{
       enemyTurn();
+      turn();
     }
   }
 

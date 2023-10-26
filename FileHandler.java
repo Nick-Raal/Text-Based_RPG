@@ -26,7 +26,6 @@ public class FileHandler{
             break;
           }
         }
-        break;
       }
     }catch(Exception e){
       System.out.println(e);
@@ -174,7 +173,7 @@ public class FileHandler{
       s = s.substring(s.indexOf(" ") + 1);
       double strE = Double.parseDouble(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
-      double manaE = Double.parseDouble(s);
+      double manaE = Double.parseDouble(s.substring(0, s.indexOf(" ")));
       s = s.substring(s.indexOf(" ") + 1);
       String body = s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length()));
       body = body.replaceAll("_", " ");

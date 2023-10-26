@@ -394,7 +394,6 @@ public class Player{
         Object itm =FileHandler.createItemS(s.nextLine());
         
         if(itm instanceof Weapon){
-          System.out.println("ginormous bruh moment");
           inventory.add((Weapon)itm);
         }else if(itm instanceof Potion){
           inventory.add((Potion)itm);
