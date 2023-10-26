@@ -26,6 +26,7 @@ public class FileHandler{
             break;
           }
         }
+        break;
       }
     }catch(Exception e){
       System.out.println(e);

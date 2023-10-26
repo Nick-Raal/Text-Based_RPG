@@ -15,3 +15,4 @@ can't escape buying screen (done)
 the great simplification (standardize everythin in filehandling) (DONE)
 give enemies attack chances (seems to be done)
 create a lot more items and enemies
+improve enemy chances system

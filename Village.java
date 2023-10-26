@@ -137,7 +137,7 @@ public class Village {
 
     public String toString(){
         String s = "";
-        s+= "GOLD: " + gold;
+        s+= "GOLD: " + gold + "\n";
         for(int i = 0; i < wares.size(); i++){
             s += wares.get(i).getName() + " | G: " + wares.get(i).getValue() + " | R: " + wares.get(i).getRarity() + "\n";
         }

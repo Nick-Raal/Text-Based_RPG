@@ -54,7 +54,8 @@ public class Player{
         armor[2] = new Armor("Training Leggings", 1 , 1, 2, 5, 1);
         armor[3] = new Armor("Training Boots", 1 , 1, 3, 5, 1);
         update();
-        inventory.remove(0);
+      }else{
+        initialize();
       }
       // armor[0] = new Armor("Training Helm", 5 , 1, 0, 5, 1);
       // armor[1] = new Armor("Training Chestplate", 5 , 1, 1, 5, 1);
@@ -63,7 +64,7 @@ public class Player{
     }catch(Exception e){
       System.out.println(e);
     }
-    initialize();
+    
 
     //starting items
 //    inventory.add(new Weapon("Training Sword", 1, 5, 5, 2, "the"));
@@ -96,7 +97,6 @@ public class Player{
     for(int i = 0; i < inventory.size(); i++){
       if(inventory.get(i) instanceof Weapon){
         n++;
-        System.out.print(((Weapon)inventory.get(i)).getStr());
         System.out.print(Color.RESET + n + ":");
         System.out.println((((Weapon)inventory.get(i)).getType() == 3 ? Color.PURPLE : ((Weapon)inventory.get(i)).getType() == 2 ? Color.RED : ((Weapon)inventory.get(i)).getType() == 1 ? Color.YELLOW : Color.RESET) + " " + inventory.get(i).getName());
         System.out.print(Color.RED + "\tDMG: " + ((Weapon)inventory.get(i)).getDamage());

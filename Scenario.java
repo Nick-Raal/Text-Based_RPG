@@ -15,10 +15,10 @@ public class Scenario{
   //3. Loot
   //4. Unique
 
-  double[] scenarioChancesF = {0.2, 0, 0, 0};
-  double[] scenarioChancesG = {0.2, 0.0, 0, 0};
-  double[] scenarioChancesE = {0.5, 0.0, 0.0, 0};
-  double[] scenarioChancesM = {0.3, 0, 0, 0};
+  double[] scenarioChancesF = {0.2, 0, 0.1, 0};
+  double[] scenarioChancesG = {0.2, 0.0, 0.1, 0};
+  double[] scenarioChancesE = {0.5, 0.0, 0.1, 0};
+  double[] scenarioChancesM = {0.3, 0, 0.3, 0};
   double[] scenarioChancesC = {0, 0, 0, 0};
   //placeholder where ocean chances would be stored
   double[] scenarioChancesV = {0, 1.0, 0, 0};
@@ -249,7 +249,7 @@ public class Scenario{
         enemyFile = new File("Enemies/genmy.dat");
         break;
       case 2:
-        enemyFile = new File("Enemies/enmy.dat");
+        enemyFile = new File("Enemies/fenmy.dat");
         break;
       case 3:
         enemyFile = new File("Enemies/eenmy.dat");
@@ -262,7 +262,7 @@ public class Scenario{
     Enemy[] e = new Enemy[numEnmies];
     for(int i = 0; i< numEnmies; i++){
 
-      e[i] = FileHandler.createEnemy(new File("Enemies/eenmy.dat").getPath(), difficulty);
+      e[i] = FileHandler.createEnemy(enemyFile.getPath(), difficulty);
     }
     return new Battle(p, e);
   }
