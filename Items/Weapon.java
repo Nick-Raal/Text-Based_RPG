@@ -68,6 +68,6 @@ public class Weapon extends Item {
   }
 
   public String getFH(){
-    return "ẅ" +  super.getName().replaceAll(" ", "_") +" " + damage  + " " + type + " " + super.getValue() + " " +super.getRarity() +" " +demo;
+    return "ẅ" +  super.getName().replaceAll(" ", "_") +" " + damage  + " " + type + " " + super.getValue() + " " +super.getRarity() +" " + strC + " " + manaC + " " + demo;
   }
 }

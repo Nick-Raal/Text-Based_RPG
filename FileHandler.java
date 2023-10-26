@@ -14,11 +14,19 @@ public class FileHandler{
     try{
       List<String> lines = Files.readAllLines(Paths.get(path));
       Random random = new Random();
-      int max = random.nextInt(difficulty * 2 < lines.size() ? (int)(difficulty * 2) : lines.size());
-      for(int i = 0; i < max; i++){
-        lines.get(i)  
+      int max = random.nextInt(difficulty * 2 < lines.size() ? ((int)(difficulty * 2) != 0 ? (int)(difficulty * 2)  : 1) : lines.size());
+      while(s.equals("")){
+        for(int i = 0; i < max; i++){
+          int n = random.nextInt(99) + 1;
+          System.out.println("n: " + n);
+          if(Double.parseDouble(lines.get(i).substring(0, lines.get(i).indexOf(" "))) * 100 >= n){
+            s = lines.get(i);
+            //remove the selection chance
+            s = s.substring(s.indexOf(" ") + 1);
+            break;
+          }
+        }
       }
-      
     }catch(Exception e){
       System.out.println(e);
     }
@@ -118,14 +126,19 @@ public class FileHandler{
       s = s.substring(s.indexOf(" ") + 1);
 
       try{
-        int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
-        s = s.substring(s.indexOf(" ") + 1);
         int value = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
         s = s.substring(s.indexOf(" ") + 1);
-        String demo = s.substring(0,(s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length()));
+        int rarity = Integer.parseInt(s.substring(0, s.indexOf(" ")));
+        s = s.substring(s.indexOf(" ") + 1);
+        double strCost = Double.parseDouble(s.substring(0, s.indexOf(" ")));
+        s = s.substring(s.indexOf(" ") + 1);
+        double manaCost = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
         s = s.substring(s.indexOf(" ") + 1);
         data.setString(s);
-        return new Weapon(wName, rarity, value, wDamage, wType, demo);
+        String demo = s.substring(0,(s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length()));
+        s = s.substring(s.indexOf(" ") + 1);
+        return new Weapon(wName, rarity, value, wDamage, wType, manaCost, strCost, demo);
+
       }catch(NumberFormatException e){
         double chance = Double.parseDouble(s.substring(0, s.indexOf(" ")));
         s = s.substring(s.indexOf(" ") + 1);

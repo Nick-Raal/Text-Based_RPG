@@ -88,32 +88,6 @@ public class Player{
   public void updater(){
     update();
   }
-  // //1 = up. 2 = right. 3 = down. 4 = left
-  // public void move(int dist, int dir){
-  //   switch(dir){
-  //     case 1:
-  //       y+=dist;
-  //       break;
-  //     case 2:
-  //       x+=dist;
-  //       break;
-  //     case 3:
-  //       y-=dist;
-  //       break;
-  //     case 4:
-  //       x-=dist;
-  //       break;
-  //     default:
-  //       System.out.println("ERROR");     
-  //   }
-  // }
-
-  // public int getX(){
-  //   return x;
-  // }
-  // public int getY(){/
-  //   return y;
-  // }
 
   //displays all the player's possible attacks
   public void dispAtk(){
@@ -122,7 +96,7 @@ public class Player{
     for(int i = 0; i < inventory.size(); i++){
       if(inventory.get(i) instanceof Weapon){
         n++;
-
+        System.out.print(((Weapon)inventory.get(i)).getStr());
         System.out.print(Color.RESET + n + ":");
         System.out.println((((Weapon)inventory.get(i)).getType() == 3 ? Color.PURPLE : ((Weapon)inventory.get(i)).getType() == 2 ? Color.RED : ((Weapon)inventory.get(i)).getType() == 1 ? Color.YELLOW : Color.RESET) + " " + inventory.get(i).getName());
         System.out.print(Color.RED + "\tDMG: " + ((Weapon)inventory.get(i)).getDamage());
@@ -229,9 +203,6 @@ public class Player{
         k++;
       }
     }
-    // System.out.println(select);
-    // System.out.println(inventory);
-    // System.out.println(k);
     return (Weapon)inventory.get(select);
   }
 
@@ -314,8 +285,7 @@ public class Player{
         k++;
       }
     }
-    // System.out.println(inventory.get(select));
-    // System.out.println(select);
+
     if(inventory.get(select) instanceof Potion || inventory.get(select) instanceof Book){
       health += inventory.get(select).use()[0];
       str += inventory.get(select).use()[1];
