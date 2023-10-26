@@ -1,4 +1,4 @@
-
+import Items.Weapon;
 
 import java.lang.Thread;
 import java.util.*;
@@ -13,28 +13,25 @@ class Main {
 
     Place p = new Place(10, 20);
 
-    
+    Scenario scen = new Scenario();
     // p.setPlayerPos(0, 0);
     Graphics g = new Graphics();
     System.out.println(g.fancyWord(" oOoOOoOOo                             o.oOOOo.                          o\n     o                                  o     o                         O\n     o                   O              O     O                         o\n     O                  oOo             oOooOO.                         o\n     o     .oOo. o   O   o   ooooooooo  o     `O .oOoO' .oOo  .oOo. .oOoO\n     O     OooO'  OoO    O              O      o O   o  `Ooo. OooO' o   O\n     O     O      o o    o              o     .O o   O      O O     O   o\n     o'    `OoO' O   O   `oO            `OooOO'  `OoO'o `OoO' `OoO' `OoO'o\n\n\n `OooOOo.  OooOOo.   .oOOOo.\n  o     `o O     `O .O     o\n  O      O o      O o\n  o     .O O     .o O\n  OOooOO'  oOooOO'  O   .oOOo\n  o    o   o        o.      O\n  O     O  O         O.    oO\n  O      o o'         `OooO'                                              "));
     System.out.println();
     System.out.println("created by Nicholas Raal");
     System.out.println("Enter player name to start or help for a list of commands");
-    String stringput = "help";
-    while(stringput.toLowerCase().equals("help")){
-      stringput = s.nextLine();
-      if(stringput != "" && stringput.toLowerCase().equals("help")){
-        System.out.println("1: MOVE DOWN\n2: MOVE RIGHT\n3: MOVE UP\n4: MOVE LEFT");
-        System.out.println("E: INVENTORY/PLAYER INFO");
-        s.nextLine();
-      }
+    String stringput = s.nextLine();
+    if(stringput != "" && stringput.toLowerCase().equals("help")){
+      System.out.println("1: MOVE DOWN\n2: MOVE RIGHT\n3: MOVE UP\n4: MOVE LEFT");
+      System.out.println("E: INVENTORY/PLAYER INFO");
+//      s.nextLine();
     }
-
     if(!new File("player.dat").exists()){
       p.setPlayerPos(0, 0);
+//      System.out.println("WHAT IS YOUR NAME?");
+////      play.setName(s.nextLine());
     }
     Player play = new Player(stringput);
-    Scenario scen = new Scenario(play);
 //    if(!play.getFile().exists()){
 //      p.setPlayerPos(0, 0);
 //      System.out.println("WHAT IS YOUR NAME?");
@@ -50,7 +47,7 @@ class Main {
             play.dispArm();
             play.dispAtk();
             System.out.println("CURRENT ARMOR:");
-            play.dispCArm();
+            play.dispArm();
             play.dispLvl();
             System.out.println("1: USE ITEM\n2: EQUIP ARMOR");
             int n = Integer.parseInt(s.nextLine());
@@ -86,7 +83,7 @@ class Main {
              System.out.println("impossible input string");
             }
             if (p.move(n, n1)) {
-              Object o = scen.scenario(play, p.getTile(), play.getDifficulty(), p);
+              Object o = scen.scenario(play, p.getTile(), 1, p);
               if (o instanceof Battle) {
                 System.out.println("ENEMY ENCOUNTERED!");
                 s.nextLine();
@@ -106,10 +103,11 @@ class Main {
               rest(10);
             }
           }
-          play.updater();
+          play.update();
         }
       s.close();
      }
+    
   }
   
   
