@@ -391,8 +391,10 @@ public class Player{
 
       //create a check system to cast objects
       while(s.hasNext()){
-        Item itm =FileHandler.createItemS(s.nextLine());
+        Object itm =FileHandler.createItemS(s.nextLine());
+        
         if(itm instanceof Weapon){
+          System.out.println("ginormous bruh moment");
           inventory.add((Weapon)itm);
         }else if(itm instanceof Potion){
           inventory.add((Potion)itm);
@@ -401,7 +403,7 @@ public class Player{
         }else if(itm instanceof Book){
           inventory.add((Book)itm);
         }else{
-          inventory.add(itm);
+          inventory.add((Item)itm);
         }
       }
       s.close();

@@ -133,11 +133,12 @@ public class FileHandler{
         s = s.substring(s.indexOf(" ") + 1);
         double strCost = Double.parseDouble(s.substring(0, s.indexOf(" ")));
         s = s.substring(s.indexOf(" ") + 1);
-        double manaCost = Integer.parseInt(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
+        double manaCost = Double.parseDouble(s.substring(0, (s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length())));
         s = s.substring(s.indexOf(" ") + 1);
-        data.setString(s);
+        
         String demo = s.substring(0,(s.indexOf(" ") != -1 ? s.indexOf(" ") : s.length()));
         s = s.substring(s.indexOf(" ") + 1);
+        data.setString(s);
         return new Weapon(wName, rarity, value, wDamage, wType, manaCost, strCost, demo);
 
       }catch(NumberFormatException e){
