@@ -67,6 +67,14 @@ public class Weapon extends Item {
     return (demo != null ? demo : "" )+ " " + this.getName();
   }
 
+  public boolean equals(Object o){
+    if(o instanceof Weapon){
+      return ((Weapon)o).getName().equals(super.getName());
+    }else{
+      return false;
+    }
+  }
+  
   public String getFH(){
     return "ẅ" +  super.getName().replaceAll(" ", "_") +" " + damage  + " " + type + " " + super.getValue() + " " +super.getRarity() +" " + strC + " " + manaC + " " + demo;
   }

@@ -7,7 +7,6 @@ public class Battle{
   public Battle(Player play, Enemy[] enemy){
     p = play;
     e = enemy;
-    p.recover();
     p.full();
   }
   

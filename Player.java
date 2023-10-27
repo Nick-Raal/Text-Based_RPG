@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Scanner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player{
 
@@ -94,15 +95,19 @@ public class Player{
   public void dispAtk(){
     System.out.println("Attacks:");
     int n = 0;
+    List<Weapon> attacks = new ArrayList<Weapon>();
     for(int i = 0; i < inventory.size(); i++){
       if(inventory.get(i) instanceof Weapon){
-        n++;
-        System.out.print(Color.RESET + n + ":");
-        System.out.println((((Weapon)inventory.get(i)).getType() == 3 ? Color.PURPLE : ((Weapon)inventory.get(i)).getType() == 2 ? Color.RED : ((Weapon)inventory.get(i)).getType() == 1 ? Color.YELLOW : Color.RESET) + " " + inventory.get(i).getName());
-        System.out.print(Color.RED + "\tDMG: " + ((Weapon)inventory.get(i)).getDamage());
-        System.out.print((((Weapon)inventory.get(i)).getStr() != 0 ? Color.RESET + " | " + Color.YELLOW + "STR: " + ((Weapon)inventory.get(i)).getStr()+ Color.RESET + " | " : "") );
-    System.out.print(((Weapon)inventory.get(i)).getStr() == 0 && ((Weapon)inventory.get(i)).getMana() != 0 ? Color.RESET + " | " : "");
-        System.out.println(((Weapon)inventory.get(i)).getMana() != 0 ? Color.CYAN + "MANA: "+((Weapon)inventory.get(i)).getMana() : "");
+        if(!attacks.contains(inventory.get(i))){
+          n++;
+          System.out.print(Color.RESET + n + ":");
+              System.out.println((((Weapon)inventory.get(i)).getType() == 3 ? Color.PURPLE : ((Weapon)inventory.get(i)).getType() == 2 ? Color.RED : ((Weapon)inventory.get(i)).getType() == 1 ? Color.YELLOW : Color.RESET) + " " + inventory.get(i).getName());
+              System.out.print(Color.RED + "\tDMG: " + ((Weapon)inventory.get(i)).getDamage());
+              System.out.print((((Weapon)inventory.get(i)).getStr() != 0 ? Color.RESET + " | " + Color.YELLOW + "STR: " + ((Weapon)inventory.get(i)).getStr()+ Color.RESET + " | " : "") );
+          System.out.print(((Weapon)inventory.get(i)).getStr() == 0 && ((Weapon)inventory.get(i)).getMana() != 0 ? Color.RESET + " | " : "");
+              System.out.println(((Weapon)inventory.get(i)).getMana() != 0 ? Color.CYAN + "MANA: "+((Weapon)inventory.get(i)).getMana() : "");
+          attacks.add((Weapon)inventory.get(i));
+        }
       }
     }
     System.out.println("\n" + Color.YELLOW + "STR: " + str + Color.RESET + " | " + Color.CYAN + "MANA: " + mana + Color.RESET);
@@ -112,12 +117,14 @@ public class Player{
   public double[] Attack(int select){
     double[] attack = new double[2];
     int k = 0;
+    List<Weapon> attacks = new ArrayList<Weapon>();
     for(int i = 0; i < inventory.size(); i++){
-      if((inventory.get(i) instanceof Weapon)){
+      if((inventory.get(i) instanceof Weapon) && !(attacks.contains(inventory.get(i)))){
         if(k == select){
           select = i;
           break;
         }
+        attacks.add((Weapon)inventory.get(i));
         k++;
       }
     }
@@ -153,14 +160,17 @@ public class Player{
       if(!(inventory.get(i) instanceof Weapon) && !(inventory.get(i) instanceof Armor)){
         k++;
         System.out.println(Color.RESET + (k) + ": " + inventory.get(i).getName());
-        if(inventory.get(i) instanceof Potion){
+        if(inventory.get(i) instanceof Potion || inventory.get(i) instanceof Book){
 
           System.out.print("\t" + (((Potion)inventory.get(i)).use()[0] != 0 ? Color.RED + "HP: " + ((Potion)inventory.get(i)).use()[0] : ""));
           System.out.print(Color.RESET + (((Potion)inventory.get(i)).use()[0] != 0 ? " | " : "") + Color.YELLOW + (((Potion)inventory.get(i)).use()[1] != 0 ? " STR: " + ((Potion)inventory.get(i)).use()[1] : ""));
-          // System.out.println(((Color.RESET + ((((Potion)inventory.get(i)).use()[0] != 0 && ((Potion)inventory.get(i)).use()[1] != 0 ? " | " : "") + Color.CYAN + ((Potion)inventory.get(i)).use()[2] != 0 ? " MANA: " + ((Potion)inventory.get(i)).use()[2] : "")));
-          System.out.println();
+          // System.out.print(((Color.RESET + ((((Potion)inventory.get(i)).use()[0] != 0 && ((Potion)inventory.get(i)).use()[1] != 0 ? " | " : "") + Color.CYAN + ((Potion)inventory.get(i)).use()[2] != 0 ? " MANA: " + ((Potion)inventory.get(i)).use()[2] : "")));
+          if(inventory.get(i) instanceof Book){
+            System.out.print(((Book)inventory.get(i)).getBody());
+          }
         }
       }
+      System.out.println();
     }
     System.out.print(Color.RESET);
   }
@@ -193,12 +203,14 @@ public class Player{
 
   public Weapon getWeapon(int select){
     int k = 0;
+    List<Weapon> attacks = new ArrayList<Weapon>();
     for(int i = 0; i < inventory.size(); i++){
-      if((inventory.get(i) instanceof Weapon)){
+      if((inventory.get(i) instanceof Weapon) && !attacks.contain((Weapon)inventory.get(i))){
         if(k == select){
           select = i;
           break;
         }
+        attacks.add((Weapon)inventory.get(i));
         // System.out.println("running: " + k);
         k++;
       }
