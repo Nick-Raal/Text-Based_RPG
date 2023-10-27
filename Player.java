@@ -116,24 +116,10 @@ public class Player{
   //first value is damage, second is type
   public double[] Attack(int select){
     double[] attack = new double[2];
-    int k = 0;
-    List<Weapon> attacks = new ArrayList<Weapon>();
-    for(int i = 0; i < inventory.size(); i++){
-      if((inventory.get(i) instanceof Weapon) && !(attacks.contains(inventory.get(i)))){
-        if(k == select){
-          select = i;
-          break;
-        }
-        attacks.add((Weapon)inventory.get(i));
-        k++;
-      }
-    }
-    str -= ((Weapon)inventory.get(select)).getStr();
-    mana -= ((Weapon)inventory.get(select)).getMana();
-    attack[0] = k >= 0 ? ((Weapon)inventory.get(select)).getDamage() * atkMod : 0;
-    attack[1] = ((Weapon)inventory.get(select)).getType();
-    str-=((Weapon)inventory.get(select)).getStr();
-    mana-=((Weapon)inventory.get(select)).getMana();
+    str -= (getWeapon(select)).getStr();
+    mana -= (getWeapon(select)).getMana();
+    attack[0] = (getWeapon(select)).getDamage() * atkMod;
+    attack[1] = (getWeapon(select)).getType();
     return attack;
   }
 
@@ -205,7 +191,7 @@ public class Player{
     int k = 0;
     List<Weapon> attacks = new ArrayList<Weapon>();
     for(int i = 0; i < inventory.size(); i++){
-      if((inventory.get(i) instanceof Weapon) && !attacks.contain((Weapon)inventory.get(i))){
+      if((inventory.get(i) instanceof Weapon) && !attacks.contains((Weapon)inventory.get(i))){
         if(k == select){
           select = i;
           break;

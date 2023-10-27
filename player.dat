@@ -1,16 +1,16 @@
 e
-55.0
-55.0
-1.1
-1.1
-1.1
-3
-142
-5
+50.0
+50.0
+1.0
+1.0
+1.0
+1
+100
+0
 10.0
 10.0
--4.0
-18.0
+10.0
+10.0
 2.0
 2.0
 1.0
@@ -19,19 +19,3 @@ e
 äTraining_Leggings 1.0 1 2 5 1
 äTraining_Boots 1.0 1 3 5 1
 ẅTraining_Sword 10.0 2 1 5 3.0 0.0 the
-ṖSlime 2 1 1.0 1.0 1.0
-ṖSlime 2 1 1.0 1.0 1.0
-ṖPotion_of_Fortitude 40 2 0.0 10.0 0.0
-ṖPotion_of_Magacity 40 2 0.0 0.0 10.0
-ṖPotion_of_Magacity 40 2 0.0 0.0 10.0
-ẅSpear_of_Justice 70.0 2 300 5 8.0 3.0 the
-ẅAdamantium_Flail 30.0 2 160 2 5.0 0.0 the
-ẅSpear_of_Justice 70.0 2 300 5 8.0 3.0 the
-ẅSpear_of_Justice 70.0 2 5 300 8.0 3.0 the
-ṖPotion_of_Fortitude 40 2 0.0 10.0 0.0
-ẅAdamantium_Flail 30.0 2 2 160 5.0 0.0 the
-ṖThe_All_Potion 250 5 35.0 35.0 35.0
-ẅAdamantium_Flail 30.0 2 2 160 5.0 0.0 the
-ṖThe_Tome_of_Infinite_Knowledge 500 5 50.0 50.0 50.0
-ṖSlime 2 1 1.0 1.0 1.0
-ṖSlime 2 1 1.0 1.0 1.0

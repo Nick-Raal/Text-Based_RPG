@@ -1,3 +1,5 @@
+supplanted by the creator but kept in for legacy purposes
+
 Enemy Format:
 Name Health Initiative Attack_Modifier (Weapon) (Armor) (Armor) (Armor) (Armor) gold_drops experience_drops (Item) drop_chances
 

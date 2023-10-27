@@ -17,6 +17,6 @@ public class Book extends Potion{
   }
 
   public String getFH(){
-    return "Ṗ" + super.getName().replaceAll(" ", "_") + " " + super.getValue() + " " + super.getRarity() + " " + super.use()[0] + " " + super.use()[1] + " " + super.use()[2] + " " + body;
+    return "Ṗ" + super.getName().replaceAll(" ", "_") + " " + super.getValue() + " " + super.getRarity() + " " + super.use()[0] + " " + super.use()[1] + " " + super.use()[2] + " " + body.replaceAll(" ", "_");
   }
 }

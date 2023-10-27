@@ -15,4 +15,6 @@ can't escape buying screen (done)
 the great simplification (standardize everythin in filehandling) (DONE)
 give enemies attack chances (seems to be done)
 create a lot more items and enemies
-improve enemy chances system
+improve enemy chances system (like how even in later difficulties, easier enemies will be prioritized)
+create an item chance system for the chests
+handle all input exceptions
