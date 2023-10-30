@@ -81,9 +81,9 @@ public class Place{
 
   //1 = up. 2 = right. 3 = down. 4 = left
   //return to check success
-  public boolean move(int dist, int dir){
-    switch(dir){
-      case 1:
+  public boolean move(int dist, String dir){
+    
+      if(dir.equals(""))
         if(checkTile(x, y + dist)){
            y+=dist;
           setPlayerPos(x, y);
@@ -316,6 +316,7 @@ public class Place{
 
   //check the player's current position to see if anything cool things should occur
   //debating adding support for multiple different types of places
+  //i think this is just the scenario system
   //will do later
   public int checkPos() {
     switch (data[y][x]) {

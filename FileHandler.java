@@ -114,6 +114,31 @@ public class FileHandler{
     return createItemS(new StringHandler(s));
   }
 
+  public static Item createLootItem(String path, double difficulty){
+    String s = "";
+    try{
+      List<String> lines = Files.readAllLines(Paths.get(path));
+      Random random = new Random();
+      int max = random.nextInt(difficulty * 2 < lines.size() ? ((int)(difficulty * 2) != 0 ? (int)(difficulty * 2)  : 1) : lines.size());
+      while(s.equals("")){
+        for(int i = 0; i < max; i++){
+          int n = random.nextInt(99) + 1;
+          System.out.println("n: " + n);
+          if(Double.parseDouble(lines.get(i).substring(0, lines.get(i).indexOf(" "))) * 100 >= n){
+            s = lines.get(i);
+            //remove the selection chance
+            s = s.substring(s.indexOf(" ") + 1);
+            break;
+          }
+        }
+      }
+      return createItemS(s);
+    }catch(Exception e){
+      System.out.println("CRITICAL, IRREPERATBLE, IMMMUTABLE ERROR");
+      return null;
+    }
+  }
+  
   public static Item createItemS(StringHandler data){
     String s = data.getString();
     if(s.charAt(0) == 'ẅ'){
