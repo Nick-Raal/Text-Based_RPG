@@ -58,7 +58,12 @@ public class Battle{
         n = -1;
         while(n < 1 || n > e.length){
           System.out.println("Select which enemy to VANQUISH");
-          n = Integer.parseInt(in.nextLine());
+          try{
+            n = Integer.parseInt(in.nextLine());
+          }catch(NumberFormatException e){
+            System.out.println("please don't be a dumbass");
+          }
+          
         }
         double damage = e[n-1].damage(atk[0], (int)atk[1], false);
         String s = e[n-1].getName();

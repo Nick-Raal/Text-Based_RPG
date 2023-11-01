@@ -7,7 +7,7 @@ expand difficulty system (loot implementation)
 give each object a text based sprite (idk if i'll aactually do this) (i do want to do this)
 expand create enemy to include drops and other such info (mostly done) need to add drop chances (mostly done)
 allow inventory access while on the world map (mostly done)
-ensure there is always a castle (DONE)
+ensure there is always a castle (DONE) (broken)
 create area specific enemies and loot (in progress)
 village saving system (done)
 improve Place.update's efficiency
@@ -16,5 +16,8 @@ the great simplification (standardize everythin in filehandling) (DONE)
 give enemies attack chances (seems to be done)
 create a lot more items and enemies
 improve enemy chances system (like how even in later difficulties, easier enemies will be prioritized)
-create an item chance system for the chests
+create an item chance system for the chests (STARTED)
 handle all input exceptions
+make all sequences skippable
+give indication an item has been sold
+make enemy variety provide quicker

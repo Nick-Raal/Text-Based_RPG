@@ -72,12 +72,7 @@ class Main {
               s.nextLine();
             }
           }else{
-            try{
-              n1 = Integer.parseInt(input);
-            }catch(Exception e){
-             System.out.println("impossible input string");
-            }
-            if (p.move(n, n1)) {
+            if (p.move(n, input)) {
               Object o = scen.scenario(play, p.getTile(), 1, p);
               if (o instanceof Battle) {
                 System.out.println("ENEMY ENCOUNTERED!");

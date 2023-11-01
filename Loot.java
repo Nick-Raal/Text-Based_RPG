@@ -10,7 +10,7 @@ public class Loot {
     public Loot(double difficulty){
         contents = new ArrayList<Item>();
         for(int i = 0; i < (6 - (int)(difficulty * Math.random())); i++){
-            contents.add(FileHandler.createItem("loot.dat"));
+            contents.add(FileHandler.createLootItem("loot.dat", 1));
         }
     }
 

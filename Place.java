@@ -82,8 +82,7 @@ public class Place{
   //1 = up. 2 = right. 3 = down. 4 = left
   //return to check success
   public boolean move(int dist, String dir){
-    
-      if(dir.equals(""))
+      if(dir.equals("1")){
         if(checkTile(x, y + dist)){
            y+=dist;
           setPlayerPos(x, y);
@@ -92,8 +91,8 @@ public class Place{
         }else{
           return false;
         }
-
-      case 2:
+      }
+      else if(dir.equals("2")){
         if(checkTile(x+dist, y)){
           x+=dist;
           setPlayerPos(x, y);
@@ -102,8 +101,8 @@ public class Place{
         }else{
           return false;
         }
-
-      case 3:
+      }
+      else if(dir.equals("3")){
         if(checkTile(x, y-dist)){
           y-=dist;
           setPlayerPos(x, y);
@@ -112,8 +111,8 @@ public class Place{
         }else{
           return false;
         }
-
-      case 4:
+      }
+      else if(dir.equals("4")){
         if(checkTile(x-dist, y)){
           x-=dist;
           setPlayerPos(x, y);
@@ -122,12 +121,13 @@ public class Place{
         }else{
           return false;
         }
-
-      default:
+      }else{
         System.out.println("ERROR");
+        System.out.println(dir);
         return false;
+      }
     }
-  }
+  
 
   private boolean checkTile(int x, int y){
     if(x < 0 || y < 0){
